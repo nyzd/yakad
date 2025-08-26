@@ -14,3 +14,4 @@ export const Spacer = forwardRef<HTMLDivElement, SpacerProps>(
         return <div ref={ref} {...restProps} className={joinedClassNames} />;
     }
 );
+Spacer.displayName = "Spacer";

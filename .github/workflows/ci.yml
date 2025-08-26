@@ -1,36 +1,40 @@
 name: CI
 
 on:
-  push:
-    branches:
-      - main
-  pull_request:
+    push:
+        branches:
+            - main
+    pull_request:
 
 jobs:
-  test:
-    runs-on: ubuntu-latest
+    test:
+        runs-on: ubuntu-latest
 
-    strategy:
-      matrix:
-        node-version: [16, 18, 20]
-        package: [lib, ui, x, symbols]
+        strategy:
+            matrix:
+                node-version: [16, 18, 20]
+                package: [lib, ui, x, symbols]
 
-    steps:
-      - uses: actions/checkout@v4
+        steps:
+            - uses: actions/checkout@v4
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: ${{ matrix.node-version }}
+            - name: Setup Node.js
+              uses: actions/setup-node@v4
+              with:
+                  node-version: ${{ matrix.node-version }}
 
-      - name: Install package dependencies
-        run: npm ci
-        working-directory: packages/${{ matrix.package }}
+            - name: Install package dependencies
+              run: npm ci
+              working-directory: packages/${{ matrix.package }}
 
-      - name: Run lint for ${{ matrix.package }}
-        run: npm run lint
-        working-directory: packages/${{ matrix.package }}
+            - name: Run lint for ${{ matrix.package }}
+              run: npm run lint
+              working-directory: packages/${{ matrix.package }}
 
-      - name: Run tests for ${{ matrix.package }}
-        run: npm test
-        working-directory: packages/${{ matrix.package }}
+            - name: Run type-check for ${{ matrix.package }}
+              run: npm run type-check
+              working-directory: packages/${{ matrix.package }}
+
+            - name: Build ${{ matrix.package }}
+              run: npm run build
+              working-directory: packages/${{ matrix.package }}

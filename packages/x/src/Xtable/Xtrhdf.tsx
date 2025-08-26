@@ -7,7 +7,9 @@ export interface XTrProps extends TrProps {
     children: ReactElement<XThProps> | Array<ReactElement<XThProps>>;
 }
 export function XTr(props: XTrProps) {
-    return <Tr>XTr can only be used inside XThead | XTbody | XTfoot</Tr>;
+    return (
+        <Tr {...props}>XTr can only be used inside XThead | XTbody | XTfoot</Tr>
+    );
 }
 XTr.displayName = "XTr";
 
@@ -18,13 +20,17 @@ export interface XThProps extends ThProps {
     defaulthidden?: boolean;
 }
 export function XTh(props: XThProps) {
-    return <Th>XTh can only be used inside XTr witch inside XThead</Th>;
+    return (
+        <Th {...props}>XTh can only be used inside XTr witch inside XThead</Th>
+    );
 }
 XTh.displayName = "XTh";
 
 export interface XTdProps extends TdProps {}
 export function XTd(props: XTdProps) {
-    return <Td>XTd can only be used inside XTr witch inside XTbody</Td>;
+    return (
+        <Td {...props}>XTd can only be used inside XTr witch inside XTbody</Td>
+    );
 }
 XTd.displayName = "XTd";
 
@@ -33,6 +39,8 @@ export interface XTfProps extends ThProps {
     footFunc?: AcceptedFootFuncs;
 }
 export function XTf(props: XTfProps) {
-    return <Th>XTf can only be used inside XTr witch inside XTfoot</Th>;
+    return (
+        <Th {...props}>XTf can only be used inside XTr witch inside XTfoot</Th>
+    );
 }
 XTf.displayName = "XTf";

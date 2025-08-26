@@ -25,3 +25,4 @@ export const Display = forwardRef<HTMLDivElement, DisplayProps>(
         );
     }
 );
+Display.displayName = "Display";

@@ -22,6 +22,7 @@ export const Table = forwardRef<HTMLTableElement, TableProps>(
         );
     }
 );
+Table.displayName = "Table";
 
 export interface TheadProps
     extends React.HTMLAttributes<HTMLTableSectionElement> {
@@ -38,6 +39,7 @@ export const Thead = forwardRef<HTMLTableSectionElement, TheadProps>(
         );
     }
 );
+Thead.displayName = "Thead";
 
 export interface TbodyProps
     extends React.HTMLAttributes<HTMLTableSectionElement> {
@@ -54,6 +56,7 @@ export const Tbody = forwardRef<HTMLTableSectionElement, TbodyProps>(
         );
     }
 );
+Tbody.displayName = "Tbody";
 
 export interface TfootProps
     extends React.HTMLAttributes<HTMLTableSectionElement> {
@@ -70,6 +73,7 @@ export const Tfoot = forwardRef<HTMLTableSectionElement, TfootProps>(
         );
     }
 );
+Tfoot.displayName = "Tfoot";
 
 export interface TrProps extends React.HTMLAttributes<HTMLTableRowElement> {
     children?: React.ReactNode;
@@ -85,6 +89,7 @@ export const Tr = forwardRef<HTMLTableRowElement, TrProps>(
         );
     }
 );
+Tr.displayName = "Tr";
 
 export interface ThProps extends React.HTMLAttributes<HTMLTableCellElement> {
     children?: React.ReactNode;
@@ -100,6 +105,7 @@ export const Th = forwardRef<HTMLTableCellElement, ThProps>(
         );
     }
 );
+Th.displayName = "Th";
 
 export interface TdProps extends React.HTMLAttributes<HTMLTableCellElement> {
     children?: React.ReactNode;
@@ -115,3 +121,4 @@ export const Td = forwardRef<HTMLTableCellElement, TdProps>(
         );
     }
 );
+Td.displayName = "Td";

@@ -24,18 +24,6 @@ export interface ButtonProps
     children?: React.ReactNode;
 }
 
-interface iconSizeMap {
-    small: number;
-    medium: number;
-    large: number;
-}
-
-const iconSizeMaps: iconSizeMap = {
-    small: 2,
-    medium: 2.4,
-    large: 3.2,
-};
-
 export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
     (
         {
@@ -86,3 +74,5 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
         );
     }
 );
+
+Button.displayName = "Button";

@@ -30,7 +30,8 @@ export const Navigation = forwardRef<HTMLDivElement, NavigationProps>(
             styles[anchor],
             {
                 [styles.open]: open,
-            }
+            },
+            className
         );
 
         return (
@@ -40,3 +41,4 @@ export const Navigation = forwardRef<HTMLDivElement, NavigationProps>(
         );
     }
 );
+Navigation.displayName = "Navigation";

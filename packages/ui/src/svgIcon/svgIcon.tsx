@@ -16,6 +16,7 @@ export const SvgIcon = forwardRef<HTMLDivElement, SvgIconProps>(
 
         return (
             <div
+                ref={ref}
                 {...restProps}
                 className={joinedClassNames}
                 style={{
@@ -28,3 +29,4 @@ export const SvgIcon = forwardRef<HTMLDivElement, SvgIconProps>(
         );
     }
 );
+SvgIcon.displayName = "SvgIcon";

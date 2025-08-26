@@ -27,3 +27,4 @@ export const Loading = forwardRef<HTMLDivElement, LoadingProps>(
         );
     }
 );
+Loading.displayName = "Loading";

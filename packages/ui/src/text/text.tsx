@@ -37,6 +37,7 @@ export const H1 = forwardRef<HTMLHeadingElement, HeadingProps>(
         );
     }
 );
+H1.displayName = "H1";
 
 export const H2 = forwardRef<HTMLHeadingElement, HeadingProps>(
     ({ variant = "heading2", className, children, ...restProps }, ref) => {
@@ -52,6 +53,7 @@ export const H2 = forwardRef<HTMLHeadingElement, HeadingProps>(
         );
     }
 );
+H2.displayName = "H2";
 
 export const H3 = forwardRef<HTMLHeadingElement, HeadingProps>(
     ({ variant = "heading3", className, children, ...restProps }, ref) => {
@@ -67,6 +69,7 @@ export const H3 = forwardRef<HTMLHeadingElement, HeadingProps>(
         );
     }
 );
+H3.displayName = "H3";
 
 export const H4 = forwardRef<HTMLHeadingElement, HeadingProps>(
     ({ variant = "heading4", className, children, ...restProps }, ref) => {
@@ -82,6 +85,7 @@ export const H4 = forwardRef<HTMLHeadingElement, HeadingProps>(
         );
     }
 );
+H4.displayName = "H4";
 
 export const H5 = forwardRef<HTMLHeadingElement, HeadingProps>(
     ({ variant = "heading5", className, children, ...restProps }, ref) => {
@@ -97,6 +101,7 @@ export const H5 = forwardRef<HTMLHeadingElement, HeadingProps>(
         );
     }
 );
+H5.displayName = "H5";
 
 export const H6 = forwardRef<HTMLHeadingElement, HeadingProps>(
     ({ variant = "heading6", className, children, ...restProps }, ref) => {
@@ -112,6 +117,7 @@ export const H6 = forwardRef<HTMLHeadingElement, HeadingProps>(
         );
     }
 );
+H6.displayName = "H6";
 
 export interface ParagraphProps
     extends React.HTMLAttributes<HTMLParagraphElement> {
@@ -132,6 +138,7 @@ export const P = forwardRef<HTMLParagraphElement, ParagraphProps>(
         );
     }
 );
+P.displayName = "P";
 
 export interface SpanProps extends React.HTMLAttributes<HTMLSpanElement> {
     variant?: TextVariant;
@@ -151,6 +158,7 @@ export const Span = forwardRef<HTMLSpanElement, SpanProps>(
         );
     }
 );
+Span.displayName = "Span";
 
 export interface TextProps extends React.HTMLAttributes<HTMLDivElement> {
     variant?: TextVariant;
@@ -169,3 +177,4 @@ export const Text = forwardRef<HTMLDivElement, TextProps>(
         );
     }
 );
+Text.displayName = "Text";

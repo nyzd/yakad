@@ -1,6 +1,6 @@
 "use client";
 
-import { forwardRef, useEffect, useRef } from "react";
+import { useEffect, useRef } from "react";
 
 export interface ClickOutsideListenerProps
     extends React.HTMLAttributes<HTMLDivElement> {
@@ -17,7 +17,7 @@ export const ClickOutsideListener = ({
 
     useEffect(() => {
         const handleOutSideClick = (event: MouseEvent) => {
-            if (ref.current && !(ref.current as any).contains(event.target))
+            if (ref.current && !ref.current.contains(event.target as Node))
                 onclickoutside?.();
         };
 

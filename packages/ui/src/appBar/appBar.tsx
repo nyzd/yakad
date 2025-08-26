@@ -72,3 +72,5 @@ export const AppBar = forwardRef<HTMLDivElement, AppBarProps>(
         );
     }
 );
+
+AppBar.displayName = "AppBar";

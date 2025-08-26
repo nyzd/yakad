@@ -53,3 +53,4 @@ export const Theme = forwardRef<HTMLDivElement, ThemeProps>(
         );
     }
 );
+Theme.displayName = "Theme";

@@ -25,3 +25,4 @@ export const Screen = forwardRef<HTMLDivElement, ScreenProps>(
         );
     }
 );
+Screen.displayName = "Screen";

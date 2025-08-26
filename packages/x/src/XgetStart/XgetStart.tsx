@@ -11,21 +11,20 @@ import {
 import styles from "./XgetStart.module.css";
 
 export interface XgetStartProps extends ContainerProps {
-    logo?: any;
-    //what type we should choose for logo?
+    logo?: React.ReactNode;
     children?: React.ReactNode;
 }
 
 export const XgetStart = forwardRef<HTMLDivElement, XgetStartProps>(
-    ({ logo, size = "lg", className, style, children, ...restProps }, ref) => {
+    ({ logo, size = "lg", className, children, ...restProps }, ref) => {
         const joinedClassNames = classNames(styles.xgetstart, className);
 
         return (
             <Container
                 ref={ref}
                 size={size}
-                {...restProps}
                 className={joinedClassNames}
+                {...restProps}
             >
                 <GridContainer gap={2}>
                     <GridItem md={12} xl={5}>

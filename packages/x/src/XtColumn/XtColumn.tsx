@@ -12,6 +12,6 @@ export interface XtColumnProps {
 }
 
 export const XtColumn = (props: XtColumnProps) => (
-    <Card>Just use XtColumn inside Xtable!</Card>
+    <Card {...props}>Just use XtColumn inside Xtable!</Card>
 );
 XtColumn.displayName = "XtColumn";

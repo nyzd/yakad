@@ -38,3 +38,4 @@ export const GridContainer = forwardRef<HTMLDivElement, GridContainerProps>(
         );
     }
 );
+GridContainer.displayName = "GridContainer";

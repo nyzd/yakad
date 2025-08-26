@@ -2,7 +2,7 @@ import { forwardRef } from "react";
 import { Table, Thead, Tbody, Tr, Th, Td } from "@yakad/ui";
 
 interface RowData {
-    [key: string]: string | number | boolean | any;
+    [key: string]: string | number | boolean | object | null | undefined;
 }
 
 export interface XdataMapProps

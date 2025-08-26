@@ -1,4 +1,4 @@
-import { forwardRef, useReducer, useRef } from "react";
+import { forwardRef } from "react";
 import classNames from "classnames";
 import Symbol from "@yakad/symbols";
 
@@ -26,3 +26,4 @@ export const CodeBox = forwardRef<HTMLDivElement, CodeBoxProps>(
         );
     }
 );
+CodeBox.displayName = "CodeBox";
