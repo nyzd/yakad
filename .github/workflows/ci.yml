@@ -33,7 +33,7 @@ jobs:
                         }
                       }
                       return JSON.stringify({ include: matrix });
-              result-encoding: string
+              # result-encoding: string
 
     test:
         needs: generate-matrix
