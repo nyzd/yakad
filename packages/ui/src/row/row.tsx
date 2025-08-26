@@ -40,3 +40,4 @@ export const Row = forwardRef<HTMLDivElement, RowProps>(
         );
     }
 );
+Row.displayName = "Row";

@@ -22,9 +22,15 @@
     "homepage": "https://yakad.natiq.net",
     "scripts": {
         "build": "tsc",
-        "prepublishOnly": "cp ../../README.md ../../LICENSE ./"
+        "prepublishOnly": "cp ../../README.md ../../LICENSE ./",
+        "lint": "eslint src/**/*.ts",
+        "lint:fix": "eslint src/**/*.ts --fix",
+        "type-check": "tsc --noEmit"
     },
     "devDependencies": {
-        "typescript": "^5.0.0"
+        "typescript": "^5.0.0",
+        "eslint": "^8.0.0",
+        "@typescript-eslint/eslint-plugin": "^6.0.0",
+        "@typescript-eslint/parser": "^6.0.0"
     }
 }

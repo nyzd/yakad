@@ -35,3 +35,4 @@ export const GridItem = forwardRef<HTMLDivElement, GridItemProps>(
         );
     }
 );
+GridItem.displayName = "GridItem";

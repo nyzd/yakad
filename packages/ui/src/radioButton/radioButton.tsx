@@ -28,6 +28,7 @@ export const RadioButton = forwardRef<HTMLInputElement, RadioButtonProps>(
     ({ datafromradiogroup, label, onClick, className, ...restProps }, ref) => {
         const joinedClassNames = classNames(styles.radiobutton, {
             [styles.labeled]: label,
+            className,
         });
 
         const onClickRadioButtonHandler = () => {
@@ -70,3 +71,4 @@ export const RadioButton = forwardRef<HTMLInputElement, RadioButtonProps>(
         );
     }
 );
+RadioButton.displayName = "RadioButton";

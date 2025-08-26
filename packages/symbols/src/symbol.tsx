@@ -31,7 +31,6 @@ const Symbol = forwardRef<HTMLSpanElement, SymbolProps>(
             mirror,
             className,
             style,
-            children,
             ...restProps
         },
         ref
@@ -57,6 +56,7 @@ const Symbol = forwardRef<HTMLSpanElement, SymbolProps>(
         return (
             <span
                 {...restProps}
+                ref={ref}
                 className={joinedClassNames}
                 style={joinedStyles}
             >
@@ -65,5 +65,4 @@ const Symbol = forwardRef<HTMLSpanElement, SymbolProps>(
         );
     }
 );
-
-export default Symbol;
+Symbol.displayName = "Symbol";

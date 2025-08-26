@@ -46,7 +46,6 @@ export const CodeField = forwardRef<HTMLInputElement, CodeFieldsProps>(
             onInput,
             className,
             style,
-            children,
             ...restProps
         },
         ref
@@ -78,3 +77,4 @@ export const CodeField = forwardRef<HTMLInputElement, CodeFieldsProps>(
         );
     }
 );
+CodeField.displayName = "CodeField";

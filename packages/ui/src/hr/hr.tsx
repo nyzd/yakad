@@ -34,3 +34,4 @@ export const Hr = forwardRef<HTMLHRElement, HrProps>(
         );
     }
 );
+Hr.displayName = "Hr";

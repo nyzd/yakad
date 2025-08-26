@@ -13,19 +13,24 @@ export const XTbody = forwardRef<HTMLTableSectionElement, XTbodyProps>(
 
         return (
             <Tbody ref={ref} {...restProps}>
-                {(arrayChildren as ReactElement<XTrProps>[]).map((ChildXTr) => (
-                    <Tr {...ChildXTr.props}>
-                        {(
-                            Children.toArray(ChildXTr.props.children) as Array<
-                                ReactElement<XTdProps>
-                            >
-                        ).map((ChildXTd) => (
-                            <Td {...ChildXTd.props}>
-                                {ChildXTd.props.children}
-                            </Td>
-                        ))}
-                    </Tr>
-                ))}
+                {(arrayChildren as ReactElement<XTrProps>[]).map(
+                    (ChildXTr, index) => (
+                        <Tr key={`tr-${index}`} {...ChildXTr.props}>
+                            {(
+                                Children.toArray(
+                                    ChildXTr.props.children
+                                ) as Array<ReactElement<XTdProps>>
+                            ).map((ChildXTd, cellIndex) => (
+                                <Td
+                                    key={`td-${index}-${cellIndex}`}
+                                    {...ChildXTd.props}
+                                >
+                                    {ChildXTd.props.children}
+                                </Td>
+                            ))}
+                        </Tr>
+                    )
+                )}
             </Tbody>
         );
     }
