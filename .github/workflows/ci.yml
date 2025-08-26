@@ -1,62 +1,36 @@
 name: CI
 
 on:
-    push:
-        branches:
-            - main
-    pull_request:
+  push:
+    branches:
+      - main
+  pull_request:
 
 jobs:
-    generate-matrix:
-        runs-on: ubuntu-latest
-        outputs:
-            matrix: ${{ steps.set-matrix.outputs.matrix }}
-        steps:
-            - uses: actions/checkout@v4
+  test:
+    runs-on: ubuntu-latest
 
-            - id: set-matrix
-              uses: actions/github-script@v6
-              with:
-                  script: |
-                      const fs = require('fs');
-                      const path = './packages';
-                      const packages = fs.readdirSync(path).filter(name => {
-                        const stat = fs.statSync(`${path}/${name}`);
-                        return stat.isDirectory();
-                      });
-                      // create combinations with node versions
-                      const nodeVersions = [16, 18, 20];
-                      const matrix = [];
-                      for (const pkg of packages) {
-                        for (const nodeVersion of nodeVersions) {
-                          matrix.push({ package: pkg, node: nodeVersion });
-                        }
-                      }
-                      return JSON.stringify({ include: matrix });
-              # result-encoding: string
+    strategy:
+      matrix:
+        node-version: [16, 18, 20]
+        package: [lib, ui, x, symbols]
 
-    test:
-        needs: generate-matrix
-        runs-on: ubuntu-latest
-        strategy:
-            matrix: ${{ fromJson(needs.generate-matrix.outputs.matrix) }}
+    steps:
+      - uses: actions/checkout@v4
 
-        steps:
-            - uses: actions/checkout@v4
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node-version }}
 
-            - name: Setup Node.js
-              uses: actions/setup-node@v4
-              with:
-                  node-version: ${{ matrix.node }}
+      - name: Install package dependencies
+        run: npm ci
+        working-directory: packages/${{ matrix.package }}
 
-            - name: Install package dependencies
-              run: npm ci
-              working-directory: packages/${{ matrix.package }}
+      - name: Run lint for ${{ matrix.package }}
+        run: npm run lint
+        working-directory: packages/${{ matrix.package }}
 
-            - name: Run lint for ${{ matrix.package }}
-              run: npm run lint
-              working-directory: packages/${{ matrix.package }}
-
-            - name: Run tests for ${{ matrix.package }}
-              run: npm test
-              working-directory: packages/${{ matrix.package }}
+      - name: Run tests for ${{ matrix.package }}
+        run: npm test
+        working-directory: packages/${{ matrix.package }}
