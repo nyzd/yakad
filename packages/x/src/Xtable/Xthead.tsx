@@ -2,7 +2,7 @@
 
 import { Children, ReactElement, forwardRef, useState } from "react";
 import { Button, Row, Spacer, Th, Thead, TheadProps, Tr } from "@yakad/ui";
-import Symbol from "@yakad/symbols";
+import { Symbol } from "@yakad/symbols";
 
 import styles from "./Xtable.module.css";
 import { XTrProps, XThProps } from "./Xtrhdf";

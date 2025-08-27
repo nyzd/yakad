@@ -1,4 +1,5 @@
 module.exports = {
+    root: true,
     parser: "@typescript-eslint/parser",
     extends: [
         "eslint:recommended",
@@ -32,4 +33,13 @@ module.exports = {
         es6: true,
         node: true,
     },
+    overrides: [
+        {
+            files: ["packages/lib/**/*.ts"],
+            rules: {
+                "react/react-in-jsx-scope": "off",
+                "react/prop-types": "off",
+            },
+        },
+    ],
 };

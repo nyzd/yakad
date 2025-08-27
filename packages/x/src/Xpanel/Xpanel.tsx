@@ -10,7 +10,7 @@ import {
     ScreenProps,
     Spacer,
 } from "@yakad/ui";
-import Symbol from "@yakad/symbols";
+import { Symbol } from "@yakad/symbols";
 
 export interface XpanelProps extends ScreenProps {
     name?: string;
