@@ -1,6 +1,6 @@
 import { forwardRef } from "react";
 import classNames from "classnames";
-import Symbol from "@yakad/symbols";
+import { Symbol } from "@yakad/symbols";
 
 import styles from "./codeBox.module.css";
 import { Button, Card } from "../";

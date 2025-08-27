@@ -4,7 +4,7 @@ import classNames from "classnames";
 import { IconCode } from "./types";
 import styles from "./public/css/style.module.css";
 
-interface SymbolProps extends React.HTMLAttributes<HTMLElement> {
+export interface SymbolProps extends React.HTMLAttributes<HTMLElement> {
     icon: IconCode;
     type?: "default" | "outlined" | "round" | "sharp" | "twoTone";
     size?: number | "small" | "medium" | "large";
@@ -22,7 +22,7 @@ const symbolSizeMaps: SymbolSizeMap = {
     large: 3.2,
 };
 
-const Symbol = forwardRef<HTMLSpanElement, SymbolProps>(
+export const Symbol = forwardRef<HTMLSpanElement, SymbolProps>(
     (
         {
             icon,
