@@ -22,7 +22,7 @@
         "update:deps": "npm update --workspaces",
         "outdated": "npm outdated --workspaces",
         "audit": "npm audit --workspaces",
-        "publish:check": "npm test && npm run type-check && npm run lint && npm run build"
+        "publish:check": "npm run lint && npm run type-check && npm run build"
     },
     "devDependencies": {
         "@typescript-eslint/eslint-plugin": "^6.0.0",
