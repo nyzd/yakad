@@ -1,6 +1,6 @@
 {
     "name": "@yakad/lib",
-    "version": "1.0.14",
+    "version": "1.0.15",
     "private": false,
     "author": "Natiq",
     "description": "JS frontend library",
@@ -24,7 +24,7 @@
         "build": "tsc",
         "lint": "eslint src/**/*.ts",
         "lint:fix": "eslint src/**/*.ts --fix",
-        "type-check": "tsc --noEmit"
+        "type-check": "tsc --NoEmit"
     },
     "devDependencies": {
         "typescript": "^5.0.0"

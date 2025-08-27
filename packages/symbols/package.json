@@ -1,6 +1,6 @@
 {
     "name": "@yakad/symbols",
-    "version": "1.0.23",
+    "version": "1.0.24",
     "private": false,
     "author": "Natiq",
     "description": "Material Symbols",
@@ -37,7 +37,7 @@
     },
     "devDependencies": {
         "@types/css-modules": "1.0.5",
-        "@types/react": "18.3.3",
+        "@types/react": "^19.0.0",
         "react": "^19.0.0",
         "copyfiles": "2.4.1",
         "rimraf": "6.0.1",
