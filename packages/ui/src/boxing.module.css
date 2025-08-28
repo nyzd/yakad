@@ -3,6 +3,8 @@
     display: flex;
     flex-direction: column;
     box-sizing: border-box;
+    margin-right: auto;
+    margin-left: auto;
 }
 /* align */
 .flexColumnBox.start {

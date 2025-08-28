@@ -14,7 +14,7 @@
     --size: 5rem;
 }
 
-.loading {
+.loadingIcon {
     display: flex;
     align-items: center;
     justify-content: center;

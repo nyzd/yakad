@@ -6,6 +6,7 @@
 }
 .card {
     max-width: 35rem;
+    min-height: 2rem;
     z-index: 3;
 }
 

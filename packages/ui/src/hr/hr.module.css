@@ -2,10 +2,11 @@
     width: calc(100% - 1rem);
     height: 0;
     padding: 0;
-    margin: 1rem auto;
-    background: none;
+    margin-right: auto;
+    margin-left: auto;
     border: none;
     border-top: 0.1rem solid rgb(var(--primaryContainerColor, 211 227 253));
+    background: none;
     box-sizing: border-box;
 }
 .dotted {

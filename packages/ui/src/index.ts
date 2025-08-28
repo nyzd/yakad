@@ -19,10 +19,11 @@ export * from "./list/list";
 export * from "./listItem/listItem";
 export * from "./table/table";
 export * from "./button/button";
-export * from "./loading/loading";
+export * from "./loadingIcon/loadingIcon";
 export * from "./svgIcon/svgIcon";
 export * from "./text/text";
 // Form Components
+export * from "./form/form";
 export * from "./inputField/inputField";
 export * from "./select/select";
 export * from "./checkBox/checkBox";

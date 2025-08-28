@@ -2,7 +2,7 @@ import { forwardRef } from "react";
 import classNames from "classnames";
 
 import styles from "./button.module.css";
-import { Loading } from "../";
+import { LoadingIcon } from "../";
 
 export interface ButtonProps
     extends React.ButtonHTMLAttributes<HTMLButtonElement> {
@@ -65,7 +65,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
                             [styles.positionCenter]: isLoadingPositionCenter,
                         })}
                     >
-                        <Loading size={size} variant={loadingvariant} />
+                        <LoadingIcon size={size} variant={loadingvariant} />
                     </div>
                 )}
                 {icon}

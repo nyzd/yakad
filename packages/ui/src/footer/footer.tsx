@@ -1,3 +1,5 @@
+"use client";
+
 import { forwardRef, useState, useEffect } from "react";
 import classNames from "classnames";
 

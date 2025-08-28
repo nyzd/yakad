@@ -1,3 +1,5 @@
+"use client";
+
 import { forwardRef, useState } from "react";
 import { Button, List, ListItem, ListProps, Spacer } from "@yakad/ui";
 
