@@ -1,8 +1,9 @@
 import { forwardRef } from "react";
 import { Table, Thead, Tbody, Tr, Th, Td } from "@yakad/ui";
 
+type RowDataItem = string | number | boolean | object | null | undefined;
 interface RowData {
-    [key: string]: string | number | boolean | object | null | undefined;
+    [key: string]: RowDataItem;
 }
 
 export interface XdataMapProps
@@ -35,7 +36,10 @@ export const XdataMap = forwardRef<HTMLTableElement, XdataMapProps>(
                                             {JSON.stringify(row[cell], null, 2)}
                                         </pre>
                                     ) : (
-                                        row[cell]
+                                        (row[cell] as Exclude<
+                                            RowDataItem,
+                                            object
+                                        >)
                                     )}
                                 </Td>
                             ))}

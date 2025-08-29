@@ -24,7 +24,7 @@
         "build": "tsc",
         "lint": "eslint src/**/*.ts",
         "lint:fix": "eslint src/**/*.ts --fix",
-        "type-check": "tsc --NoEmit"
+        "typecheck": "tsc --NoEmit"
     },
     "devDependencies": {
         "typescript": "^5.0.0"

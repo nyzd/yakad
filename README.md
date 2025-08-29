@@ -56,7 +56,7 @@ npm run lint
 npm run lint:fix
 
 # Type checking
-npm run type-check
+npm run typecheck
 
 # Clean all packages
 npm run clean
@@ -85,7 +85,7 @@ npm run build
 npm run lint
 
 # Type check
-npm run type-check
+npm run typecheck
 ```
 
 ## 📚 Package Details
@@ -126,7 +126,7 @@ npm install @yakad/x
 
 1. **Make changes** in the appropriate package
 2. **Run linting** to check code quality: `npm run lint`
-3. **Run type checking** to ensure type safety: `npm run type-check`
+3. **Run type checking** to ensure type safety: `npm run typecheck`
 4. **Build the package** to verify compilation: `npm run build`
 5. **Test changes** locally
 6. **Commit and push** your changes

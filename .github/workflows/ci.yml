@@ -32,4 +32,4 @@ jobs:
               run: npm run build
 
             - name: Run type checking
-              run: npm run type-check
+              run: npm run typecheck
