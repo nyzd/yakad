@@ -25,6 +25,8 @@
     "scripts": {
         "clean": "rm -rf dist",
         "build": "tsc -p tsconfig.json",
+        "lint": "eslint src/**/*.{ts,tsx}",
+        "lint:fix": "eslint src/**/*.{ts,tsx} --fix",
         "typecheck": "tsc -p tsconfig.json --noEmit"
     },
     "peerDependencies": {
@@ -33,8 +35,7 @@
     "devDependencies": {
         "@types/eslint": "^8.56.10",
         "@typescript-eslint/utils": "^8.7.0",
-        "eslint": "^9.9.0",
-        "typescript": "^5.5.4"
+        "eslint": "^9.9.0"
     },
     "exports": {
         ".": {
