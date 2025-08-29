@@ -9,7 +9,6 @@ import {
     Text,
 } from "@yakad/ui";
 import { Symbol } from "@yakad/symbols";
-
 import styles from "./Xpopup.module.css";
 
 export interface XpopupProps {

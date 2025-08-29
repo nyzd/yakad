@@ -1,6 +1,5 @@
 import { forwardRef } from "react";
 import classNames from "classnames";
-
 import styles from "./Xbackground.module.css";
 
 export interface XbackgroundProps extends React.HTMLAttributes<HTMLDivElement> {

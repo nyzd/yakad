@@ -1,6 +1,5 @@
 import { Children, ReactElement, forwardRef } from "react";
 import { Tbody, TbodyProps, Td, Tr } from "@yakad/ui";
-
 import { XTrProps, XTdProps } from "./Xtrhdf";
 
 export interface XTbodyProps extends TbodyProps {
