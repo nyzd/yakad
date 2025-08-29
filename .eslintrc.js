@@ -7,7 +7,7 @@ module.exports = {
         "plugin:react/recommended",
         "plugin:react-hooks/recommended",
     ],
-    plugins: ["@typescript-eslint", "react", "react-hooks"],
+    plugins: ["@typescript-eslint", "react", "react-hooks", "@yakad/guard"],
     parserOptions: {
         ecmaVersion: 2020,
         sourceType: "module",
@@ -39,6 +39,13 @@ module.exports = {
             rules: {
                 "react/react-in-jsx-scope": "off",
                 "react/prop-types": "off",
+            },
+        },
+        {
+            files: ["packages/ui/**/*.{ts,tsx}"],
+            rules: {
+                "@yakad/guard/forward-ref-named-function": "error",
+                "@yakad/guard/no-default-export-in-components": "error",
             },
         },
     ],

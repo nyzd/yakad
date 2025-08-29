@@ -1,0 +1,51 @@
+{
+    "name": "@yakad/eslint-plugin-guard",
+    "version": "0.1.0",
+    "private": false,
+    "author": "Natiq",
+    "description": "Custom ESLint rules to enforce component conventions (forwardRef named functions, no default exports in components/).",
+    "main": "dist/index.js",
+    "types": "dist/index.d.ts",
+    "keywords": [
+        "eslint",
+        "eslintplugin",
+        "eslint-plugin",
+        "react"
+    ],
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/NatiqQuran/yakad.git",
+        "directory": "packages/eslint-plugin-guard"
+    },
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/NatiqQuran/yakad/issues"
+    },
+    "homepage": "https://yakad.natiq.net",
+    "scripts": {
+        "clean": "rm -rf dist",
+        "build": "tsc -p tsconfig.json",
+        "typecheck": "tsc -p tsconfig.json --noEmit"
+    },
+    "peerDependencies": {
+        "eslint": ">=8"
+    },
+    "devDependencies": {
+        "@types/eslint": "^8.56.10",
+        "@typescript-eslint/utils": "^8.7.0",
+        "eslint": "^9.9.0",
+        "typescript": "^5.5.4"
+    },
+    "exports": {
+        ".": {
+            "types": "./dist/index.d.ts",
+            "require": "./dist/index.js",
+            "default": "./dist/index.js"
+        },
+        "./configs/components": {
+            "types": "./dist/configs/components.d.ts",
+            "require": "./dist/configs/components.js",
+            "default": "./dist/configs/components.js"
+        }
+    }
+}

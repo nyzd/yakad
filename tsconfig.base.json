@@ -2,7 +2,7 @@
     "compilerOptions": {
         "target": "ES2016",
         "module": "ESNext",
-        "moduleResolution": "node",
+        "moduleResolution": "node16",
         "strict": true,
         "jsx": "react-jsx",
         "esModuleInterop": true,
