@@ -1,0 +1,41 @@
+{
+    "name": "@yakad/sync",
+    "version": "1.0.1",
+    "private": false,
+    "description": "A file synchronization tool for copying files from template repositories",
+    "main": "dist/index.js",
+    "types": "dist/index.d.ts",
+    "bin": {
+        "yakad-sync": "dist/cli.js"
+    },
+    "scripts": {
+        "build": "tsc -p tsconfig.json",
+        "clean": "rm -rf dist",
+        "typecheck": "tsc -p tsconfig.json --noEmit",
+        "start": "node dist/cli.js"
+    },
+    "keywords": [
+        "sync",
+        "template",
+        "file-copy",
+        "git",
+        "yakad"
+    ],
+    "author": "Natiq",
+    "license": "MIT",
+    "dependencies": {
+        "commander": "^11.0.0"
+    },
+    "devDependencies": {
+        "@types/node": "^20.0.0",
+        "typescript": "^5.3.0"
+    },
+    "engines": {
+        "node": ">=16"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/NatiqQuran/yakad.git",
+        "directory": "packages/sync"
+    }
+}

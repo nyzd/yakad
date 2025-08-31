@@ -1,0 +1,41 @@
+# .syncignore example file
+# This file should be placed in the target directory where you run yakad-sync
+
+# Ignore specific files
+config.local.js
+.env
+secrets.json
+
+# Ignore specific directories
+node_modules/
+dist/
+build/
+coverage/
+.git/
+
+# Ignore file patterns
+*.log
+*.tmp
+*.cache
+.DS_Store
+Thumbs.db
+
+# Ignore specific file types
+*.min.js
+*.min.css
+
+# But allow specific files (negation)
+!important.min.js
+!critical.min.css
+
+# Ignore directories but allow specific files within them
+temp/*
+!temp/important.txt
+
+# Ignore everything in a directory
+logs/
+cache/
+
+# Allow specific subdirectories
+!logs/errors/
+!cache/public/

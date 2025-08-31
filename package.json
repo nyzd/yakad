@@ -12,6 +12,7 @@
         "build:ui": "npm run build --workspace=@yakad/ui",
         "build:symbols": "npm run build --workspace=@yakad/symbols",
         "build:x": "npm run build --workspace=@yakad/x",
+        "build:sync": "npm run build --workspace=@yakad/sync",
         "lint": "npm run lint --workspaces",
         "lint:fix": "npm run lint:fix --workspaces",
         "typecheck": "npm run typecheck --workspaces",
