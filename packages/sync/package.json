@@ -1,6 +1,6 @@
 {
     "name": "@yakad/sync",
-    "version": "1.0.1",
+    "version": "1.0.2",
     "private": false,
     "description": "A file synchronization tool for copying files from template repositories",
     "main": "dist/index.js",

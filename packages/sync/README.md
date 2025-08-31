@@ -21,13 +21,13 @@ npm install @yakad/sync
 
 ```bash
 # Basic usage - copies all files from the repo
-yakad-sync sync -r https://github.com/username/template-repo.git
+yakad-sync -r https://github.com/username/template-repo.git
 
 # Specify target directory
-yakad-sync sync -r https://github.com/username/template-repo.git -t ./my-project
+yakad-sync -r https://github.com/username/template-repo.git -t ./my-project
 
 # Enable verbose output to see what's being copied
-yakad-sync sync -r https://github.com/username/template-repo.git -v
+yakad-sync -r https://github.com/username/template-repo.git -v
 ```
 
 ## Options
@@ -35,6 +35,10 @@ yakad-sync sync -r https://github.com/username/template-repo.git -v
 -   `-r, --repo <url>`: Git repository URL to sync from (required)
 -   `-t, --target <dir>`: Target directory (default: current directory)
 -   `-v, --verbose`: Enable verbose output to see copied files
+
+## Example .syncignore file
+
+See `.syncignore.example` in this package for a comprehensive example.
 
 ## How it works
 

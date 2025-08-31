@@ -11,11 +11,7 @@ program
     .description(
         "A file synchronization tool for copying files from template repositories"
     )
-    .version("1.0.0");
-
-program
-    .command("sync")
-    .description("Sync files from a template repository")
+    .version("1.0.1")
     .requiredOption("-r, --repo <url>", "Git repository URL to sync from")
     .option(
         "-t, --target <dir>",
