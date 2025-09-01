@@ -10,7 +10,7 @@ export interface IgnorePattern {
 }
 
 export class SyncIgnore {
-    private ignoreInstance: any;
+    private ignoreInstance: ReturnType<typeof import("ignore").default>;
     private ignoreFile: string;
 
     constructor(targetDir: string) {
@@ -46,7 +46,7 @@ export class SyncIgnore {
         }
     }
 
-    public shouldIgnore(filePath: string, isDirectory: boolean): boolean {
+    public shouldIgnore(filePath: string): boolean {
         // The ignore package handles all the pattern matching logic
         return this.ignoreInstance.ignores(filePath);
     }

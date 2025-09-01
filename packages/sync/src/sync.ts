@@ -64,7 +64,7 @@ export class FileSyncer {
             const isDirectory = stat.isDirectory();
 
             // Check if this path should be ignored
-            if (this.ignore.shouldIgnore(relativePath, isDirectory)) {
+            if (this.ignore.shouldIgnore(relativePath)) {
                 if (this.options.verbose) {
                     console.log(`⏭️  Ignored: ${relativePath}`);
                 }

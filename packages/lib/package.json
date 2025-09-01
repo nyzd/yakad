@@ -2,31 +2,32 @@
     "name": "@yakad/lib",
     "version": "1.0.15",
     "private": false,
-    "author": "Natiq",
-    "description": "JS frontend library",
+    "description": "Utility functions and helpers for the Yakad ecosystem",
     "main": "dist/index.js",
     "types": "dist/index.d.ts",
+    "scripts": {
+        "build": "tsc",
+        "typecheck": "tsc --noEmit",
+        "lint": "eslint src/**/*.{ts,tsx}",
+        "test": "echo \"No tests specified\" && exit 0"
+    },
     "keywords": [
         "yakad",
-        "library"
+        "utilities",
+        "helpers",
+        "typescript"
     ],
+    "author": "Natiq",
+    "license": "MIT",
+    "devDependencies": {
+        "typescript": "^5.3.0"
+    },
+    "engines": {
+        "node": ">=16"
+    },
     "repository": {
         "type": "git",
         "url": "git+https://github.com/NatiqQuran/yakad.git",
         "directory": "packages/lib"
-    },
-    "license": "MIT",
-    "bugs": {
-        "url": "https://github.com/NatiqQuran/yakad/issues"
-    },
-    "homepage": "https://yakad.natiq.net",
-    "scripts": {
-        "build": "tsc",
-        "lint": "eslint src/**/*.ts",
-        "lint:fix": "eslint src/**/*.ts --fix",
-        "typecheck": "tsc --NoEmit"
-    },
-    "devDependencies": {
-        "typescript": "^5.0.0"
     }
 }

@@ -1,6 +1,6 @@
 {
     "name": "@yakad/sync",
-    "version": "1.0.2",
+    "version": "1.0.3",
     "private": false,
     "description": "A file synchronization tool for copying files from template repositories",
     "main": "dist/index.js",
@@ -9,10 +9,11 @@
         "yakad-sync": "dist/cli.js"
     },
     "scripts": {
+        "start": "node dist/cli.js",
         "build": "tsc -p tsconfig.json",
-        "clean": "rm -rf dist",
         "typecheck": "tsc -p tsconfig.json --noEmit",
-        "start": "node dist/cli.js"
+        "lint": "eslint src/**/*.{ts,tsx}",
+        "test": "jest"
     },
     "keywords": [
         "sync",
