@@ -1,0 +1,265 @@
+# .syncignore.test - Comprehensive test file for all possible ignore patterns
+# This file contains all possible ignore patterns that could be used in a Next.js project
+
+# =============================================================================
+# BASIC FILE PATTERNS
+# =============================================================================
+
+# Specific files
+config.local.js
+.env
+.env.local
+.env.production
+.env.development
+secrets.json
+private.key
+certificate.pem
+
+# File extensions
+*.log
+*.tmp
+*.cache
+*.bak
+*.swp
+*.swo
+*~
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+desktop.ini
+
+# IDE files
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# =============================================================================
+# DIRECTORY PATTERNS
+# =============================================================================
+
+# Build and output directories
+/dist/
+/build/
+/.next/
+/out/
+/coverage/
+/.nyc_output/
+
+# Dependencies
+/node_modules/
+/.pnp
+/.pnp.js
+
+# Runtime data
+/pids
+*.pid
+*.seed
+*.pid.lock
+
+# Logs
+/logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+lerna-debug.log*
+
+# =============================================================================
+# NEXT.JS SPECIFIC PATTERNS
+# =============================================================================
+
+# Next.js build output
+/.next/
+/out/
+
+# Next.js cache
+/.next/cache/
+
+# Next.js telemetry
+.next/telemetry.txt
+
+# =============================================================================
+# DEVELOPMENT PATTERNS
+# =============================================================================
+
+# Development files
+*.dev.js
+*.dev.ts
+*.dev.tsx
+*.test.js
+*.test.ts
+*.test.tsx
+*.spec.js
+*.spec.ts
+*.spec.tsx
+
+# Test directories
+/__tests__/
+/tests/
+/test/
+/specs/
+/cypress/
+/jest/
+
+# =============================================================================
+# COMPLEX PATTERNS WITH WILDCARDS
+# =============================================================================
+
+# All minified files
+*.min.js
+*.min.css
+*.min.js.map
+*.min.css.map
+
+# All source maps
+*.map
+
+# All temporary files
+temp/*
+tmp/*
+.tmp/*
+.temp/*
+
+# All backup files
+backup/*
+*.backup
+*.old
+
+# =============================================================================
+# NEGATION PATTERNS (EXCEPTIONS)
+# =============================================================================
+
+# Ignore all .min.js files but allow specific ones
+!important.min.js
+!critical.min.js
+!vendor.min.js
+
+# Ignore all test files but allow specific ones
+!src/components/Button.test.tsx
+!src/utils/helpers.test.ts
+
+# Ignore all .env files but allow example
+!.env.example
+!.env.sample
+
+# Ignore all in src/app but allow specific files
+!/src/app/error.tsx
+!/src/app/head.tsx
+!/src/app/loading.tsx
+!/src/app/not-found.tsx
+!/src/app/global-error.tsx
+
+# Ignore all in public but allow specific files
+!/public/favicon.ico
+!/public/robots.txt
+!/public/site.webmanifest
+
+# =============================================================================
+# PATH-SPECIFIC PATTERNS
+# =============================================================================
+
+# Root level files
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
+.npmrc
+.yarnrc
+.eslintrc*
+.prettierrc*
+.babelrc*
+tsconfig.json
+next.config.*
+tailwind.config.*
+postcss.config.*
+jest.config.*
+cypress.config.*
+vite.config.*
+webpack.config.*
+
+# Documentation
+README.md
+CHANGELOG.md
+LICENSE
+CONTRIBUTING.md
+CODE_OF_CONDUCT.md
+
+# =============================================================================
+# ADVANCED PATTERNS
+# =============================================================================
+
+# Files with specific patterns
+example*.*
+demo*.*
+sample*.*
+test*.*
+temp*.*
+
+# Files in specific directories
+src/**/*.test.*
+src/**/*.spec.*
+src/**/__tests__/**
+src/**/__mocks__/**
+
+# =============================================================================
+# COMMENTS AND ORGANIZATION
+# =============================================================================
+
+# This is a comment line
+# Another comment
+
+# Section: Database files
+*.db
+*.sqlite
+*.sqlite3
+
+# Section: Archive files
+*.zip
+*.tar.gz
+*.rar
+*.7z
+
+# =============================================================================
+# EDGE CASES AND SPECIAL PATTERNS
+# =============================================================================
+
+# Empty lines and whitespace
+   
+  
+    
+
+# Patterns with special characters
+file-with-dashes.txt
+file_with_underscores.txt
+file.with.dots.txt
+file[with]brackets.txt
+file{with}braces.txt
+file(with)parentheses.txt
+
+# Unicode patterns
+file-émojis-🚀.txt
+file-中文.txt
+file-русский.txt
+
+# =============================================================================
+# PROJECT-SPECIFIC PATTERNS
+# =============================================================================
+
+# Custom project patterns
+yakad-sync-*
+yakad-*
+@yakad/*
+
+# Template files
+template-*
+*-template.*
+
+# Configuration overrides
+config.*.local.*
+*.local.*

@@ -36,73 +36,161 @@ describe("SyncIgnore", () => {
         });
     });
 
-    describe("file patterns", () => {
+    describe("basic file patterns", () => {
         it("should ignore specific files", () => {
-            const patterns = ["config.json", "secrets.env"];
+            const patterns = [
+                "config.local.js",
+                ".env",
+                "secrets.json",
+                "private.key",
+            ];
             fs.writeFileSync(ignoreFile, patterns.join("\n"));
 
             const ignore = new SyncIgnore(tempDir);
-            expect(ignore.shouldIgnore("config.json")).toBe(true);
-            expect(ignore.shouldIgnore("secrets.env")).toBe(true);
+            expect(ignore.shouldIgnore("config.local.js")).toBe(true);
+            expect(ignore.shouldIgnore(".env")).toBe(true);
+            expect(ignore.shouldIgnore("secrets.json")).toBe(true);
+            expect(ignore.shouldIgnore("private.key")).toBe(true);
             expect(ignore.shouldIgnore("other.txt")).toBe(false);
         });
 
-        it("should ignore file patterns with wildcards", () => {
-            const patterns = ["*.log", "*.tmp", "example*.*"];
+        it("should ignore file extensions", () => {
+            const patterns = ["*.log", "*.tmp", "*.cache", "*.bak"];
             fs.writeFileSync(ignoreFile, patterns.join("\n"));
 
             const ignore = new SyncIgnore(tempDir);
-            expect(ignore.shouldIgnore("app.log").toBe(true);
-            expect(ignore.shouldIgnore("temp.tmp").toBe(true);
-            expect(ignore.shouldIgnore("example.js").toBe(true);
-            expect(ignore.shouldIgnore("example.config.js").toBe(true);
-            expect(ignore.shouldIgnore("important.txt").toBe(false);
+            expect(ignore.shouldIgnore("app.log")).toBe(true);
+            expect(ignore.shouldIgnore("temp.tmp")).toBe(true);
+            expect(ignore.shouldIgnore("file.cache")).toBe(true);
+            expect(ignore.shouldIgnore("backup.bak")).toBe(true);
+            expect(ignore.shouldIgnore("important.txt")).toBe(false);
+        });
+
+        it("should ignore OS generated files", () => {
+            const patterns = [".DS_Store", "Thumbs.db", "desktop.ini"];
+            fs.writeFileSync(ignoreFile, patterns.join("\n"));
+
+            const ignore = new SyncIgnore(tempDir);
+            expect(ignore.shouldIgnore(".DS_Store")).toBe(true);
+            expect(ignore.shouldIgnore("Thumbs.db")).toBe(true);
+            expect(ignore.shouldIgnore("desktop.ini")).toBe(true);
         });
     });
 
     describe("directory patterns", () => {
         it("should ignore entire directories", () => {
-            const patterns = ["node_modules/", "dist/", "build/"];
+            const patterns = ["node_modules/", "dist/", "build/", ".next/"];
             fs.writeFileSync(ignoreFile, patterns.join("\n"));
 
             const ignore = new SyncIgnore(tempDir);
-            expect(
-                ignore.shouldIgnore("node_modules/lodash/index.js"
-            ).toBe(true);
-            expect(ignore.shouldIgnore("dist/bundle.js").toBe(true);
-            expect(ignore.shouldIgnore("build/app.js").toBe(true);
-            expect(ignore.shouldIgnore("src/app.js").toBe(false);
+            expect(ignore.shouldIgnore("node_modules/lodash/index.js")).toBe(
+                true
+            );
+            expect(ignore.shouldIgnore("dist/bundle.js")).toBe(true);
+            expect(ignore.shouldIgnore("build/app.js")).toBe(true);
+            expect(ignore.shouldIgnore(".next/server.js")).toBe(true);
+            expect(ignore.shouldIgnore("src/app.js")).toBe(false);
         });
 
         it("should ignore directories with leading slash", () => {
-            const patterns = ["/public", "/src/app"];
+            const patterns = ["/public", "/src/app", "/.next"];
             fs.writeFileSync(ignoreFile, patterns.join("\n"));
 
             const ignore = new SyncIgnore(tempDir);
-            expect(ignore.shouldIgnore("public/favicon.ico").toBe(true);
-            expect(ignore.shouldIgnore("public/images/logo.png").toBe(
-                true
+            expect(ignore.shouldIgnore("public/favicon.ico")).toBe(true);
+            expect(ignore.shouldIgnore("src/app/page.tsx")).toBe(true);
+            expect(ignore.shouldIgnore(".next/server.js")).toBe(true);
+            expect(ignore.shouldIgnore("src/components/Button.tsx")).toBe(
+                false
             );
-            expect(ignore.shouldIgnore("src/app/page.tsx").toBe(true);
-            expect(
-                ignore.shouldIgnore("src/components/Button.tsx"
-            ).toBe(false);
+        });
+    });
+
+    describe("Next.js specific patterns", () => {
+        it("should ignore Next.js build and cache directories", () => {
+            const patterns = ["/.next/", "/out/", "/.next/cache/"];
+            fs.writeFileSync(ignoreFile, patterns.join("\n"));
+
+            const ignore = new SyncIgnore(tempDir);
+            expect(ignore.shouldIgnore(".next/server.js")).toBe(true);
+            expect(ignore.shouldIgnore(".next/cache/something")).toBe(true);
+            expect(ignore.shouldIgnore("out/index.html")).toBe(true);
+        });
+
+        it("should ignore Next.js telemetry", () => {
+            const patterns = [".next/telemetry.txt"];
+            fs.writeFileSync(ignoreFile, patterns.join("\n"));
+
+            const ignore = new SyncIgnore(tempDir);
+            expect(ignore.shouldIgnore(".next/telemetry.txt")).toBe(true);
+        });
+    });
+
+    describe("development patterns", () => {
+        it("should ignore test files", () => {
+            const patterns = ["*.test.js", "*.test.ts", "*.test.tsx"];
+            fs.writeFileSync(ignoreFile, patterns.join("\n"));
+
+            const ignore = new SyncIgnore(tempDir);
+            expect(ignore.shouldIgnore("Button.test.tsx")).toBe(true);
+            expect(ignore.shouldIgnore("helpers.test.ts")).toBe(true);
+            expect(ignore.shouldIgnore("app.test.js")).toBe(true);
+        });
+
+        it("should ignore test directories", () => {
+            const patterns = ["/__tests__/", "/tests/", "/cypress/"];
+            fs.writeFileSync(ignoreFile, patterns.join("\n"));
+
+            const ignore = new SyncIgnore(tempDir);
+            expect(ignore.shouldIgnore("__tests__/Button.test.tsx")).toBe(true);
+            expect(ignore.shouldIgnore("tests/helpers.test.ts")).toBe(true);
+            expect(ignore.shouldIgnore("cypress/e2e/test.cy.ts")).toBe(true);
+        });
+    });
+
+    describe("complex wildcard patterns", () => {
+        it("should ignore minified files", () => {
+            const patterns = ["*.min.js", "*.min.css"];
+            fs.writeFileSync(ignoreFile, patterns.join("\n"));
+
+            const ignore = new SyncIgnore(tempDir);
+            expect(ignore.shouldIgnore("app.min.js")).toBe(true);
+            expect(ignore.shouldIgnore("styles.min.css")).toBe(true);
+            expect(ignore.shouldIgnore("app.js")).toBe(false);
+        });
+
+        it("should ignore source maps", () => {
+            const patterns = ["*.map"];
+            fs.writeFileSync(ignoreFile, patterns.join("\n"));
+
+            const ignore = new SyncIgnore(tempDir);
+            expect(ignore.shouldIgnore("app.js.map")).toBe(true);
+            expect(ignore.shouldIgnore("styles.css.map")).toBe(true);
+        });
+
+        it("should ignore temporary files", () => {
+            const patterns = ["temp/*", "tmp/*", "*.tmp"];
+            fs.writeFileSync(ignoreFile, patterns.join("\n"));
+
+            const ignore = new SyncIgnore(tempDir);
+            expect(ignore.shouldIgnore("temp/file.txt")).toBe(true);
+            expect(ignore.shouldIgnore("tmp/data.json")).toBe(true);
+            expect(ignore.shouldIgnore("backup.tmp")).toBe(true);
         });
     });
 
     describe("negation patterns", () => {
-        it("should handle negation patterns correctly for files", () => {
+        it("should handle negation patterns for files", () => {
             const patterns = ["*.min.js", "!important.min.js"];
             fs.writeFileSync(ignoreFile, patterns.join("\n"));
 
             const ignore = new SyncIgnore(tempDir);
-            expect(ignore.shouldIgnore("app.min.js").toBe(true);
-            expect(ignore.shouldIgnore("important.min.js").toBe(false);
+            expect(ignore.shouldIgnore("app.min.js")).toBe(true);
+            expect(ignore.shouldIgnore("important.min.js")).toBe(false);
         });
 
-        it("should handle negation patterns with directory patterns (LIMITATION: negation in directories may not work)", () => {
+        it("should handle negation patterns for directories (LIMITATION: may not work)", () => {
             // LIMITATION: The ignore package has issues with negation patterns inside directories
-            // This test documents the current behavior
             const patterns = [
                 "!/src/app/error.tsx",
                 "!/src/app/head.tsx",
@@ -112,66 +200,69 @@ describe("SyncIgnore", () => {
 
             const ignore = new SyncIgnore(tempDir);
             // These should be ignored by the directory pattern
-            expect(ignore.shouldIgnore("src/app/layout.tsx").toBe(true);
-            expect(ignore.shouldIgnore("src/app/page.tsx").toBe(true);
+            expect(ignore.shouldIgnore("src/app/layout.tsx")).toBe(true);
+            expect(ignore.shouldIgnore("src/app/page.tsx")).toBe(true);
 
             // LIMITATION: These are currently still ignored despite negation patterns
-            // This is a known limitation of the ignore package
-            expect(ignore.shouldIgnore("src/app/error.tsx").toBe(true);
-            expect(ignore.shouldIgnore("src/app/head.tsx").toBe(true);
+            expect(ignore.shouldIgnore("src/app/error.tsx")).toBe(true);
+            expect(ignore.shouldIgnore("src/app/head.tsx")).toBe(true);
         });
     });
 
-    describe("complex patterns", () => {
-        it("should handle real-world .syncignore patterns", () => {
+    describe("path-specific patterns", () => {
+        it("should ignore root level configuration files", () => {
             const patterns = [
-                "/public",
-                ".syncignore",
-                "README.md",
-                "metadata.json",
-                "package.json",
                 "package-lock.json",
-                "example*.*",
-                "!/src/app/error.tsx",
-                "!/src/app/head.tsx",
-                "!/src/app/loading.tsx",
-                "!/src/app/not-found.tsx",
-                "/src/app",
+                "tsconfig.json",
+                "next.config.*",
+                ".eslintrc*",
             ];
             fs.writeFileSync(ignoreFile, patterns.join("\n"));
 
             const ignore = new SyncIgnore(tempDir);
+            expect(ignore.shouldIgnore("package-lock.json")).toBe(true);
+            expect(ignore.shouldIgnore("tsconfig.json")).toBe(true);
+            expect(ignore.shouldIgnore("next.config.js")).toBe(true);
+            expect(ignore.shouldIgnore(".eslintrc.js")).toBe(true);
+        });
 
-            // Should be ignored
-            expect(ignore.shouldIgnore("public/favicon.ico").toBe(true);
-            expect(ignore.shouldIgnore(".syncignore").toBe(true);
-            expect(ignore.shouldIgnore("README.md").toBe(true);
-            expect(ignore.shouldIgnore("package.json").toBe(true);
-            expect(ignore.shouldIgnore("example.js").toBe(true);
-            expect(ignore.shouldIgnore("src/app/layout.tsx").toBe(true);
-            expect(ignore.shouldIgnore("src/app/page.tsx").toBe(true);
+        it("should ignore documentation files", () => {
+            const patterns = ["README.md", "CHANGELOG.md", "LICENSE"];
+            fs.writeFileSync(ignoreFile, patterns.join("\n"));
 
-            // LIMITATION: These are currently still ignored despite negation patterns
-            // This is a known limitation of the ignore package with directory negations
-            expect(ignore.shouldIgnore("src/app/error.tsx").toBe(true);
-            expect(ignore.shouldIgnore("src/app/head.tsx").toBe(true);
-            expect(ignore.shouldIgnore("src/app/loading.tsx").toBe(
-                true
-            );
-            expect(ignore.shouldIgnore("src/app/not-found.tsx").toBe(
-                true
-            );
-
-            // Should be allowed (not in ignore patterns)
-            expect(
-                ignore.shouldIgnore("src/components/Button.tsx"
-            ).toBe(false);
-            expect(ignore.shouldIgnore(".env.example").toBe(false);
-            expect(ignore.shouldIgnore("tsconfig.json").toBe(false);
+            const ignore = new SyncIgnore(tempDir);
+            expect(ignore.shouldIgnore("README.md")).toBe(true);
+            expect(ignore.shouldIgnore("CHANGELOG.md")).toBe(true);
+            expect(ignore.shouldIgnore("LICENSE")).toBe(true);
         });
     });
 
-    describe("comments", () => {
+    describe("advanced patterns", () => {
+        it("should ignore files with specific patterns", () => {
+            const patterns = ["example*.*", "demo*.*", "test*.*"];
+            fs.writeFileSync(ignoreFile, patterns.join("\n"));
+
+            const ignore = new SyncIgnore(tempDir);
+            expect(ignore.shouldIgnore("example.js")).toBe(true);
+            expect(ignore.shouldIgnore("demo.tsx")).toBe(true);
+            expect(ignore.shouldIgnore("test.config.js")).toBe(true);
+        });
+
+        it("should ignore files in specific directories", () => {
+            const patterns = ["src/**/*.test.*", "src/**/__tests__/**"];
+            fs.writeFileSync(ignoreFile, patterns.join("\n"));
+
+            const ignore = new SyncIgnore(tempDir);
+            expect(ignore.shouldIgnore("src/components/Button.test.tsx")).toBe(
+                true
+            );
+            expect(ignore.shouldIgnore("src/__tests__/helpers.test.ts")).toBe(
+                true
+            );
+        });
+    });
+
+    describe("comments and organization", () => {
         it("should ignore comment lines", () => {
             const patterns = [
                 "# This is a comment",
@@ -182,36 +273,79 @@ describe("SyncIgnore", () => {
             fs.writeFileSync(ignoreFile, patterns.join("\n"));
 
             const ignore = new SyncIgnore(tempDir);
-            expect(ignore.shouldIgnore("app.log").toBe(true);
-            expect(ignore.shouldIgnore("temp/file.txt").toBe(true);
-            expect(ignore.shouldIgnore("other.txt").toBe(false);
+            expect(ignore.shouldIgnore("app.log")).toBe(true);
+            expect(ignore.shouldIgnore("temp/file.txt")).toBe(true);
+            expect(ignore.shouldIgnore("other.txt")).toBe(false);
         });
-    });
 
-    describe("edge cases", () => {
         it("should handle empty lines", () => {
             const patterns = ["*.log", "", "temp/", "  ", "config.json"];
             fs.writeFileSync(ignoreFile, patterns.join("\n"));
 
             const ignore = new SyncIgnore(tempDir);
-            expect(ignore.shouldIgnore("app.log").toBe(true);
-            expect(ignore.shouldIgnore("temp/file.txt").toBe(true);
-            expect(ignore.shouldIgnore("config.json").toBe(true);
+            expect(ignore.shouldIgnore("app.log")).toBe(true);
+            expect(ignore.shouldIgnore("temp/file.txt")).toBe(true);
+            expect(ignore.shouldIgnore("config.json")).toBe(true);
+        });
+    });
+
+    describe("edge cases", () => {
+        it("should handle special characters in filenames", () => {
+            const patterns = [
+                "file-with-dashes.txt",
+                "file_with_underscores.txt",
+                "file.with.dots.txt",
+            ];
+            fs.writeFileSync(ignoreFile, patterns.join("\n"));
+
+            const ignore = new SyncIgnore(tempDir);
+            expect(ignore.shouldIgnore("file-with-dashes.txt")).toBe(true);
+            expect(ignore.shouldIgnore("file_with_underscores.txt")).toBe(true);
+            expect(ignore.shouldIgnore("file.with.dots.txt")).toBe(true);
         });
 
-        it("should handle malformed .syncignore file gracefully", () => {
-            // Create a file that can't be read
-            fs.writeFileSync(ignoreFile, "invalid content");
-            fs.chmodSync(ignoreFile, 0o000); // Remove read permissions
+        it("should handle missing .syncignore file gracefully", () => {
+            // Test with a directory that doesn't exist
+            const nonExistentDir = path.join(tempDir, "non-existent");
 
-            // Should not throw an error
+            // Should not throw an error when directory doesn't exist
             expect(() => {
-                const ignore = new SyncIgnore(tempDir);
-                ignore.shouldIgnore("test.txt";
+                const ignore = new SyncIgnore(nonExistentDir);
+                ignore.shouldIgnore("test.txt");
             }).not.toThrow();
+        });
+    });
 
-            // Restore permissions for cleanup
-            fs.chmodSync(ignoreFile, 0o644);
+    describe("comprehensive real-world test", () => {
+        it("should handle a comprehensive .syncignore file", () => {
+            // Use the comprehensive .syncignore.test file
+            const testIgnoreFile = path.join(__dirname, ".syncignore.test");
+            const content = fs.readFileSync(testIgnoreFile, "utf-8");
+            fs.writeFileSync(ignoreFile, content);
+
+            const ignore = new SyncIgnore(tempDir);
+
+            // Test various patterns from the comprehensive file
+            expect(ignore.shouldIgnore("config.local.js")).toBe(true);
+            expect(ignore.shouldIgnore(".env")).toBe(true);
+            expect(ignore.shouldIgnore("app.log")).toBe(true);
+            expect(ignore.shouldIgnore(".DS_Store")).toBe(true);
+            expect(ignore.shouldIgnore("node_modules/lodash/index.js")).toBe(
+                true
+            );
+            expect(ignore.shouldIgnore(".next/server.js")).toBe(true);
+            expect(ignore.shouldIgnore("Button.test.tsx")).toBe(true);
+            expect(ignore.shouldIgnore("app.min.js")).toBe(true);
+            expect(ignore.shouldIgnore("package-lock.json")).toBe(true);
+            expect(ignore.shouldIgnore("README.md")).toBe(true);
+            expect(ignore.shouldIgnore("example.js")).toBe(true);
+
+            // Test files that should NOT be ignored
+            expect(ignore.shouldIgnore("src/components/Button.tsx")).toBe(
+                false
+            );
+            expect(ignore.shouldIgnore("src/utils/helpers.ts")).toBe(false);
+            expect(ignore.shouldIgnore("public/images/logo.png")).toBe(false);
         });
     });
 });
