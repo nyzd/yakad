@@ -48,6 +48,24 @@ export class FileSyncer {
         }
     }
 
+    private filesAreSame(src: string, dest: string): boolean {
+        // Check if dest doesn't exist
+        if (!fs.existsSync(dest)) return false;
+
+        const srcStat = fs.statSync(src);
+        const destStat = fs.statSync(dest);
+
+        // Quick check: if sizes differ, files are different
+        if (srcStat.size !== destStat.size) return false;
+        // In our usecase modification times differ isn't means files difference
+        // if (srcStat.mtimeMs !== destStat.mtimeMs) return false;
+
+        // Optional: If you want to be 100% sure, compare contents byte-by-byte:
+        const srcBuffer = fs.readFileSync(src);
+        const destBuffer = fs.readFileSync(dest);
+        return srcBuffer.equals(destBuffer);
+    }
+
     private async copyAllFiles(): Promise<void> {
         if (this.ignore.hasIgnoreFile()) {
             console.log(
@@ -62,14 +80,6 @@ export class FileSyncer {
         ): void => {
             const stat = fs.statSync(src);
             const isDirectory = stat.isDirectory();
-
-            // Check if this path should be ignored
-            if (this.ignore.shouldIgnore(relativePath)) {
-                if (this.options.verbose) {
-                    console.log(`⏭️  Ignored: ${relativePath}`);
-                }
-                return;
-            }
 
             if (isDirectory) {
                 if (!fs.existsSync(dest)) {
@@ -91,10 +101,24 @@ export class FileSyncer {
                     }
                 });
             } else {
+                // Check if this path should be ignored
+                if (relativePath && this.ignore.shouldIgnore(relativePath)) {
+                    if (this.options.verbose) {
+                        console.log(`⏭️  Ignored: \t${relativePath}`);
+                    }
+                    return;
+                }
+                // Check if files are same skip copy
+                if (this.filesAreSame(src, dest)) {
+                    if (this.options.verbose) {
+                        console.log(`🔁 Identical: \t${relativePath}`);
+                    }
+                    return;
+                }
                 // Copy file
                 fs.copyFileSync(src, dest);
                 if (this.options.verbose) {
-                    console.log(`✅ Copied: ${relativePath}`);
+                    console.log(`✅ Copied: \t${relativePath}`);
                 }
             }
         };

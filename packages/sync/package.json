@@ -1,6 +1,6 @@
 {
     "name": "@yakad/sync",
-    "version": "1.0.3",
+    "version": "1.0.6",
     "private": false,
     "description": "A file synchronization tool for copying files from template repositories",
     "main": "dist/index.js",
@@ -10,8 +10,9 @@
     },
     "scripts": {
         "start": "node dist/cli.js",
-        "build": "tsc -p tsconfig.json",
-        "typecheck": "tsc -p tsconfig.json --noEmit",
+        "local-test-yt": "tsc && npm start -- -r https://github.com/NatiqQuran/yakad-template.git -v -t .cache/syncedrepo",
+        "build": "tsc",
+        "typecheck": "tsc --noEmit",
         "lint": "eslint src/**/*.{ts,tsx}",
         "test": "jest"
     },
