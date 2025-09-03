@@ -1,6 +1,6 @@
 {
     "name": "@yakad/lib",
-    "version": "1.0.15",
+    "version": "1.0.16",
     "private": false,
     "description": "Utility functions and helpers for the Yakad ecosystem",
     "main": "dist/index.js",
@@ -9,7 +9,8 @@
         "build": "tsc",
         "typecheck": "tsc --noEmit",
         "lint": "eslint src/**/*.{ts,tsx}",
-        "test": "echo \"No tests specified\" && exit 0"
+        "test": "echo \"No tests specified\" && exit 0",
+        "newpublish": "npm run prepublishOnly && npm version patch && npm publish"
     },
     "keywords": [
         "yakad",

@@ -1,6 +1,6 @@
 {
     "name": "@yakad/x",
-    "version": "1.1.17",
+    "version": "1.1.19",
     "private": false,
     "author": "Natiq",
     "description": "Extreme components for NextJS",
@@ -27,10 +27,14 @@
         "build": "npm run clean && tsc && npm run copy-files",
         "typecheck": "tsc --noEmit",
         "lint": "eslint src/**/*.{ts,tsx}",
-        "test": "echo \"No tests specified\" && exit 0"
+        "test": "echo \"No tests specified\" && exit 0",
+        "i:ui": "npm install @yakad/ui",
+        "i:symbols": "npm install @yakad/symbols",
+        "prepublishOnly": "npm run i:ui && npm run i:symbols && npm run build && npm run test && npm run lint && npm run typecheck",
+        "newpublish": "npm run prepublishOnly && npm version patch && npm publish"
     },
     "dependencies": {
-        "@yakad/ui": "1.3.81",
+        "@yakad/ui": "1.3.83",
         "@yakad/symbols": "1.0.24",
         "classnames": "2.5.1"
     },

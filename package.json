@@ -11,7 +11,13 @@
         "lint": "npm run lint --workspaces",
         "typecheck": "npm run typecheck --workspaces",
         "test": "npm run test --workspaces",
-        "publish:check": "npm run lint && npm run build && npm run typecheck && npm run test"
+        "publish:check": "npm run lint && npm run build && npm run typecheck && npm run test",
+        "newpublish:eslint-plugin-guard": "cd packages/eslint-plugin-guard && npm run newpublish && cd ../..",
+        "newpublish:lib": "cd packages/lib && npm run newpublish && cd ../..",
+        "newpublish:sync": "cd packages/sync && npm run newpublish && cd ../..",
+        "newpublish:symbols": "cd packages/symbols && npm run newpublish && cd ../..",
+        "newpublish:ui": "cd packages/ui && npm run newpublish && cd ../..",
+        "newpublish:x": "cd packages/x && npm run newpublish && cd ../.."
     },
     "devDependencies": {
         "@types/jest": "^30.0.0",

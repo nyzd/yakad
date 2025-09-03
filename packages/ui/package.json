@@ -1,6 +1,6 @@
 {
     "name": "@yakad/ui",
-    "version": "1.3.82",
+    "version": "1.3.84",
     "private": false,
     "author": "Natiq",
     "description": "UI components for NextJS/React",
@@ -27,10 +27,13 @@
         "build": "npm run clean && tsc && npm run copy-files",
         "typecheck": "tsc --noEmit",
         "lint": "eslint src/**/*.{ts,tsx}",
-        "test": "echo \"No tests specified\" && exit 0"
+        "test": "echo \"No tests specified\" && exit 0",
+        "i:symbols": "npm install @yakad/symbols",
+        "prepublishOnly": "npm run i:symbols && npm run build && npm run test && npm run lint && npm run typecheck",
+        "newpublish": "npm run prepublishOnly && npm version patch && npm publish"
     },
     "dependencies": {
-        "@yakad/symbols": "1.0.24",
+        "@yakad/symbols": "^1.0.25",
         "classnames": "2.5.1"
     },
     "peerDependencies": {
@@ -41,9 +44,9 @@
         "@types/css-modules": "1.0.5",
         "@types/react": "^19.0.0",
         "@types/react-dom": "^19.0.0",
+        "copyfiles": "2.4.1",
         "react": "^19.0.0",
         "react-dom": "^19.0.0",
-        "copyfiles": "2.4.1",
         "rimraf": "6.0.1",
         "typescript": "^5.0.0"
     }

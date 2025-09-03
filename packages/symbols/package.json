@@ -1,6 +1,6 @@
 {
     "name": "@yakad/symbols",
-    "version": "1.0.24",
+    "version": "1.0.25",
     "private": false,
     "author": "Natiq",
     "description": "Material Symbols",
@@ -27,7 +27,8 @@
         "build": "npm run clean && tsc && npm run copy-files",
         "typecheck": "tsc --noEmit",
         "lint": "eslint src/**/*.{ts,tsx}",
-        "test": "echo \"No tests specified\" && exit 0"
+        "test": "echo \"No tests specified\" && exit 0",
+        "newpublish": "npm run prepublishOnly && npm version patch && npm publish"
     },
     "dependencies": {
         "classnames": "2.5.1"
