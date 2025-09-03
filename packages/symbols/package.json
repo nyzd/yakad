@@ -13,12 +13,12 @@
     ],
     "repository": {
         "type": "git",
-        "url": "git+https://github.com/NatiqQuran/yakad.git",
+        "url": "git+https://github.com/natiq-foundation/yakad.git",
         "directory": "packages/symbols"
     },
     "license": "MIT",
     "bugs": {
-        "url": "https://github.com/NatiqQuran/yakad/issues"
+        "url": "https://github.com/natiq-foundation/yakad/issues"
     },
     "homepage": "https://yakad.natiq.net",
     "scripts": {

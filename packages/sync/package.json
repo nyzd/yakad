@@ -10,7 +10,7 @@
     },
     "scripts": {
         "start": "node dist/cli.js",
-        "local-test-yt": "tsc && npm start -- -r https://github.com/NatiqQuran/yakad-template.git -v -t .cache/syncedrepo",
+        "local-test-yt": "tsc && npm start -- -r https://github.com/natiq-foundation/yakad-template.git -v -t .cache/syncedrepo",
         "build": "tsc",
         "typecheck": "tsc --noEmit",
         "lint": "eslint src/**/*.{ts,tsx}",
@@ -39,7 +39,7 @@
     },
     "repository": {
         "type": "git",
-        "url": "git+https://github.com/NatiqQuran/yakad.git",
+        "url": "git+https://github.com/natiq-foundation/yakad.git",
         "directory": "packages/sync"
     }
 }

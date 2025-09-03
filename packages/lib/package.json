@@ -28,7 +28,7 @@
     },
     "repository": {
         "type": "git",
-        "url": "git+https://github.com/NatiqQuran/yakad.git",
+        "url": "git+https://github.com/natiq-foundation/yakad.git",
         "directory": "packages/lib"
     }
 }

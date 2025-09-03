@@ -28,7 +28,7 @@ yakad/
 
 ```bash
 # Clone the repository
-git clone https://github.com/NatiqQuran/yakad.git
+git clone https://github.com/natiq-foundation/yakad.git
 cd yakad
 
 # Install all dependencies
@@ -168,12 +168,12 @@ MIT License - see [LICENSE](LICENSE) file for details.
 
 -   [Website](https://yakad.natiq.net)
 -   [Documentation](https://docs.yakad.natiq.net) (coming soon)
--   [Issues](https://github.com/NatiqQuran/yakad/issues)
--   [Discussions](https://github.com/NatiqQuran/yakad/discussions)
+-   [Issues](https://github.com/natiq-foundation/yakad/issues)
+-   [Discussions](https://github.com/natiq-foundation/yakad/discussions)
 
 ## 🆘 Support
 
 -   📧 Email: support@natiq.net
--   💬 GitHub Issues: [Create an issue](https://github.com/NatiqQuran/yakad/issues/new)
--   🐛 Bug Reports: [Bug report template](https://github.com/NatiqQuran/yakad/issues/new?template=bug_report.md)
--   ✨ Feature Requests: [Feature request template](https://github.com/NatiqQuran/yakad/issues/new?template=feature_request.md)
+-   💬 GitHub Issues: [Create an issue](https://github.com/natiq-foundation/yakad/issues/new)
+-   🐛 Bug Reports: [Bug report template](https://github.com/natiq-foundation/yakad/issues/new?template=bug_report.md)
+-   ✨ Feature Requests: [Feature request template](https://github.com/natiq-foundation/yakad/issues/new?template=feature_request.md)
