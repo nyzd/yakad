@@ -31,7 +31,7 @@
         "i:ui": "npm install @yakad/ui",
         "i:symbols": "npm install @yakad/symbols",
         "prepublishOnly": "npm run i:ui && npm run i:symbols && npm run build && npm run test && npm run lint && npm run typecheck",
-        "newpublish": "npm run prepublishOnly && npm version patch && npm publish"
+        "newpublish": " npm version patch && npm publish"
     },
     "dependencies": {
         "@yakad/ui": "1.3.83",

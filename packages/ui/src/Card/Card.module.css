@@ -1,12 +1,12 @@
 .card {
     padding: 2rem;
-    overflow: hidden;
     border-radius: 2rem;
     box-shadow: 0px 3px 3px -2px rgb(0 0 0 / 20%),
         0px 3px 4px 0px rgb(0 0 0 / 14%), 0px 1px 8px 0px rgb(0 0 0 / 12%);
     background: rgb(var(--surfaceContainerHighestColor, 230 224 233));
     color: rgb(var(--onSurfaceColor, 28 27 31));
     fill: rgb(var(--onSurfaceColor, 28 27 31));
+    overflow: hidden;
 }
 
 .card.blur {

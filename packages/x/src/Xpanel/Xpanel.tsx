@@ -9,6 +9,7 @@ import {
     Screen,
     ScreenProps,
     Spacer,
+    Text,
 } from "@yakad/ui";
 import { Symbol } from "@yakad/symbols";
 
@@ -55,7 +56,7 @@ export const Xpanel = forwardRef<HTMLDivElement, XpanelProps>(
                         icon={<Symbol icon="menu" />}
                         onClick={toggleNavOpen}
                     />
-                    <h1>{name}</h1>
+                    <Text variant="heading3">{name}</Text>
                     <Spacer />
                     {appbarchildren}
                 </AppBar>

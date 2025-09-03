@@ -10,7 +10,7 @@
         "typecheck": "tsc --noEmit",
         "lint": "eslint src/**/*.{ts,tsx}",
         "test": "echo \"No tests specified\" && exit 0",
-        "newpublish": "npm run prepublishOnly && npm version patch && npm publish"
+        "newpublish": " npm version patch && npm publish"
     },
     "keywords": [
         "yakad",
