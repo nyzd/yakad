@@ -40,10 +40,6 @@
 .flexRowBox.end {
     justify-content: flex-end;
 }
-/* fullWidthLover */
-.flexRowBox.shrink > :global(.fullWidthLover) {
-    width: 100%;
-}
 /* overflow */
 .flexRowBox.shrink {
     white-space: nowrap;

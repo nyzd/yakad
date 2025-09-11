@@ -1,7 +1,6 @@
 import { forwardRef } from "react";
 import classNames from "classnames";
 import { AppBar, Card, Main, Screen, ScreenProps } from "@yakad/ui";
-
 import styles from "./XloginBox.module.css";
 
 export interface XloginBoxProps extends ScreenProps {

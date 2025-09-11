@@ -1,6 +1,6 @@
 {
     "name": "@yakad/symbols",
-    "version": "1.0.24",
+    "version": "1.0.25",
     "private": false,
     "author": "Natiq",
     "description": "Material Symbols",
@@ -13,21 +13,22 @@
     ],
     "repository": {
         "type": "git",
-        "url": "git+https://github.com/NatiqQuran/yakad.git",
+        "url": "git+https://github.com/natiq-foundation/yakad.git",
         "directory": "packages/symbols"
     },
     "license": "MIT",
     "bugs": {
-        "url": "https://github.com/NatiqQuran/yakad/issues"
+        "url": "https://github.com/natiq-foundation/yakad/issues"
     },
     "homepage": "https://yakad.natiq.net",
     "scripts": {
         "clean": "rimraf dist/",
         "copy-files": "copyfiles -u 1 src/public/**/* dist/",
         "build": "npm run clean && tsc && npm run copy-files",
+        "typecheck": "tsc --noEmit",
         "lint": "eslint src/**/*.{ts,tsx}",
-        "lint:fix": "eslint src/**/*.{ts,tsx} --fix",
-        "type-check": "tsc --noEmit"
+        "test": "echo \"No tests specified\" && exit 0",
+        "prepublishOnly": "npm run lint && npm run test && npm run build && npm run typecheck && npm version patch"
     },
     "dependencies": {
         "classnames": "2.5.1"

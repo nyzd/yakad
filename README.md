@@ -28,7 +28,7 @@ yakad/
 
 ```bash
 # Clone the repository
-git clone https://github.com/NatiqQuran/yakad.git
+git clone https://github.com/natiq-foundation/yakad.git
 cd yakad
 
 # Install all dependencies
@@ -56,7 +56,7 @@ npm run lint
 npm run lint:fix
 
 # Type checking
-npm run type-check
+npm run typecheck
 
 # Clean all packages
 npm run clean
@@ -85,7 +85,7 @@ npm run build
 npm run lint
 
 # Type check
-npm run type-check
+npm run typecheck
 ```
 
 ## 📚 Package Details
@@ -126,7 +126,7 @@ npm install @yakad/x
 
 1. **Make changes** in the appropriate package
 2. **Run linting** to check code quality: `npm run lint`
-3. **Run type checking** to ensure type safety: `npm run type-check`
+3. **Run type checking** to ensure type safety: `npm run typecheck`
 4. **Build the package** to verify compilation: `npm run build`
 5. **Test changes** locally
 6. **Commit and push** your changes
@@ -168,12 +168,12 @@ MIT License - see [LICENSE](LICENSE) file for details.
 
 -   [Website](https://yakad.natiq.net)
 -   [Documentation](https://docs.yakad.natiq.net) (coming soon)
--   [Issues](https://github.com/NatiqQuran/yakad/issues)
--   [Discussions](https://github.com/NatiqQuran/yakad/discussions)
+-   [Issues](https://github.com/natiq-foundation/yakad/issues)
+-   [Discussions](https://github.com/natiq-foundation/yakad/discussions)
 
 ## 🆘 Support
 
 -   📧 Email: support@natiq.net
--   💬 GitHub Issues: [Create an issue](https://github.com/NatiqQuran/yakad/issues/new)
--   🐛 Bug Reports: [Bug report template](https://github.com/NatiqQuran/yakad/issues/new?template=bug_report.md)
--   ✨ Feature Requests: [Feature request template](https://github.com/NatiqQuran/yakad/issues/new?template=feature_request.md)
+-   💬 GitHub Issues: [Create an issue](https://github.com/natiq-foundation/yakad/issues/new)
+-   🐛 Bug Reports: [Bug report template](https://github.com/natiq-foundation/yakad/issues/new?template=bug_report.md)
+-   ✨ Feature Requests: [Feature request template](https://github.com/natiq-foundation/yakad/issues/new?template=feature_request.md)

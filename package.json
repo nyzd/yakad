@@ -8,31 +8,29 @@
     ],
     "scripts": {
         "build": "npm run build --workspaces",
-        "build:lib": "npm run build --workspace=@yakad/lib",
-        "build:ui": "npm run build --workspace=@yakad/ui",
-        "build:symbols": "npm run build --workspace=@yakad/symbols",
-        "build:x": "npm run build --workspace=@yakad/x",
         "lint": "npm run lint --workspaces",
-        "lint:fix": "npm run lint:fix --workspaces",
-        "type-check": "npm run type-check --workspaces",
-        "clean": "npm run clean --workspaces",
-        "dev": "npm run dev --workspaces",
+        "typecheck": "npm run typecheck --workspaces",
         "test": "npm run test --workspaces",
-        "install:all": "npm install",
-        "update:deps": "npm update --workspaces",
-        "outdated": "npm outdated --workspaces",
-        "audit": "npm audit --workspaces",
-        "publish:check": "npm run lint && npm run build && npm run type-check"
+        "prepublish:check": "npm run lint && npm run build && npm run typecheck && npm run test",
+        "publish:eslint-plugin-guard": "cd packages/eslint-plugin-guard && npm publish && cd ../..",
+        "publish:lib": "cd packages/lib && npm publish && cd ../..",
+        "publish:sync": "cd packages/sync && npm publish && cd ../..",
+        "publish:symbols": "cd packages/symbols && npm publish && cd ../..",
+        "publish:ui": "cd packages/ui && npm publish && cd ../..",
+        "publish:x": "cd packages/x && npm publish && cd ../.."
     },
     "devDependencies": {
-        "@typescript-eslint/eslint-plugin": "^6.0.0",
-        "@typescript-eslint/parser": "^6.0.0",
+        "@types/jest": "^30.0.0",
+        "@typescript-eslint/eslint-plugin": "^6",
+        "@typescript-eslint/parser": "^6",
         "copyfiles": "^2.4.1",
-        "eslint": "^8.0.0",
-        "eslint-plugin-react": "^7.0.0",
-        "eslint-plugin-react-hooks": "^4.0.0",
-        "rimraf": "^6.0.0",
-        "typescript": "^5.0.0"
+        "eslint": "^8.0.0 <9.0.0",
+        "eslint-plugin-react": "^7",
+        "eslint-plugin-react-hooks": "^4",
+        "jest": "^30.1.2",
+        "rimraf": "^6",
+        "ts-jest": "^29.4.1",
+        "typescript": "<5.4.0"
     },
     "engines": {
         "node": ">=16.0.0",
@@ -40,7 +38,7 @@
     },
     "repository": {
         "type": "git",
-        "url": "git+https://github.com/NatiqQuran/yakad.git"
+        "url": "git+https://github.com/natiq-foundation/yakad.git"
     },
     "keywords": [
         "yakad",
@@ -53,7 +51,7 @@
     "author": "Natiq",
     "license": "MIT",
     "bugs": {
-        "url": "https://github.com/NatiqQuran/yakad/issues"
+        "url": "https://github.com/natiq-foundation/yakad/issues"
     },
     "homepage": "https://yakad.natiq.net"
 }

@@ -7,7 +7,6 @@ import {
     Container,
     ContainerProps,
 } from "@yakad/ui";
-
 import styles from "./XgetStart.module.css";
 
 export interface XgetStartProps extends ContainerProps {
