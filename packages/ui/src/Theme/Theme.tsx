@@ -1,10 +1,9 @@
-"use client";
-
 import { forwardRef, useEffect } from "react";
 import classNames from "classnames";
+
 import "./globals.css";
-import boxingStyles from "../boxing.module.css";
 import styles from "./Theme.module.css";
+import boxingStyles from "../boxing.module.css";
 
 export type DarkStyle = "light" | "dark" | "system";
 export type ThemeColor = "green" | "red" | "yellow" | "blue" | "purple";
