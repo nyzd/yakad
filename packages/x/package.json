@@ -28,9 +28,7 @@
         "typecheck": "tsc --noEmit",
         "lint": "eslint src/**/*.{ts,tsx}",
         "test": "echo \"No tests specified\" && exit 0",
-        "i:ui": "npm install @yakad/ui",
-        "i:symbols": "npm install @yakad/symbols",
-        "prepublishOnly": "npm run i:ui && npm run i:symbols && npm run build && npm run test && npm run lint && npm run typecheck && npm version patch"
+        "prepublishOnly": "npm run build && npm run test && npm run lint && npm run typecheck && npm version patch"
     },
     "dependencies": {
         "@yakad/symbols": "^1.0.24",
