@@ -1,3 +1,7 @@
+.gridItem {
+    width: 100%;
+}
+
 .xl1 {
     grid-column: span 1;
 }

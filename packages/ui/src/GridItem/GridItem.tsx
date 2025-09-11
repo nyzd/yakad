@@ -19,6 +19,7 @@ export const GridItem = forwardRef<HTMLDivElement, GridItemProps>(
         const joinedClassNames = classNames(
             boxingStyles.flexColumnBox,
             { [boxingStyles[align as string]]: align },
+            styles.gridItem,
             { [styles[`xs${xs}`]]: xs },
             { [styles[`sm${sm}`]]: sm },
             { [styles[`md${md}`]]: md },

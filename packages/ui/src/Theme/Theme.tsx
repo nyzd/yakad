@@ -1,3 +1,5 @@
+"use client";
+
 import { forwardRef, useEffect } from "react";
 import classNames from "classnames";
 import "./globals.css";
