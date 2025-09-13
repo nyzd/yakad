@@ -22,18 +22,7 @@ export function createLocalStorageContext<T extends object>(
             .trim()
             .replace(/ /g, "");
 
-    type ContextType = {
-        [K in Lowercase<typeof contextName>]: T;
-    } & {
-        [K in `set${Capitalize<typeof contextName>}`]: Dispatch<
-            SetStateAction<T>
-        >;
-    };
-
-    // This helps TypeScript infer the exact string literal type from contextName
-    const contextNameLower = contextName.toLowerCase() as Lowercase<
-        typeof contextName
-    >;
+    type ContextType = [T, Dispatch<SetStateAction<T>>];
 
     const LocalContext = createContext<ContextType | undefined>(undefined);
     LocalContext.displayName = contextName;
@@ -41,10 +30,7 @@ export function createLocalStorageContext<T extends object>(
     const Provider = ({ children }: { children: ReactNode }) => {
         const [state, setState] = useState<T>(defaultValue);
 
-        const contextValue = {
-            [contextNameLower]: state,
-            [`set${contextName}`]: setState,
-        } as ContextType;
+        const contextValue = [state, setState] as ContextType;
 
         useEffect(() => {
             const stored = localStorage.getItem(storageKey);
@@ -57,7 +43,7 @@ export function createLocalStorageContext<T extends object>(
                     }));
                 } catch (error) {
                     console.error(
-                        `Failed to parse ${contextName} from localStorage`,
+                        `Failed to parse ${storageKey} from localStorage`,
                         error
                     );
                 }
