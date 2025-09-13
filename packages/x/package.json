@@ -28,7 +28,7 @@
         "typecheck": "tsc --noEmit",
         "lint": "eslint src/**/*.{ts,tsx}",
         "test": "echo \"No tests specified\" && exit 0",
-        "prepublishOnly": "npm run lint && npm run test && npm run build && npm run typecheck && npm version patch"
+        "prepublishOnly": "npm version patch && npm run lint && npm run test && npm run build && npm run typecheck"
     },
     "dependencies": {
         "@yakad/symbols": "^1.0.24",

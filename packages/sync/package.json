@@ -15,7 +15,7 @@
         "typecheck": "tsc --noEmit",
         "lint": "eslint src/**/*.{ts,tsx}",
         "test": "jest",
-        "prepublishOnly": "npm run lint && npm run test && npm run build && npm run typecheck && npm version patch"
+        "prepublishOnly": "npm version patch && npm run lint && npm run test && npm run build && npm run typecheck"
     },
     "keywords": [
         "sync",
