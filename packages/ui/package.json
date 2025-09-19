@@ -1,6 +1,6 @@
 {
     "name": "@yakad/ui",
-    "version": "1.3.103",
+    "version": "1.3.109",
     "private": false,
     "author": "Natiq",
     "description": "UI components for NextJS/React",
@@ -28,9 +28,10 @@
         "typecheck": "tsc --noEmit",
         "lint": "eslint src/**/*.{ts,tsx}",
         "test": "echo \"No tests specified\" && exit 0",
-        "prepublishOnly": "npm run test && npm run build && npm run typecheck && npm version patch"
+        "prepublishOnly": "npm run test && npm run build && npm run typecheck"
     },
     "dependencies": {
+        "@yakad/lib": "1.0.22",
         "@yakad/symbols": "1.0.25",
         "classnames": "2.5.1"
     },
