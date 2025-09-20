@@ -30,9 +30,12 @@ export const WithDropdawn = ({
     const toggleElementRef = useRef<HTMLElement | null>(null);
     const dropdawnRef = useRef<HTMLDivElement | null>(null);
     const [showDropdawn, setShowDropdawn] = useState(false);
+
     const [dropdawnOnTop, setDropdawnOnTop] = useState(false);
     const [top, setTop] = useState<number>(0);
-    const [left, setLeft] = useState<number>(0);
+    const [dropdawnX, setDropdawnX] = useState<number>(0);
+    const [arrowTop, setArrowTop] = useState<number>(0);
+    const [arrowX, setArrowX] = useState<number>(0);
 
     const toggleShowDropdawn = () => setShowDropdawn((prev) => !prev);
 
@@ -42,28 +45,34 @@ export const WithDropdawn = ({
             const dropdawnRect = dropdawnRef.current.getBoundingClientRect();
             const padding = 10;
 
-            let top = buttonRect.bottom + padding;
-            let left =
-                buttonRect.left + buttonRect.width / 2 - dropdawnRect.width / 2;
+            let dTop = buttonRect.bottom + padding;
+            let dX = buttonRect.x + buttonRect.width / 2;
+            let aTop = top;
+            let aX = dX;
 
             // Prevent overflow bottom
-            if (top + dropdawnRect.height > window.innerHeight) {
-                top = buttonRect.top - dropdawnRect.height - padding;
+            if (dTop + dropdawnRect.height > window.innerHeight) {
+                dTop = buttonRect.top - dropdawnRect.height - padding;
+                aTop = buttonRect.top - padding;
                 setDropdawnOnTop(true);
             } else setDropdawnOnTop(false);
 
             // Prevent overflow right
-            if (left + dropdawnRect.width > window.innerWidth - padding) {
-                left = window.innerWidth - dropdawnRect.width - padding;
+            if (dX + dropdawnRect.width / 2 > window.innerWidth - padding) {
+                dX = window.innerWidth - dropdawnRect.width / 2 - padding;
             }
 
             // Prevent overflow left
-            if (left < padding) {
-                left = padding;
+            if (dX - dropdawnRect.width / 2 < padding) {
+                dX = dropdawnRect.width / 2 + padding;
             }
 
-            setTop(top);
-            setLeft(left);
+            setTop(dTop);
+            setDropdawnX(dX);
+
+            // Arrow Placing
+            setArrowTop(aTop);
+            setArrowX(aX);
         }
     }, [showDropdawn, dropdawnChildren]);
 
@@ -71,7 +80,6 @@ export const WithDropdawn = ({
         boxingStyles.flexColumnBox,
         { [boxingStyles[align as string]]: align },
         styles.dropdawnCard,
-        { [styles.dropdawnOnTop]: dropdawnOnTop },
         { [styles.blur]: blur },
         className
     );
@@ -92,6 +100,20 @@ export const WithDropdawn = ({
                         },
                     })}
             </WithInteractions>
+            <span
+                className={classNames(
+                    styles.arrow,
+                    {
+                        [styles.dropdawnOnTop]: dropdawnOnTop,
+                    },
+                    { [styles.blur]: blur }
+                )}
+                style={{
+                    top: arrowTop,
+                    left: arrowX,
+                    visibility: showDropdawn ? "visible" : "hidden",
+                }}
+            />
             <WithInteractions onOutsideClick={() => setShowDropdawn(false)}>
                 <div
                     ref={dropdawnRef}
@@ -99,7 +121,7 @@ export const WithDropdawn = ({
                     className={joinedClassNames}
                     style={{
                         top: top,
-                        left: left,
+                        left: dropdawnX,
                         visibility: showDropdawn ? "visible" : "hidden",
                         ...style,
                     }}
