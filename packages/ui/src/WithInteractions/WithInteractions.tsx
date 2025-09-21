@@ -38,7 +38,7 @@ export interface WithInteractionsProps {
 }
 
 export const WithInteractions = forwardRef<HTMLElement, WithInteractionsProps>(
-    (
+    function WithInteractions(
         {
             children,
             onRightClick,
@@ -62,7 +62,7 @@ export const WithInteractions = forwardRef<HTMLElement, WithInteractionsProps>(
             ...restProps
         },
         forwardedRef
-    ) => {
+    ) {
         const localRef = useRef<HTMLElement>(null);
 
         // Let the parent access our DOM node
@@ -313,4 +313,3 @@ export const WithInteractions = forwardRef<HTMLElement, WithInteractionsProps>(
         });
     }
 );
-WithInteractions.displayName = "WithInteractions";

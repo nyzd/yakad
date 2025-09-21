@@ -16,42 +16,39 @@ export interface ThemeProps extends React.HTMLAttributes<HTMLDivElement> {
     children?: React.ReactNode;
 }
 
-export const Theme = forwardRef<HTMLDivElement, ThemeProps>(
-    (
-        {
-            align,
-            darkStyle = "system",
-            color = "blue",
-            zoom = 100,
-            className,
-            children,
-            ...restProps
-        },
-        ref
-    ) => {
-        const zoomPercentage = zoom ? (zoom / 100) * 62.5 : 62.5;
+export const Theme = forwardRef<HTMLDivElement, ThemeProps>(function Theme(
+    {
+        align,
+        darkStyle = "system",
+        color = "blue",
+        zoom = 100,
+        className,
+        children,
+        ...restProps
+    },
+    ref
+) {
+    const zoomPercentage = zoom ? (zoom / 100) * 62.5 : 62.5;
 
-        useEffect(() => {
-            document.documentElement.style.setProperty(
-                "font-size",
-                zoomPercentage + "%"
-            );
-        }, [zoomPercentage]);
-
-        const joinedClassNames = classNames(
-            boxingStyles.flexColumnBox,
-            { [boxingStyles[align as string]]: align },
-            styles.theme,
-            styles[darkStyle],
-            styles[color],
-            className
+    useEffect(() => {
+        document.documentElement.style.setProperty(
+            "font-size",
+            zoomPercentage + "%"
         );
+    }, [zoomPercentage]);
 
-        return (
-            <div ref={ref} {...restProps} className={joinedClassNames}>
-                {children}
-            </div>
-        );
-    }
-);
-Theme.displayName = "Theme";
+    const joinedClassNames = classNames(
+        boxingStyles.flexColumnBox,
+        { [boxingStyles[align as string]]: align },
+        styles.theme,
+        styles[darkStyle],
+        styles[color],
+        className
+    );
+
+    return (
+        <div ref={ref} {...restProps} className={joinedClassNames}>
+            {children}
+        </div>
+    );
+});

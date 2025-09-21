@@ -10,7 +10,7 @@ export interface CheckBoxProps
 }
 
 export const CheckBox = forwardRef<HTMLInputElement, CheckBoxProps>(
-    ({ label, className, style, ...restProps }, ref) => {
+    function CheckBox({ label, className, style, ...restProps }, ref) {
         const joinedClassNames = classNames(
             label && "fullWidthLover",
             styles.label,
@@ -42,4 +42,3 @@ export const CheckBox = forwardRef<HTMLInputElement, CheckBoxProps>(
         );
     }
 );
-CheckBox.displayName = "CheckBox";

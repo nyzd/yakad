@@ -8,7 +8,7 @@ export interface ListItemProps extends React.HTMLAttributes<HTMLLIElement> {
 }
 
 export const ListItem = forwardRef<HTMLLIElement, ListItemProps>(
-    ({ align, className, children, ...restProps }, ref) => {
+    function ListItem({ align, className, children, ...restProps }, ref) {
         return (
             <li
                 ref={ref}
@@ -25,4 +25,3 @@ export const ListItem = forwardRef<HTMLLIElement, ListItemProps>(
         );
     }
 );
-ListItem.displayName = "ListItem";

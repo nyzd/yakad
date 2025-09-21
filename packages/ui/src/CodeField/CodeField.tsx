@@ -37,7 +37,7 @@ function removeUnNumberChars(inputElement: HTMLInputElement): void {
 }
 
 export const CodeField = forwardRef<HTMLInputElement, CodeFieldsProps>(
-    (
+    function CodeField(
         {
             length = 6,
             onFilled,
@@ -49,7 +49,7 @@ export const CodeField = forwardRef<HTMLInputElement, CodeFieldsProps>(
             ...restProps
         },
         ref
-    ) => {
+    ) {
         const joinedClassNames = classNames(
             "fullWidthLover",
             styles.input,
@@ -77,4 +77,3 @@ export const CodeField = forwardRef<HTMLInputElement, CodeFieldsProps>(
         );
     }
 );
-CodeField.displayName = "CodeField";

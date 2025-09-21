@@ -17,7 +17,7 @@ export interface WithDropdawnProps
     }>;
 }
 
-export const WithDropdawn = ({
+export function WithDropdawn({
     align,
     blur,
     trigger = "onClick",
@@ -26,7 +26,7 @@ export const WithDropdawn = ({
     style,
     children,
     ...restProps
-}: WithDropdawnProps) => {
+}: WithDropdawnProps) {
     const toggleElementRef = useRef<HTMLElement | null>(null);
     const dropdawnRef = useRef<HTMLDivElement | null>(null);
     const [showDropdawn, setShowDropdawn] = useState(false);
@@ -131,5 +131,4 @@ export const WithDropdawn = ({
             </WithInteractions>
         </>
     );
-};
-WithDropdawn.displayName = "WithDropdawn";
+}

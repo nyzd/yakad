@@ -19,7 +19,7 @@ export interface XTheadProps extends TheadProps {
 }
 
 export const XThead = forwardRef<HTMLTableSectionElement, XTheadProps>(
-    ({ children, ...restProps }, ref) => {
+    function XThead({ children, ...restProps }, ref) {
         const [sort, setSort] = useState<Sort>();
         const [search, setSearch] = useState<Search>();
 
@@ -100,4 +100,3 @@ export const XThead = forwardRef<HTMLTableSectionElement, XTheadProps>(
         );
     }
 );
-XThead.displayName = "XThead";

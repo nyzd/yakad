@@ -8,29 +8,29 @@ export interface HrProps extends React.HTMLAttributes<HTMLHRElement> {
     marginx?: number;
 }
 
-export const Hr = forwardRef<HTMLHRElement, HrProps>(
-    ({ variant, height, marginx, className, style, ...restProps }, ref) => {
-        const joinedClassNames = classNames(
-            styles.hr,
-            variant && styles[variant],
-            className
-        );
+export const Hr = forwardRef<HTMLHRElement, HrProps>(function Hr(
+    { variant, height, marginx, className, style, ...restProps },
+    ref
+) {
+    const joinedClassNames = classNames(
+        styles.hr,
+        variant && styles[variant],
+        className
+    );
 
-        const joinedStyles = {
-            ...style,
-            borderTopWidth: height ? `${height}rem` : style?.borderTopWidth,
-            marginTop: marginx ? `${marginx}rem` : style?.marginTop,
-            marginBottom: marginx ? `${marginx}rem` : style?.marginBottom,
-        };
+    const joinedStyles = {
+        ...style,
+        borderTopWidth: height ? `${height}rem` : style?.borderTopWidth,
+        marginTop: marginx ? `${marginx}rem` : style?.marginTop,
+        marginBottom: marginx ? `${marginx}rem` : style?.marginBottom,
+    };
 
-        return (
-            <hr
-                ref={ref}
-                {...restProps}
-                className={joinedClassNames}
-                style={joinedStyles}
-            />
-        );
-    }
-);
-Hr.displayName = "Hr";
+    return (
+        <hr
+            ref={ref}
+            {...restProps}
+            className={joinedClassNames}
+            style={joinedStyles}
+        />
+    );
+});

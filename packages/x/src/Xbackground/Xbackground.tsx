@@ -11,7 +11,7 @@ export interface XbackgroundProps extends React.HTMLAttributes<HTMLDivElement> {
 }
 
 export const Xbackground = forwardRef<HTMLDivElement, XbackgroundProps>(
-    (
+    function Xbackground(
         {
             variant = "dotted",
             separator,
@@ -23,7 +23,7 @@ export const Xbackground = forwardRef<HTMLDivElement, XbackgroundProps>(
             ...restProps
         },
         ref
-    ) => {
+    ) {
         const joinedClassNames = classNames(
             styles.background,
             styles[variant],
@@ -49,4 +49,3 @@ export const Xbackground = forwardRef<HTMLDivElement, XbackgroundProps>(
         );
     }
 );
-Xbackground.displayName = "Xbackground";

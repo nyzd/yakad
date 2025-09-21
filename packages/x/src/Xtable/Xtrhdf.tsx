@@ -11,7 +11,6 @@ export function XTr(props: XTrProps) {
         <Tr {...props}>XTr can only be used inside XThead | XTbody | XTfoot</Tr>
     );
 }
-XTr.displayName = "XTr";
 
 export interface XThProps extends ThProps {
     aligntext?: "start" | "center" | "end";
@@ -24,7 +23,6 @@ export function XTh(props: XThProps) {
         <Th {...props}>XTh can only be used inside XTr witch inside XThead</Th>
     );
 }
-XTh.displayName = "XTh";
 
 export interface XTdProps extends TdProps {}
 export function XTd(props: XTdProps) {
@@ -32,7 +30,6 @@ export function XTd(props: XTdProps) {
         <Td {...props}>XTd can only be used inside XTr witch inside XTbody</Td>
     );
 }
-XTd.displayName = "XTd";
 
 export type AcceptedFootFuncs = "sum" | "average" | "count";
 export interface XTfProps extends ThProps {
@@ -43,4 +40,3 @@ export function XTf(props: XTfProps) {
         <Th {...props}>XTf can only be used inside XTr witch inside XTfoot</Th>
     );
 }
-XTf.displayName = "XTf";

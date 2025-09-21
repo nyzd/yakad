@@ -15,7 +15,10 @@ export interface XgetStartProps extends ContainerProps {
 }
 
 export const XgetStart = forwardRef<HTMLDivElement, XgetStartProps>(
-    ({ logo, size = "lg", className, children, ...restProps }, ref) => {
+    function XgetStart(
+        { logo, size = "lg", className, children, ...restProps },
+        ref
+    ) {
         const joinedClassNames = classNames(styles.xgetstart, className);
 
         return (
@@ -54,4 +57,3 @@ export const XgetStart = forwardRef<HTMLDivElement, XgetStartProps>(
         );
     }
 );
-XgetStart.displayName = "XgetStart";

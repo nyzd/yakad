@@ -11,7 +11,7 @@ export interface NavigationProps extends React.HTMLAttributes<HTMLElement> {
 }
 
 export const Navigation = forwardRef<HTMLDivElement, NavigationProps>(
-    (
+    function Navigation(
         {
             align,
             anchor = "auto",
@@ -21,7 +21,7 @@ export const Navigation = forwardRef<HTMLDivElement, NavigationProps>(
             ...restProps
         },
         ref
-    ) => {
+    ) {
         const joinedClassNames = classNames(
             boxingStyles.flexColumnBox,
             { [boxingStyles[align as string]]: align },
@@ -40,4 +40,3 @@ export const Navigation = forwardRef<HTMLDivElement, NavigationProps>(
         );
     }
 );
-Navigation.displayName = "Navigation";

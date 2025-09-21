@@ -20,59 +20,53 @@ export interface XpanelProps extends ScreenProps {
     children?: React.ReactNode;
 }
 
-export const Xpanel = forwardRef<HTMLDivElement, XpanelProps>(
-    (
-        {
-            name = "Yakad Panel",
-            appbarChildren,
-            navigationChildren,
-            children,
-            ...restProps
-        },
-        ref
-    ) => {
-        const [navOpen, setNavOpen] = useState<boolean>(false);
-        const toggleNavOpen = () => setNavOpen((prev) => !prev);
+export const Xpanel = forwardRef<HTMLDivElement, XpanelProps>(function Xpanel(
+    {
+        name = "Yakad Panel",
+        appbarChildren,
+        navigationChildren,
+        children,
+        ...restProps
+    },
+    ref
+) {
+    const [navOpen, setNavOpen] = useState<boolean>(false);
+    const toggleNavOpen = () => setNavOpen((prev) => !prev);
 
-        const handleClickAwayNav = () =>
-            window.innerWidth <= 1000 && setNavOpen(false);
+    const handleClickAwayNav = () =>
+        window.innerWidth <= 1000 && setNavOpen(false);
 
-        const handleNavOpenDependOnWindowSize = () =>
-            setNavOpen(window.innerWidth > 1200);
+    const handleNavOpenDependOnWindowSize = () =>
+        setNavOpen(window.innerWidth > 1200);
 
-        useEffect(() => {
-            handleNavOpenDependOnWindowSize();
-            const resizeListener = () => handleNavOpenDependOnWindowSize();
-            window.addEventListener("resize", resizeListener);
-            return () => {
-                window.removeEventListener("resize", resizeListener);
-            };
-        }, []);
+    useEffect(() => {
+        handleNavOpenDependOnWindowSize();
+        const resizeListener = () => handleNavOpenDependOnWindowSize();
+        window.addEventListener("resize", resizeListener);
+        return () => {
+            window.removeEventListener("resize", resizeListener);
+        };
+    }, []);
 
-        return (
-            <Screen ref={ref} {...restProps}>
-                <AppBar position="sticky">
-                    <Button
-                        icon={<Symbol icon="menu" />}
-                        onClick={toggleNavOpen}
-                    />
-                    <Text variant="heading3">{name}</Text>
-                    <Spacer />
-                    {appbarChildren}
-                </AppBar>
-                <Main
-                    style={{
-                        minHeight: "calc(100vh - 6rem)",
-                    }}
-                    navOpen={navOpen}
-                    onClick={() => handleClickAwayNav()}
-                >
-                    {children}
-                </Main>
+    return (
+        <Screen ref={ref} {...restProps}>
+            <AppBar position="sticky">
+                <Button icon={<Symbol icon="menu" />} onClick={toggleNavOpen} />
+                <Text variant="heading3">{name}</Text>
+                <Spacer />
+                {appbarChildren}
+            </AppBar>
+            <Main
+                style={{
+                    minHeight: "calc(100vh - 6rem)",
+                }}
+                navOpen={navOpen}
+                onClick={() => handleClickAwayNav()}
+            >
+                {children}
+            </Main>
 
-                <Navigation open={navOpen}>{navigationChildren}</Navigation>
-            </Screen>
-        );
-    }
-);
-Xpanel.displayName = "Xpanel";
+            <Navigation open={navOpen}>{navigationChildren}</Navigation>
+        </Screen>
+    );
+});

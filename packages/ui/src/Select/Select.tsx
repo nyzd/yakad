@@ -12,7 +12,7 @@ export interface SelectProps
 }
 
 export const Select = forwardRef<HTMLSelectElement, SelectProps>(
-    (
+    function Select(
         {
             variant = "outlined",
             boxsize = "normal",
@@ -22,7 +22,7 @@ export const Select = forwardRef<HTMLSelectElement, SelectProps>(
             ...restProps
         },
         ref
-    ) => {
+    ) {
         const joinedClassNames = classNames(
             styles.select,
             inputStyles.input,
@@ -44,4 +44,3 @@ export const Select = forwardRef<HTMLSelectElement, SelectProps>(
         );
     }
 );
-Select.displayName = "Select";

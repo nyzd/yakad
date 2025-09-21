@@ -9,22 +9,22 @@ export interface CardProps extends React.HTMLAttributes<HTMLDivElement> {
     children?: React.ReactNode;
 }
 
-export const Card = forwardRef<HTMLDivElement, CardProps>(
-    ({ align, blur, className, children, ...restProps }, ref) => {
-        const joinedClassNames = classNames(
-            boxingStyles.flexColumnBox,
-            { [boxingStyles[align as string]]: align },
-            "fullWidthLover",
-            styles.card,
-            { [styles.blur]: blur },
-            className
-        );
+export const Card = forwardRef<HTMLDivElement, CardProps>(function Card(
+    { align, blur, className, children, ...restProps },
+    ref
+) {
+    const joinedClassNames = classNames(
+        boxingStyles.flexColumnBox,
+        { [boxingStyles[align as string]]: align },
+        "fullWidthLover",
+        styles.card,
+        { [styles.blur]: blur },
+        className
+    );
 
-        return (
-            <div ref={ref} {...restProps} className={joinedClassNames}>
-                {children}
-            </div>
-        );
-    }
-);
-Card.displayName = "Card";
+    return (
+        <div ref={ref} {...restProps} className={joinedClassNames}>
+            {children}
+        </div>
+    );
+});

@@ -8,24 +8,21 @@ export interface ListProps extends React.HTMLAttributes<HTMLUListElement> {
     children?: React.ReactNode;
 }
 
-export const List = forwardRef<HTMLUListElement, ListProps>(
-    (
-        { direction = "row", collapsed, className, children, ...restProps },
-        ref
-    ) => {
-        const joinedClassNames = classNames(
-            "fullWidthLover",
-            styles.list,
-            styles[direction],
-            { [styles.collapsed]: collapsed },
-            className
-        );
+export const List = forwardRef<HTMLUListElement, ListProps>(function List(
+    { direction = "row", collapsed, className, children, ...restProps },
+    ref
+) {
+    const joinedClassNames = classNames(
+        "fullWidthLover",
+        styles.list,
+        styles[direction],
+        { [styles.collapsed]: collapsed },
+        className
+    );
 
-        return (
-            <ul ref={ref} {...restProps} className={joinedClassNames}>
-                {children}
-            </ul>
-        );
-    }
-);
-List.displayName = "List";
+    return (
+        <ul ref={ref} {...restProps} className={joinedClassNames}>
+            {children}
+        </ul>
+    );
+});

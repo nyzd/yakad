@@ -9,7 +9,7 @@ export interface InputFieldProps
 }
 
 export const InputField = forwardRef<HTMLInputElement, InputFieldProps>(
-    (
+    function InputField(
         {
             variant = "outlined",
             boxSize = "normal",
@@ -18,7 +18,7 @@ export const InputField = forwardRef<HTMLInputElement, InputFieldProps>(
             ...restProps
         },
         ref
-    ) => {
+    ) {
         const joinedClassNames = classNames(
             styles.input,
             styles[variant],
@@ -42,4 +42,3 @@ export const InputField = forwardRef<HTMLInputElement, InputFieldProps>(
         );
     }
 );
-InputField.displayName = "InputField";

@@ -13,7 +13,10 @@ export interface RadioGroupProps
 }
 
 export const RadioGroup = forwardRef<HTMLDivElement, RadioGroupProps>(
-    ({ name, defaultValue, className, children, ...restProps }, ref) => {
+    function RadioGroup(
+        { name, defaultValue, className, children, ...restProps },
+        ref
+    ) {
         const [selectedValue, setSelectedValue] = useState<
             string | number | null
         >(defaultValue || null);
@@ -40,4 +43,3 @@ export const RadioGroup = forwardRef<HTMLDivElement, RadioGroupProps>(
         );
     }
 );
-RadioGroup.displayName = "RadioGroup";

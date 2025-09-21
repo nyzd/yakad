@@ -9,21 +9,21 @@ export interface MainProps extends React.HTMLAttributes<HTMLDivElement> {
     children?: React.ReactNode;
 }
 
-export const Main = forwardRef<HTMLDivElement, MainProps>(
-    ({ align, navOpen = false, className, children, ...restProps }, ref) => {
-        const joinedClassNames = classNames(
-            boxingStyles.flexColumnBox,
-            { [boxingStyles[align as string]]: align },
-            styles.main,
-            { [styles.navOpen]: navOpen },
-            className
-        );
+export const Main = forwardRef<HTMLDivElement, MainProps>(function Main(
+    { align, navOpen = false, className, children, ...restProps },
+    ref
+) {
+    const joinedClassNames = classNames(
+        boxingStyles.flexColumnBox,
+        { [boxingStyles[align as string]]: align },
+        styles.main,
+        { [styles.navOpen]: navOpen },
+        className
+    );
 
-        return (
-            <main ref={ref} {...restProps} className={joinedClassNames}>
-                {children}
-            </main>
-        );
-    }
-);
-Main.displayName = "Main";
+    return (
+        <main ref={ref} {...restProps} className={joinedClassNames}>
+            {children}
+        </main>
+    );
+});

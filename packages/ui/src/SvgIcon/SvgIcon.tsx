@@ -8,7 +8,7 @@ export interface SvgIconProps extends React.HTMLAttributes<HTMLElement> {
 }
 
 export const SvgIcon = forwardRef<HTMLDivElement, SvgIconProps>(
-    ({ size, className, style, children, ...restProps }, ref) => {
+    function SvgIcon({ size, className, style, children, ...restProps }, ref) {
         const joinedClassNames = classNames(styles.svg, className!);
 
         const sizeStyle = size && { width: `${size}rem`, height: `${size}rem` };
@@ -28,4 +28,3 @@ export const SvgIcon = forwardRef<HTMLDivElement, SvgIconProps>(
         );
     }
 );
-SvgIcon.displayName = "SvgIcon";

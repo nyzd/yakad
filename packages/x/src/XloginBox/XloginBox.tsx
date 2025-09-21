@@ -10,7 +10,10 @@ export interface XloginBoxProps extends ScreenProps {
 }
 
 export const XloginBox = forwardRef<HTMLDivElement, XloginBoxProps>(
-    ({ classNameCard, stylecard, children, ...restProps }, ref) => {
+    function XloginBox(
+        { classNameCard, stylecard, children, ...restProps },
+        ref
+    ) {
         return (
             <Screen ref={ref} {...restProps}>
                 <AppBar className={styles.header}></AppBar>
@@ -26,4 +29,3 @@ export const XloginBox = forwardRef<HTMLDivElement, XloginBoxProps>(
         );
     }
 );
-XloginBox.displayName = "XloginBox";

@@ -15,7 +15,7 @@ export interface XmenuListProps extends Omit<ListProps, "children"> {
 }
 
 export const XmenuList = forwardRef<HTMLUListElement, XmenuListProps>(
-    ({ items, direction = "column", ...restProps }, ref) => {
+    function XmenuList({ items, direction = "column", ...restProps }, ref) {
         const [collapsedList, setCollapsedList] = useState<{
             [n: number]: boolean;
         }>({});
@@ -79,4 +79,3 @@ export const XmenuList = forwardRef<HTMLUListElement, XmenuListProps>(
         );
     }
 );
-XmenuList.displayName = "XmenuList";

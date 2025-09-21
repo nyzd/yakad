@@ -20,38 +20,35 @@ export interface XpopupProps extends CardProps {
     children?: React.ReactNode;
 }
 
-export const Xpopup = forwardRef<HTMLDivElement, XpopupProps>(
-    (
-        { align, heading, onCloseButtClick, className, children, ...restProps },
-        ref
-    ) => {
-        return (
-            <div className={styles.xpopupscreen}>
-                <WithInteractions onOutsideClick={onCloseButtClick}>
-                    <Card
-                        ref={ref}
-                        {...restProps}
-                        className={classNames(styles.xpopup, className)}
+export const Xpopup = forwardRef<HTMLDivElement, XpopupProps>(function Xpopup(
+    { align, heading, onCloseButtClick, className, children, ...restProps },
+    ref
+) {
+    return (
+        <div className={styles.xpopupscreen}>
+            <WithInteractions onOutsideClick={onCloseButtClick}>
+                <Card
+                    ref={ref}
+                    {...restProps}
+                    className={classNames(styles.xpopup, className)}
+                >
+                    <Row style={{ marginBottom: "2rem" }}>
+                        <Text variant="heading4">{heading}</Text>
+                        <Spacer />
+                        <Button
+                            title="Close"
+                            icon={<Symbol icon="close" />}
+                            onClick={onCloseButtClick}
+                        />
+                    </Row>
+                    <Stack
+                        align={align}
+                        style={{ width: "100%", overflowY: "auto" }}
                     >
-                        <Row style={{ marginBottom: "2rem" }}>
-                            <Text variant="heading4">{heading}</Text>
-                            <Spacer />
-                            <Button
-                                title="Close"
-                                icon={<Symbol icon="close" />}
-                                onClick={onCloseButtClick}
-                            />
-                        </Row>
-                        <Stack
-                            align={align}
-                            style={{ width: "100%", overflowY: "auto" }}
-                        >
-                            {children}
-                        </Stack>
-                    </Card>
-                </WithInteractions>
-            </div>
-        );
-    }
-);
-Xpopup.displayName = "Xpopup";
+                        {children}
+                    </Stack>
+                </Card>
+            </WithInteractions>
+        </div>
+    );
+});

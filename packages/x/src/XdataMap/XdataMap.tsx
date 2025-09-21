@@ -12,7 +12,7 @@ export interface XdataMapProps
 }
 
 export const XdataMap = forwardRef<HTMLTableElement, XdataMapProps>(
-    ({ data, ...restProps }, ref) => {
+    function XdataMap({ data, ...restProps }, ref) {
         const dataKeys: string[] = Object.keys(data[0]);
 
         return (
@@ -50,4 +50,3 @@ export const XdataMap = forwardRef<HTMLTableElement, XdataMapProps>(
         );
     }
 );
-XdataMap.displayName = "XdataMap";

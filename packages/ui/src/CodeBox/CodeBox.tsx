@@ -10,7 +10,7 @@ export interface CodeBoxProps extends React.HTMLAttributes<HTMLDivElement> {
 }
 
 export const CodeBox = forwardRef<HTMLDivElement, CodeBoxProps>(
-    ({ copyButton, className, children, ...restProps }, ref) => {
+    function CodeBox({ copyButton, className, children, ...restProps }, ref) {
         const joinedClassNames = classNames(
             "fullWidthLover",
             styles.ZZZZZZZZZZ,
@@ -25,4 +25,3 @@ export const CodeBox = forwardRef<HTMLDivElement, CodeBoxProps>(
         );
     }
 );
-CodeBox.displayName = "CodeBox";

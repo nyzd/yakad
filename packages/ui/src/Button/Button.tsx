@@ -24,7 +24,7 @@ export interface ButtonProps
 }
 
 export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
-    (
+    function Button(
         {
             size = "medium",
             variant = "text",
@@ -38,7 +38,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
             ...restProps
         },
         ref
-    ) => {
+    ) {
         const childrenFirst: boolean = Boolean(iconPosition === "end");
         const isLoadingPositionCenter: boolean = Boolean(
             !icon || loadingPosition === "center"
@@ -73,5 +73,3 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
         );
     }
 );
-
-Button.displayName = "Button";
