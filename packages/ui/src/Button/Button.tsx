@@ -15,11 +15,11 @@ export interface ButtonProps
         | "elevated"
         | "link"
         | "fab";
-    borderstyle?: "none" | "semi" | "squircle" | "rounded";
+    borderStyle?: "none" | "semi" | "squircle" | "rounded";
     icon?: React.ReactNode;
-    iconposition?: "start" | "end";
-    loadingposition?: "auto" | "center";
-    loadingvariant?: "scaleOut" | "dots" | "spinner";
+    iconPosition?: "start" | "end";
+    loadingPosition?: "auto" | "center";
+    loadingVariant?: "scaleOut" | "dots" | "spinner";
     children?: React.ReactNode;
 }
 
@@ -28,29 +28,29 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
         {
             size = "medium",
             variant = "text",
-            borderstyle = "rounded",
+            borderStyle = "rounded",
             icon,
-            iconposition = "start",
-            loadingposition = "auto",
-            loadingvariant,
+            iconPosition = "start",
+            loadingPosition = "auto",
+            loadingVariant,
             className,
             children,
             ...restProps
         },
         ref
     ) => {
-        const childrenFirst: boolean = Boolean(iconposition === "end");
+        const childrenFirst: boolean = Boolean(iconPosition === "end");
         const isLoadingPositionCenter: boolean = Boolean(
-            !icon || loadingposition === "center"
+            !icon || loadingPosition === "center"
         );
 
         const joinedClassNames = classNames(
             styles.button,
             styles[variant],
-            { [styles.loading]: loadingvariant },
+            { [styles.loading]: loadingVariant },
             { [styles.loadingPositionCenter]: isLoadingPositionCenter },
             styles[size],
-            styles[borderstyle],
+            styles[borderStyle],
             { [styles.iconButton]: !children && icon },
             className
         );
@@ -58,13 +58,13 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
         return (
             <button ref={ref} className={joinedClassNames} {...restProps}>
                 {childrenFirst && children}
-                {loadingvariant && (
+                {loadingVariant && (
                     <div
                         className={classNames(styles.displayOnDisabled, {
                             [styles.positionCenter]: isLoadingPositionCenter,
                         })}
                     >
-                        <LoadingIcon size={size} variant={loadingvariant} />
+                        <LoadingIcon size={size} variant={loadingVariant} />
                     </div>
                 )}
                 {icon}

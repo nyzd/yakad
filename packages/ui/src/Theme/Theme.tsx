@@ -10,7 +10,7 @@ export type DarkStyle = "light" | "dark" | "system";
 export type ThemeColor = "green" | "red" | "yellow" | "blue" | "purple";
 export interface ThemeProps extends React.HTMLAttributes<HTMLDivElement> {
     align?: "start" | "space" | "center" | "end";
-    darkstyle?: DarkStyle;
+    darkStyle?: DarkStyle;
     color?: ThemeColor;
     zoom?: number; //Percentage zoom level (e.g., 100 for 100%)
     children?: React.ReactNode;
@@ -20,7 +20,7 @@ export const Theme = forwardRef<HTMLDivElement, ThemeProps>(
     (
         {
             align,
-            darkstyle = "system",
+            darkStyle = "system",
             color = "blue",
             zoom = 100,
             className,
@@ -42,7 +42,7 @@ export const Theme = forwardRef<HTMLDivElement, ThemeProps>(
             boxingStyles.flexColumnBox,
             { [boxingStyles[align as string]]: align },
             styles.theme,
-            styles[darkstyle],
+            styles[darkStyle],
             styles[color],
             className
         );
