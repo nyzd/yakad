@@ -15,8 +15,8 @@ import { Symbol } from "@yakad/symbols";
 
 export interface XpanelProps extends ScreenProps {
     name?: string;
-    appbarchildren?: React.ReactNode;
-    navigationchildren?: React.ReactNode;
+    appbarChildren?: React.ReactNode;
+    navigationChildren?: React.ReactNode;
     children?: React.ReactNode;
 }
 
@@ -24,8 +24,8 @@ export const Xpanel = forwardRef<HTMLDivElement, XpanelProps>(
     (
         {
             name = "Yakad Panel",
-            appbarchildren,
-            navigationchildren,
+            appbarChildren,
+            navigationChildren,
             children,
             ...restProps
         },
@@ -58,19 +58,19 @@ export const Xpanel = forwardRef<HTMLDivElement, XpanelProps>(
                     />
                     <Text variant="heading3">{name}</Text>
                     <Spacer />
-                    {appbarchildren}
+                    {appbarChildren}
                 </AppBar>
                 <Main
                     style={{
                         minHeight: "calc(100vh - 6rem)",
                     }}
-                    navopen={navOpen}
+                    navOpen={navOpen}
                     onClick={() => handleClickAwayNav()}
                 >
                     {children}
                 </Main>
 
-                <Navigation open={navOpen}>{navigationchildren}</Navigation>
+                <Navigation open={navOpen}>{navigationChildren}</Navigation>
             </Screen>
         );
     }

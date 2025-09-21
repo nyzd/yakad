@@ -16,25 +16,18 @@ import classNames from "classnames";
 export interface XpopupProps extends CardProps {
     align?: "start" | "space" | "center" | "end";
     heading?: string;
-    onclosebuttonclick?: () => void;
+    onCloseButtClick?: () => void;
     children?: React.ReactNode;
 }
 
 export const Xpopup = forwardRef<HTMLDivElement, XpopupProps>(
     (
-        {
-            align,
-            heading,
-            onclosebuttonclick,
-            className,
-            children,
-            ...restProps
-        },
+        { align, heading, onCloseButtClick, className, children, ...restProps },
         ref
     ) => {
         return (
             <div className={styles.xpopupscreen}>
-                <WithInteractions onOutsideClick={onclosebuttonclick}>
+                <WithInteractions onOutsideClick={onCloseButtClick}>
                     <Card
                         ref={ref}
                         {...restProps}
@@ -46,7 +39,7 @@ export const Xpopup = forwardRef<HTMLDivElement, XpopupProps>(
                             <Button
                                 title="Close"
                                 icon={<Symbol icon="close" />}
-                                onClick={onclosebuttonclick}
+                                onClick={onCloseButtClick}
                             />
                         </Row>
                         <Stack

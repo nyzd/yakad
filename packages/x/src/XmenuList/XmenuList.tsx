@@ -5,7 +5,7 @@ import { Button, List, ListItem, ListProps, Spacer } from "@yakad/ui";
 
 interface MenuItem {
     name: string;
-    onclick?: () => void;
+    onClick?: () => void;
     childs?: Omit<MenuItem, "childs">[];
     selected?: boolean;
 }
@@ -38,11 +38,11 @@ export const XmenuList = forwardRef<HTMLUListElement, XmenuListProps>(
                                     ? "elevated"
                                     : "text"
                             }
-                            borderstyle="semi"
+                            borderStyle="semi"
                             onClick={
                                 item.childs
                                     ? () => handleClickcollapseList(index)
-                                    : item.onclick
+                                    : item.onClick
                             }
                         >
                             {item.name}
@@ -62,11 +62,11 @@ export const XmenuList = forwardRef<HTMLUListElement, XmenuListProps>(
                                 <ListItem key={childIndex}>
                                     <Button
                                         size="small"
-                                        borderstyle="semi"
+                                        borderStyle="semi"
                                         variant={
                                             child.selected ? "filled" : "text"
                                         }
-                                        onClick={child.onclick}
+                                        onClick={child.onClick}
                                     >
                                         {child.name}
                                     </Button>
