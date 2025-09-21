@@ -1,0 +1,21 @@
+.yakadCardBlur {
+}
+
+.yakadCard,
+.yakadCardLowLevel {
+    background: rgb(var(--surfaceContainerColor, 230 224 233));
+}
+
+.yakadCard .yakadCard,
+.yakadCardLowLevel .yakadCard,
+.yakadCardMidLevel {
+    background: rgb(var(--surfaceContainerHighColor, 230 224 233));
+}
+
+.yakadCard .yakadCard .yakadCard,
+.yakadCardLowLevel .yakadCard .yakadCard,
+.yakadCardMidLevel .yakadCard,
+.yakadCardHighLevel,
+.yakadCardHighLevel .yakadCard {
+    background: rgb(var(--surfaceContainerHighestColor, 230 224 233));
+}

@@ -14,7 +14,7 @@ export const Display = forwardRef<HTMLDivElement, DisplayProps>(
         ref
     ) {
         const joinedClassNames = classNames(
-            "fullWidthLover",
+            { fullWidthLover: true },
             { [styles[`${minWidth}MinWidth`]]: minWidth },
             { [styles[`${maxWidth}MaxWidth`]]: maxWidth },
             className

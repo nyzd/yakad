@@ -15,7 +15,7 @@ export const Form = forwardRef<HTMLFormElement, FormProps>(function Form(
     const joinedClassNames = classNames(
         boxingStyles.flexColumnBox,
         { [boxingStyles[align as string]]: align },
-        "fullWidthLover",
+        { fullWidthLover: true },
         styles.form,
         className
     );

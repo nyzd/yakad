@@ -26,7 +26,7 @@ export const Row = forwardRef<HTMLDivElement, RowProps>(function Row(
         { [boxingStyles[align as string]]: align },
         boxingStyles[overflow],
         styles.row,
-        overflow === "shrink" && "fullWidthLover",
+        { fullWidthLover: overflow === "shrink" },
         styles[size],
         className
     );

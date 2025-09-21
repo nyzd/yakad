@@ -28,7 +28,7 @@
     --LightSurfaceContainerLowestColor: 255 255 255;
     --LightSurfaceContainerLowColor: 247 242 250;
     --LightSurfaceContainerColor: 243 237 247;
-    --LightSurfaceContainerHightColor: 236 230 240;
+    --LightSurfaceContainerHighColor: 236 230 240;
     --LightSurfaceContainerHighestColor: 230 224 233;
     --LightOnSurfaceColor: 28 27 31;
     --LightOnSurfaceVariantColor: 73 69 78;
@@ -57,7 +57,7 @@
     --DarkSurfaceContainerLowestColor: 15 13 19;
     --DarkSurfaceContainerLowColor: 29 27 32;
     --DarkSurfaceContainerColor: 33 31 38;
-    --DarkSurfaceContainerHightColor: 43 41 48;
+    --DarkSurfaceContainerHighColor: 43 41 48;
     --DarkSurfaceContainerHighestColor: 54 52 59;
     --DarkOnSurfaceColor: 230 225 229;
     --DarkOnSurfaceVariantColor: 202 196 208;
@@ -87,7 +87,7 @@
     --LightSurfaceContainerLowestColor: 255 255 255;
     --LightSurfaceContainerLowColor: 247 242 250;
     --LightSurfaceContainerColor: 243 237 247;
-    --LightSurfaceContainerHightColor: 236 230 240;
+    --LightSurfaceContainerHighColor: 236 230 240;
     --LightSurfaceContainerHighestColor: 230 224 233;
     --LightOnSurfaceColor: 28 27 31;
     --LightOnSurfaceVariantColor: 73 69 78;
@@ -116,7 +116,7 @@
     --DarkSurfaceContainerLowestColor: 15 13 19;
     --DarkSurfaceContainerLowColor: 29 27 32;
     --DarkSurfaceContainerColor: 33 31 38;
-    --DarkSurfaceContainerHightColor: 43 41 48;
+    --DarkSurfaceContainerHighColor: 43 41 48;
     --DarkSurfaceContainerHighestColor: 54 52 59;
     --DarkOnSurfaceColor: 230 225 229;
     --DarkOnSurfaceVariantColor: 202 196 208;
@@ -147,7 +147,7 @@
     --LightSurfaceContainerLowestColor: 255 255 255;
     --LightSurfaceContainerLowColor: 247 242 250;
     --LightSurfaceContainerColor: 243 237 247;
-    --LightSurfaceContainerHightColor: 236 230 240;
+    --LightSurfaceContainerHighColor: 236 230 240;
     --LightSurfaceContainerHighestColor: 230 224 233;
     --LightOnSurfaceColor: 28 27 31;
     --LightOnSurfaceVariantColor: 73 69 78;
@@ -176,7 +176,7 @@
     --DarkSurfaceContainerLowestColor: 15 13 19;
     --DarkSurfaceContainerLowColor: 29 27 32;
     --DarkSurfaceContainerColor: 33 31 38;
-    --DarkSurfaceContainerHightColor: 43 41 48;
+    --DarkSurfaceContainerHighColor: 43 41 48;
     --DarkSurfaceContainerHighestColor: 54 52 59;
     --DarkOnSurfaceColor: 230 225 229;
     --DarkOnSurfaceVariantColor: 202 196 208;
@@ -207,7 +207,7 @@
     --LightSurfaceContainerLowestColor: 255 255 255;
     --LightSurfaceContainerLowColor: 247 242 250;
     --LightSurfaceContainerColor: 243 237 247;
-    --LightSurfaceContainerHightColor: 236 230 240;
+    --LightSurfaceContainerHighColor: 236 230 240;
     --LightSurfaceContainerHighestColor: 230 224 233;
     --LightOnSurfaceColor: 28 27 31;
     --LightOnSurfaceVariantColor: 73 69 78;
@@ -236,7 +236,7 @@
     --DarkSurfaceContainerLowestColor: 15 13 19;
     --DarkSurfaceContainerLowColor: 29 27 32;
     --DarkSurfaceContainerColor: 33 31 38;
-    --DarkSurfaceContainerHightColor: 43 41 48;
+    --DarkSurfaceContainerHighColor: 43 41 48;
     --DarkSurfaceContainerHighestColor: 54 52 59;
     --DarkOnSurfaceColor: 230 225 229;
     --DarkOnSurfaceVariantColor: 202 196 208;
@@ -269,7 +269,7 @@
     --LightSurfaceContainerLowestColor: 255 255 255;
     --LightSurfaceContainerLowColor: 247 242 250;
     --LightSurfaceContainerColor: 243 237 247;
-    --LightSurfaceContainerHightColor: 236 230 240;
+    --LightSurfaceContainerHighColor: 236 230 240;
     --LightSurfaceContainerHighestColor: 230 224 233;
     --LightOnSurfaceColor: 28 27 31;
     --LightOnSurfaceVariantColor: 73 69 78;
@@ -300,7 +300,7 @@
     --DarkSurfaceContainerLowestColor: 15 13 19;
     --DarkSurfaceContainerLowColor: 29 27 32;
     --DarkSurfaceContainerColor: 33 31 38;
-    --DarkSurfaceContainerHightColor: 43 41 48;
+    --DarkSurfaceContainerHighColor: 43 41 48;
     --DarkSurfaceContainerHighestColor: 54 52 59;
     --DarkOnSurfaceColor: 230 225 229;
     --DarkOnSurfaceVariantColor: 202 196 208;
@@ -331,7 +331,7 @@
     --surfaceContainerLowestColor: var(--LightSurfaceContainerLowestColor);
     --surfaceContainerLowColor: var(--LightSurfaceContainerLowColor);
     --surfaceContainerColor: var(--LightSurfaceContainerColor);
-    --surfaceContainerHightColor: var(--LightSurfaceContainerHightColor);
+    --surfaceContainerHighColor: var(--LightSurfaceContainerHighColor);
     --surfaceContainerHighestColor: var(--LightSurfaceContainerHighestColor);
     --onSurfaceColor: var(--LightOnSurfaceColor);
     --onSurfaceRGBColor: var(--LightOnSurfaceRGBColor);
@@ -361,7 +361,7 @@
     --surfaceContainerLowestColor: var(--DarkSurfaceContainerLowestColor);
     --surfaceContainerLowColor: var(--DarkSurfaceContainerLowColor);
     --surfaceContainerColor: var(--DarkSurfaceContainerColor);
-    --surfaceContainerHightColor: var(--DarkSurfaceContainerHightColor);
+    --surfaceContainerHighColor: var(--DarkSurfaceContainerHighColor);
     --surfaceContainerHighestColor: var(--DarkSurfaceContainerHighestColor);
     --onSurfaceColor: var(--DarkOnSurfaceColor);
     --onSurfaceRGBColor: var(--DarkOnSurfaceRGBColor);
@@ -392,7 +392,7 @@
         --surfaceContainerLowestColor: var(--DarkSurfaceContainerLowestColor);
         --surfaceContainerLowColor: var(--DarkSurfaceContainerLowColor);
         --surfaceContainerColor: var(--DarkSurfaceContainerColor);
-        --surfaceContainerHightColor: var(--DarkSurfaceContainerHightColor);
+        --surfaceContainerHighColor: var(--DarkSurfaceContainerHighColor);
         --surfaceContainerHighestColor: var(--DarkSurfaceContainerHighestColor);
         --onSurfaceColor: var(--DarkOnSurfaceColor);
         --onSurfaceRGBColor: var(--DarkOnSurfaceRGBColor);
