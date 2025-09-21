@@ -6,7 +6,7 @@ import boxingStyles from "../boxing.module.css";
 import styles from "./Footer.module.css";
 
 export interface FooterProps extends React.HTMLAttributes<HTMLDivElement> {
-    align?: "start" | "center" | "end";
+    align?: "start" | "space" | "center" | "end";
     overflow?: "shrink" | "wrap" | "scroll";
     position?: "initial" | "sticky" | "scroll";
     size?: "xs" | "sm" | "md" | "lg" | "xl";

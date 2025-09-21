@@ -8,7 +8,7 @@ import styles from "./WithDropdawn.module.css";
 
 export interface WithDropdawnProps
     extends React.HTMLAttributes<HTMLDivElement> {
-    align?: "start" | "center" | "end";
+    align?: "start" | "space" | "center" | "end";
     blur?: boolean;
     trigger?: "onClick" | "onRightClick";
     dropdawnChildren?: React.ReactElement;

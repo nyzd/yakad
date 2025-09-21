@@ -4,7 +4,7 @@ import boxingStyles from "../boxing.module.css";
 import styles from "./Stack.module.css";
 
 export interface StackProps extends React.HTMLAttributes<HTMLDivElement> {
-    align?: "start" | "center" | "end";
+    align?: "start" | "space" | "center" | "end";
     children?: React.ReactNode;
 }
 

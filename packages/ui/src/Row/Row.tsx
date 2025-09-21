@@ -4,7 +4,7 @@ import boxingStyles from "../boxing.module.css";
 import styles from "./Row.module.css";
 
 export interface RowProps extends React.HTMLAttributes<HTMLDivElement> {
-    align?: "start" | "center" | "end";
+    align?: "start" | "space" | "center" | "end";
     overflow?: "shrink" | "wrap" | "scroll";
     size?: "xs" | "sm" | "md" | "lg" | "xl";
     children?: React.ReactNode;

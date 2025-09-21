@@ -6,7 +6,7 @@ import boxingStyles from "../boxing.module.css";
 import styles from "./AppBar.module.css";
 
 export interface AppBarProps extends React.HTMLAttributes<HTMLDivElement> {
-    align?: "start" | "center" | "end";
+    align?: "start" | "space" | "center" | "end";
     overflow?: "shrink" | "wrap" | "scroll";
     position?: "initial" | "sticky" | "scroll";
     size?: "xs" | "sm" | "md" | "lg" | "xl";

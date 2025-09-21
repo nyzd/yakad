@@ -9,7 +9,7 @@ import boxingStyles from "../boxing.module.css";
 export type DarkStyle = "light" | "dark" | "system";
 export type ThemeColor = "green" | "red" | "yellow" | "blue" | "purple";
 export interface ThemeProps extends React.HTMLAttributes<HTMLDivElement> {
-    align?: "start" | "center" | "end";
+    align?: "start" | "space" | "center" | "end";
     darkstyle?: DarkStyle;
     color?: ThemeColor;
     zoom?: number; //Percentage zoom level (e.g., 100 for 100%)

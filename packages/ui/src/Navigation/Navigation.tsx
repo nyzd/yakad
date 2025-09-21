@@ -4,7 +4,7 @@ import boxingStyles from "../boxing.module.css";
 import styles from "./Navigation.module.css";
 
 export interface NavigationProps extends React.HTMLAttributes<HTMLElement> {
-    align?: "start" | "center" | "end";
+    align?: "start" | "space" | "center" | "end";
     anchor?: "left" | "right" | "top" | "bottom" | "auto";
     open: boolean;
     children?: React.ReactNode;

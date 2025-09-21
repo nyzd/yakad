@@ -4,7 +4,7 @@ import boxingStyles from "../boxing.module.css";
 import styles from "./Container.module.css";
 
 export interface ContainerProps extends React.HTMLAttributes<HTMLDivElement> {
-    align?: "start" | "center" | "end";
+    align?: "start" | "space" | "center" | "end";
     size?: "xs" | "sm" | "md" | "lg" | "xl";
     children?: React.ReactNode;
 }

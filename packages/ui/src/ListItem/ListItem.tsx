@@ -4,7 +4,7 @@ import boxingStyles from "../boxing.module.css";
 import styles from "./ListItem.module.css";
 
 export interface ListItemProps extends React.HTMLAttributes<HTMLLIElement> {
-    align?: "start" | "center" | "end";
+    align?: "start" | "space" | "center" | "end";
 }
 
 export const ListItem = forwardRef<HTMLLIElement, ListItemProps>(

@@ -4,7 +4,7 @@ import boxingStyles from "../boxing.module.css";
 import styles from "./Main.module.css";
 
 export interface MainProps extends React.HTMLAttributes<HTMLDivElement> {
-    align?: "start" | "center" | "end";
+    align?: "start" | "space" | "center" | "end";
     navopen?: boolean;
     children?: React.ReactNode;
 }

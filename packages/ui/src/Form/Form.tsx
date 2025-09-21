@@ -4,7 +4,7 @@ import styles from "./Form.module.css";
 import boxingStyles from "../boxing.module.css";
 
 export interface FormProps extends React.HTMLAttributes<HTMLFormElement> {
-    align?: "start" | "center" | "end";
+    align?: "start" | "space" | "center" | "end";
     children?: React.ReactNode;
 }
 

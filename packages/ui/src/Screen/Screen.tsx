@@ -4,7 +4,7 @@ import boxingStyles from "../boxing.module.css";
 import styles from "./Screen.module.css";
 
 export interface ScreenProps extends React.HTMLAttributes<HTMLDivElement> {
-    align?: "start" | "center" | "end";
+    align?: "start" | "space" | "center" | "end";
     children?: React.ReactNode;
 }
 
