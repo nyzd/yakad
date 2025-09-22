@@ -47,8 +47,8 @@ export function WithDropdawn({
 
             let dTop = buttonRect.bottom + padding;
             let dX = buttonRect.x + buttonRect.width / 2;
-            let aTop = top;
-            let aX = dX;
+            let aTop = dTop;
+            const aX = dX;
 
             // Prevent overflow bottom
             if (dTop + dropdawnRect.height > window.innerHeight) {

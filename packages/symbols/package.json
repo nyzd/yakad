@@ -28,7 +28,7 @@
         "typecheck": "tsc --noEmit",
         "lint": "eslint src/**/*.{ts,tsx}",
         "test": "echo \"No tests specified\" && exit 0",
-        "prepublishOnly": "npm run test && npm run build && npm run typecheck",
+        "prepublishOnly": "npm run lint && npm run test && npm run build && npm run typecheck",
         "newPublish": "npm version patch && npm publish"
     },
     "dependencies": {
