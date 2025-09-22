@@ -15,7 +15,7 @@
     "dependencies": {
         "@yakad/lib": "1.0.22",
         "@yakad/symbols": "1.0.25",
-        "@yakad/ui": "1.3.116",
+        "@yakad/ui": "1.3.118",
         "@yakad/x": "1.1.29",
         "classnames": "^2.5.1",
         "next": "15.5.2",
