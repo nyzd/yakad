@@ -8,6 +8,7 @@ import {
     Table,
     Tbody,
     Td,
+    Text,
     Th,
     Thead,
     Tr,
@@ -76,7 +77,7 @@ export default function Page() {
             >
                 End
             </Card>
-
+            <CardLevel />
             <h2>Examples</h2>
             <p>yakad cards are here to edit your site professionally!</p>
             <h3>Example 1</h3>
@@ -113,3 +114,26 @@ export default function Page() {
         </Container>
     );
 }
+
+const CardLevel = () => (
+    <>
+        <h3>level</h3>
+        <p>
+            Change level to change card background color or let it auto choose
+            level.
+        </p>
+        <Card align="center" style={{ maxWidth: "60rem" }}>
+            <Card align="center">
+                <Card align="center">
+                    <Text variant="body4">High Level</Text>
+                </Card>
+                <Text variant="body5" style={{ marginTop: "1rem" }}>
+                    Mid Level
+                </Text>
+            </Card>
+            <Text variant="body6" style={{ marginTop: "1rem" }}>
+                Low Level
+            </Text>
+        </Card>
+    </>
+);
