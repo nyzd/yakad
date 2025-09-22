@@ -18,8 +18,8 @@
         "publish:symbols": "npm i && npm run newPublish --prefix packages/symbols",
         "publish:ui": "npm i && npm run newPublish --prefix packages/ui",
         "publish:x": "npm i && npm run newPublish --prefix packages/x.",
-        "idev:docs": "npm run idev --prefix apps/docs",
-        "ldev:docs": "npm run build && cd apps/docs && npm run ldev"
+        "idev:docs": "npm run idev --prefix docs",
+        "ldev:docs": "npm run build && cd docs && npm run ldev"
     },
     "devDependencies": {
         "@types/jest": "^30.0.0",
