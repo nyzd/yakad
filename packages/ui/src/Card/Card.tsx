@@ -20,7 +20,7 @@ export const Card = forwardRef<HTMLDivElement, CardProps>(function Card(
         { [boxingStyles[align as string]]: align },
         { fullWidthLover: true },
         styles.card,
-        // { [styles.blur]: blur },
+        { [styles.blur]: blur },
         {
             yakadCardAutoLevel: level === undefined,
             yakadCardLowLevel: level === "low",
