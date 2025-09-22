@@ -16,7 +16,7 @@ export interface RadioButtonProps
     extends Omit<React.InputHTMLAttributes<HTMLInputElement>, ExcludedTypes> {
     value: string | number;
     label?: string;
-    datafromradiogroup?: {
+    dataFromRadioGroup?: {
         name: string;
         onSelect: () => void;
         checked: boolean;
@@ -24,14 +24,17 @@ export interface RadioButtonProps
 }
 
 export const RadioButton = forwardRef<HTMLInputElement, RadioButtonProps>(
-    ({ datafromradiogroup, label, onClick, className, ...restProps }, ref) => {
+    function RadioButton(
+        { dataFromRadioGroup, label, onClick, className, ...restProps },
+        ref
+    ) {
         const joinedClassNames = classNames(styles.radiobutton, {
             [styles.labeled]: label,
             className,
         });
 
         const onClickRadioButtonHandler = () => {
-            datafromradiogroup?.onSelect();
+            dataFromRadioGroup?.onSelect();
             onClick;
         };
 
@@ -40,7 +43,7 @@ export const RadioButton = forwardRef<HTMLInputElement, RadioButtonProps>(
                 {label && (
                     <label
                         className={styles.label}
-                        htmlFor={datafromradiogroup?.name}
+                        htmlFor={dataFromRadioGroup?.name}
                     >
                         {label}
                     </label>
@@ -49,7 +52,7 @@ export const RadioButton = forwardRef<HTMLInputElement, RadioButtonProps>(
                     icon={
                         <Symbol
                             icon={
-                                datafromradiogroup?.checked
+                                dataFromRadioGroup?.checked
                                     ? "radio_button_checked"
                                     : "radio_button_unchecked"
                             }
@@ -63,11 +66,10 @@ export const RadioButton = forwardRef<HTMLInputElement, RadioButtonProps>(
                     {...restProps}
                     className={styles.input}
                     type="radio"
-                    name={datafromradiogroup?.name}
-                    checked={datafromradiogroup?.checked}
+                    name={dataFromRadioGroup?.name}
+                    checked={dataFromRadioGroup?.checked}
                 />
             </div>
         );
     }
 );
-RadioButton.displayName = "RadioButton";

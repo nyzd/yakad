@@ -6,11 +6,11 @@ type ExcludedTypes = "children";
 export interface SpacerProps
     extends Omit<React.HTMLAttributes<HTMLDivElement>, ExcludedTypes> {}
 
-export const Spacer = forwardRef<HTMLDivElement, SpacerProps>(
-    ({ className, ...restProps }, ref) => {
-        const joinedClassNames = classNames(styles.spacer, className);
+export const Spacer = forwardRef<HTMLDivElement, SpacerProps>(function Spacer(
+    { className, ...restProps },
+    ref
+) {
+    const joinedClassNames = classNames(styles.spacer, className);
 
-        return <div ref={ref} {...restProps} className={joinedClassNames} />;
-    }
-);
-Spacer.displayName = "Spacer";
+    return <div ref={ref} {...restProps} className={joinedClassNames} />;
+});

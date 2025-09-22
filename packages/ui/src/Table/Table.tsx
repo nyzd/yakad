@@ -6,29 +6,29 @@ export interface TableProps
     extends React.TableHTMLAttributes<HTMLTableElement> {
     children?: React.ReactNode;
 }
-export const Table = forwardRef<HTMLTableElement, TableProps>(
-    ({ className, children, ...restProps }, ref) => {
-        const joinedClassNames = classNames(
-            "fullWidthLover",
-            styles.table,
-            className
-        );
+export const Table = forwardRef<HTMLTableElement, TableProps>(function Table(
+    { className, children, ...restProps },
+    ref
+) {
+    const joinedClassNames = classNames(
+        { fullWidthLover: true },
+        styles.table,
+        className
+    );
 
-        return (
-            <table ref={ref} {...restProps} className={joinedClassNames}>
-                {children}
-            </table>
-        );
-    }
-);
-Table.displayName = "Table";
+    return (
+        <table ref={ref} {...restProps} className={joinedClassNames}>
+            {children}
+        </table>
+    );
+});
 
 export interface TheadProps
     extends React.HTMLAttributes<HTMLTableSectionElement> {
     children?: React.ReactNode;
 }
 export const Thead = forwardRef<HTMLTableSectionElement, TheadProps>(
-    ({ className, children, ...restProps }, ref) => {
+    function Thead({ className, children, ...restProps }, ref) {
         const joinedClassNames = classNames(styles.thead, className);
 
         return (
@@ -38,14 +38,13 @@ export const Thead = forwardRef<HTMLTableSectionElement, TheadProps>(
         );
     }
 );
-Thead.displayName = "Thead";
 
 export interface TbodyProps
     extends React.HTMLAttributes<HTMLTableSectionElement> {
     children?: React.ReactNode;
 }
 export const Tbody = forwardRef<HTMLTableSectionElement, TbodyProps>(
-    ({ className, children, ...restProps }, ref) => {
+    function Tbody({ className, children, ...restProps }, ref) {
         const joinedClassNames = classNames(styles.tbody, className);
 
         return (
@@ -55,14 +54,13 @@ export const Tbody = forwardRef<HTMLTableSectionElement, TbodyProps>(
         );
     }
 );
-Tbody.displayName = "Tbody";
 
 export interface TfootProps
     extends React.HTMLAttributes<HTMLTableSectionElement> {
     children?: React.ReactNode;
 }
 export const Tfoot = forwardRef<HTMLTableSectionElement, TfootProps>(
-    ({ className, children, ...restProps }, ref) => {
+    function Tfoot({ className, children, ...restProps }, ref) {
         const joinedClassNames = classNames(styles.tfoot, className);
 
         return (
@@ -72,52 +70,51 @@ export const Tfoot = forwardRef<HTMLTableSectionElement, TfootProps>(
         );
     }
 );
-Tfoot.displayName = "Tfoot";
 
 export interface TrProps extends React.HTMLAttributes<HTMLTableRowElement> {
     children?: React.ReactNode;
 }
-export const Tr = forwardRef<HTMLTableRowElement, TrProps>(
-    ({ className, children, ...restProps }, ref) => {
-        const joinedClassNames = classNames(styles.tr, className);
+export const Tr = forwardRef<HTMLTableRowElement, TrProps>(function Tr(
+    { className, children, ...restProps },
+    ref
+) {
+    const joinedClassNames = classNames(styles.tr, className);
 
-        return (
-            <tr ref={ref} {...restProps} className={joinedClassNames}>
-                {children}
-            </tr>
-        );
-    }
-);
-Tr.displayName = "Tr";
+    return (
+        <tr ref={ref} {...restProps} className={joinedClassNames}>
+            {children}
+        </tr>
+    );
+});
 
 export interface ThProps extends React.HTMLAttributes<HTMLTableCellElement> {
     children?: React.ReactNode;
 }
-export const Th = forwardRef<HTMLTableCellElement, ThProps>(
-    ({ className, children, ...restProps }, ref) => {
-        const joinedClassNames = classNames(styles.th, className);
+export const Th = forwardRef<HTMLTableCellElement, ThProps>(function Th(
+    { className, children, ...restProps },
+    ref
+) {
+    const joinedClassNames = classNames(styles.th, className);
 
-        return (
-            <th ref={ref} {...restProps} className={joinedClassNames}>
-                {children}
-            </th>
-        );
-    }
-);
-Th.displayName = "Th";
+    return (
+        <th ref={ref} {...restProps} className={joinedClassNames}>
+            {children}
+        </th>
+    );
+});
 
 export interface TdProps extends React.HTMLAttributes<HTMLTableCellElement> {
     children?: React.ReactNode;
 }
-export const Td = forwardRef<HTMLTableCellElement, TdProps>(
-    ({ className, children, ...restProps }, ref) => {
-        const joinedClassNames = classNames(styles.td, className);
+export const Td = forwardRef<HTMLTableCellElement, TdProps>(function Td(
+    { className, children, ...restProps },
+    ref
+) {
+    const joinedClassNames = classNames(styles.td, className);
 
-        return (
-            <td ref={ref} {...restProps} className={joinedClassNames}>
-                {children}
-            </td>
-        );
-    }
-);
-Td.displayName = "Td";
+    return (
+        <td ref={ref} {...restProps} className={joinedClassNames}>
+            {children}
+        </td>
+    );
+});

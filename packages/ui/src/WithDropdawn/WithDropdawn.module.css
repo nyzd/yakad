@@ -1,0 +1,45 @@
+.dropdawnCard {
+    position: fixed;
+    max-width: calc(100% - 4rem);
+    max-height: min(50vh, 50rem);
+    padding: 2rem;
+    border-radius: 2rem;
+    box-shadow: 0px 3px 3px -2px rgb(0 0 0 / 20%),
+        0px 3px 4px 0px rgb(0 0 0 / 14%), 0px 1px 8px 0px rgb(0 0 0 / 12%);
+    background: rgb(var(--surfaceContainerHighestColor, 230 224 233));
+    color: rgb(var(--onSurfaceColor, 28 27 31));
+    fill: rgb(var(--onSurfaceColor, 28 27 31));
+    z-index: 2;
+    transform: translate(-50%, 0);
+}
+.dropdawnCard.blur {
+    background-color: color-mix(
+        in srgb,
+        rgb(var(--surfaceContainerHighestColor, 230 224 233)) 85%,
+        transparent
+    );
+    backdrop-filter: blur(0.5rem);
+}
+
+/* Arrow */
+.arrow {
+    position: fixed;
+    width: 0;
+    height: 0;
+    border-left: 0.6rem solid transparent;
+    border-right: 0.6rem solid transparent;
+    border-bottom: 0.8rem solid
+        rgb(var(--surfaceContainerHighestColor, 230 224 233));
+    transform: translate(-50%, -100%);
+}
+.arrow.blur {
+    border-bottom: 0.8rem solid
+        color-mix(
+            in srgb,
+            rgb(var(--surfaceContainerHighestColor, 230 224 233)) 85%,
+            transparent
+        );
+}
+.arrow.dropdawnOnTop {
+    transform: translate(-50%, 0) rotate(180deg);
+}

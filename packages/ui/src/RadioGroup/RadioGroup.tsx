@@ -8,15 +8,18 @@ type ExcludedTypes = "defaultValue" | "children";
 export interface RadioGroupProps
     extends Omit<React.HTMLAttributes<HTMLDivElement>, ExcludedTypes> {
     name: string;
-    defaultvalue?: string;
+    defaultValue?: string;
     children?: RadioButtonElement | RadioButtonElement[];
 }
 
 export const RadioGroup = forwardRef<HTMLDivElement, RadioGroupProps>(
-    ({ name, defaultvalue, className, children, ...restProps }, ref) => {
+    function RadioGroup(
+        { name, defaultValue, className, children, ...restProps },
+        ref
+    ) {
         const [selectedValue, setSelectedValue] = useState<
             string | number | null
-        >(defaultvalue || null);
+        >(defaultValue || null);
 
         const arrayChildren = Children.toArray(children);
 
@@ -25,7 +28,7 @@ export const RadioGroup = forwardRef<HTMLDivElement, RadioGroupProps>(
                 <RadioButton
                     key={index}
                     {...child.props}
-                    datafromradiogroup={{
+                    dataFromRadioGroup={{
                         name: name,
                         onSelect: () => setSelectedValue(child.props.value),
                         checked: selectedValue === child.props.value,
@@ -40,4 +43,3 @@ export const RadioGroup = forwardRef<HTMLDivElement, RadioGroupProps>(
         );
     }
 );
-RadioGroup.displayName = "RadioGroup";

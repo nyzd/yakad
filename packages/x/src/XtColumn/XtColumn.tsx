@@ -1,17 +1,16 @@
 import { Card } from "@yakad/ui";
 
 export interface XtColumnProps {
-    datakey: string;
-    headtitle?: string;
-    foottitle?: string;
-    footfunc?: "sum" | "average";
-    aligntext?: "start" | "center" | "end";
+    dataKey: string;
+    headTitle?: string;
+    footTitle?: string;
+    footFunc?: "sum" | "average";
+    alignText?: "start" | "center" | "end";
     sortable?: boolean;
     searchable?: boolean;
-    defaulthidden?: boolean;
+    defaultHidden?: boolean;
 }
 
-export const XtColumn = (props: XtColumnProps) => (
-    <Card {...props}>Just use XtColumn inside Xtable!</Card>
-);
-XtColumn.displayName = "XtColumn";
+export function XtColumn(props: XtColumnProps) {
+    return <Card {...props}>Just use XtColumn inside Xtable!</Card>;
+}

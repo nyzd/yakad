@@ -8,7 +8,7 @@ type ExcludedTypes = "minLength" | "maxLength" | "type";
 export interface CodeFieldsProps
     extends Omit<React.InputHTMLAttributes<HTMLInputElement>, ExcludedTypes> {
     length?: number;
-    onfilled?: () => void;
+    onFilled?: () => void;
     children?: React.ReactNode;
 }
 
@@ -37,10 +37,10 @@ function removeUnNumberChars(inputElement: HTMLInputElement): void {
 }
 
 export const CodeField = forwardRef<HTMLInputElement, CodeFieldsProps>(
-    (
+    function CodeField(
         {
             length = 6,
-            onfilled,
+            onFilled,
             autoComplete,
             pattern,
             onInput,
@@ -49,9 +49,9 @@ export const CodeField = forwardRef<HTMLInputElement, CodeFieldsProps>(
             ...restProps
         },
         ref
-    ) => {
+    ) {
         const joinedClassNames = classNames(
-            "fullWidthLover",
+            { fullWidthLover: true },
             styles.input,
             className
         );
@@ -70,11 +70,10 @@ export const CodeField = forwardRef<HTMLInputElement, CodeFieldsProps>(
                 autoComplete={autoComplete || "off"}
                 pattern={pattern || "[0-9]"}
                 onInput={(event) => {
-                    isInputFilled(event, length) && onfilled;
+                    isInputFilled(event, length) && onFilled;
                     onInput;
                 }}
             />
         );
     }
 );
-CodeField.displayName = "CodeField";

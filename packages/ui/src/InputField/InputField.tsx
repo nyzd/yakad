@@ -5,30 +5,30 @@ import styles from "./InputField.module.css";
 export interface InputFieldProps
     extends React.InputHTMLAttributes<HTMLInputElement> {
     variant?: "outlined" | "filled";
-    boxsize?: "small" | "normal";
+    boxSize?: "small" | "normal";
 }
 
 export const InputField = forwardRef<HTMLInputElement, InputFieldProps>(
-    (
+    function InputField(
         {
             variant = "outlined",
-            boxsize = "normal",
+            boxSize = "normal",
             placeholder,
             className,
             ...restProps
         },
         ref
-    ) => {
+    ) {
         const joinedClassNames = classNames(
             styles.input,
             styles[variant],
-            styles[boxsize],
+            styles[boxSize],
             placeholder && styles.havePlaceHolder,
             className
         );
 
         return (
-            <div className={classNames("fullWidthLover", styles.div)}>
+            <div className={classNames({ fullWidthLover: true }, styles.div)}>
                 <input
                     ref={ref}
                     {...restProps}
@@ -42,4 +42,3 @@ export const InputField = forwardRef<HTMLInputElement, InputFieldProps>(
         );
     }
 );
-InputField.displayName = "InputField";

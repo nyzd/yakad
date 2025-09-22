@@ -4,19 +4,22 @@ import { AppBar, Card, Main, Screen, ScreenProps } from "@yakad/ui";
 import styles from "./XloginBox.module.css";
 
 export interface XloginBoxProps extends ScreenProps {
-    classnamecard?: string;
+    classNameCard?: string;
     stylecard?: React.CSSProperties;
     children?: React.ReactNode;
 }
 
 export const XloginBox = forwardRef<HTMLDivElement, XloginBoxProps>(
-    ({ classnamecard, stylecard, children, ...restProps }, ref) => {
+    function XloginBox(
+        { classNameCard, stylecard, children, ...restProps },
+        ref
+    ) {
         return (
             <Screen ref={ref} {...restProps}>
                 <AppBar className={styles.header}></AppBar>
                 <Main className={styles.main}>
                     <Card
-                        className={classNames(styles.card, classnamecard)}
+                        className={classNames(styles.card, classNameCard)}
                         style={stylecard}
                     >
                         {children}
@@ -26,4 +29,3 @@ export const XloginBox = forwardRef<HTMLDivElement, XloginBoxProps>(
         );
     }
 );
-XloginBox.displayName = "XloginBox";

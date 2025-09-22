@@ -3,7 +3,7 @@ import { forwardRef } from "react";
 import { Container, ContainerProps, Row } from "@yakad/ui";
 
 export const XScrollContainer = forwardRef<HTMLDivElement, ContainerProps>(
-    ({ style, children, ...restProps }, ref) => {
+    function XScrollContainer({ style, children, ...restProps }, ref) {
         return (
             <Container
                 ref={ref}
@@ -17,4 +17,3 @@ export const XScrollContainer = forwardRef<HTMLDivElement, ContainerProps>(
         );
     }
 );
-XScrollContainer.displayName = "XScrollContainer";

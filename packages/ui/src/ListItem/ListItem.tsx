@@ -4,11 +4,11 @@ import boxingStyles from "../boxing.module.css";
 import styles from "./ListItem.module.css";
 
 export interface ListItemProps extends React.HTMLAttributes<HTMLLIElement> {
-    align?: "start" | "center" | "end";
+    align?: "start" | "space" | "center" | "end";
 }
 
 export const ListItem = forwardRef<HTMLLIElement, ListItemProps>(
-    ({ align, className, children, ...restProps }, ref) => {
+    function ListItem({ align, className, children, ...restProps }, ref) {
         return (
             <li
                 ref={ref}
@@ -25,4 +25,3 @@ export const ListItem = forwardRef<HTMLLIElement, ListItemProps>(
         );
     }
 );
-ListItem.displayName = "ListItem";

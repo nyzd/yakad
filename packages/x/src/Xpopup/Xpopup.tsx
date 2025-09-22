@@ -2,40 +2,43 @@ import { forwardRef } from "react";
 import {
     Button,
     Card,
-    ClickOutsideListener,
+    CardProps,
     Row,
     Spacer,
     Stack,
     Text,
+    WithInteractions,
 } from "@yakad/ui";
 import { Symbol } from "@yakad/symbols";
 import styles from "./Xpopup.module.css";
+import classNames from "classnames";
 
-export interface XpopupProps {
-    align?: "start" | "center" | "end";
+export interface XpopupProps extends CardProps {
+    align?: "start" | "space" | "center" | "end";
     heading?: string;
-    onclosebuttonclick?: () => void;
+    onCloseButtClick?: () => void;
     children?: React.ReactNode;
 }
 
-export const Xpopup = forwardRef<
-    HTMLDivElement,
-    Omit<XpopupProps, "className" | "style">
->(({ align, heading, onclosebuttonclick, children, ...restProps }, ref) => {
+export const Xpopup = forwardRef<HTMLDivElement, XpopupProps>(function Xpopup(
+    { align, heading, onCloseButtClick, className, children, ...restProps },
+    ref
+) {
     return (
         <div className={styles.xpopupscreen}>
-            <ClickOutsideListener
-                onclickoutside={onclosebuttonclick}
-                className={styles.xpopup}
-            >
-                <Card ref={ref} {...restProps}>
+            <WithInteractions onOutsideClick={onCloseButtClick}>
+                <Card
+                    ref={ref}
+                    {...restProps}
+                    className={classNames(styles.xpopup, className)}
+                >
                     <Row style={{ marginBottom: "2rem" }}>
                         <Text variant="heading4">{heading}</Text>
                         <Spacer />
                         <Button
                             title="Close"
                             icon={<Symbol icon="close" />}
-                            onClick={onclosebuttonclick}
+                            onClick={onCloseButtClick}
                         />
                     </Row>
                     <Stack
@@ -45,8 +48,7 @@ export const Xpopup = forwardRef<
                         {children}
                     </Stack>
                 </Card>
-            </ClickOutsideListener>
+            </WithInteractions>
         </div>
     );
 });
-Xpopup.displayName = "Xpopup";

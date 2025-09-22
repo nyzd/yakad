@@ -12,7 +12,7 @@ export interface SelectProps
 }
 
 export const Select = forwardRef<HTMLSelectElement, SelectProps>(
-    (
+    function Select(
         {
             variant = "outlined",
             boxsize = "normal",
@@ -22,7 +22,7 @@ export const Select = forwardRef<HTMLSelectElement, SelectProps>(
             ...restProps
         },
         ref
-    ) => {
+    ) {
         const joinedClassNames = classNames(
             styles.select,
             inputStyles.input,
@@ -33,7 +33,12 @@ export const Select = forwardRef<HTMLSelectElement, SelectProps>(
         );
 
         return (
-            <div className={classNames("fullWidthLover", inputStyles.div)}>
+            <div
+                className={classNames(
+                    { fullWidthLover: true },
+                    inputStyles.div
+                )}
+            >
                 <select ref={ref} {...restProps} className={joinedClassNames}>
                     {children}
                 </select>
@@ -44,4 +49,3 @@ export const Select = forwardRef<HTMLSelectElement, SelectProps>(
         );
     }
 );
-Select.displayName = "Select";

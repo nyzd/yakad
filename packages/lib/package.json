@@ -1,6 +1,6 @@
 {
     "name": "@yakad/lib",
-    "version": "1.0.21",
+    "version": "1.0.22",
     "private": false,
     "description": "Utility functions and helpers for the Yakad ecosystem",
     "main": "dist/index.js",
@@ -10,7 +10,8 @@
         "typecheck": "tsc --noEmit",
         "lint": "eslint src/**/*.{ts,tsx}",
         "test": "echo \"No tests specified\" && exit 0",
-        "prepublishOnly": "npm run test && npm run build && npm run typecheck"
+        "prepublishOnly": "npm run lint && npm run test && npm run build && npm run typecheck",
+        "newPublish": "npm version patch && npm publish"
     },
     "keywords": [
         "yakad",
@@ -24,9 +25,7 @@
         "react": "^18.0.0 || ^19.0.0",
         "react-dom": "^18.0.0 || ^19.0.0"
     },
-    "devDependencies": {
-        "typescript": "^5.3.0"
-    },
+    "devDependencies": {},
     "engines": {
         "node": ">=16.0.0"
     },

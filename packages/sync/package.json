@@ -15,7 +15,8 @@
         "typecheck": "tsc --noEmit",
         "lint": "eslint src/**/*.{ts,tsx}",
         "test": "jest",
-        "prepublishOnly": "npm run test && npm run build && npm run typecheck"
+        "prepublishOnly": "npm run lint && npm run test && npm run build && npm run typecheck",
+        "newPublish": "npm version patch && npm publish"
     },
     "keywords": [
         "sync",
@@ -31,8 +32,7 @@
         "ignore": "^5.3.2"
     },
     "devDependencies": {
-        "@types/node": "^20.0.0",
-        "typescript": "^5.3.0"
+        "@types/node": "^20.0.0"
     },
     "engines": {
         "node": ">=16"

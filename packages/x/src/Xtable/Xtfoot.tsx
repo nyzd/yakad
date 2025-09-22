@@ -7,7 +7,7 @@ export interface XTfootProps extends TfootProps {
 }
 
 export const XTfoot = forwardRef<HTMLTableSectionElement, XTfootProps>(
-    ({ children, ...restProps }, ref) => {
+    function XTfoot({ children, ...restProps }, ref) {
         const ChildXTr: ReactElement<XTrProps> = children;
 
         const ChildsXTf = Children.toArray(ChildXTr.props.children);
@@ -33,4 +33,3 @@ export const XTfoot = forwardRef<HTMLTableSectionElement, XTfootProps>(
         );
     }
 );
-XTfoot.displayName = "XTfoot";

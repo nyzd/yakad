@@ -5,14 +5,14 @@ import { Button, Card } from "..";
 import styles from "./CodeBox.module.css";
 
 export interface CodeBoxProps extends React.HTMLAttributes<HTMLDivElement> {
-    copybutton?: boolean;
+    copyButton?: boolean;
     children?: React.ReactNode;
 }
 
 export const CodeBox = forwardRef<HTMLDivElement, CodeBoxProps>(
-    ({ copybutton, className, children, ...restProps }, ref) => {
+    function CodeBox({ copyButton, className, children, ...restProps }, ref) {
         const joinedClassNames = classNames(
-            "fullWidthLover",
+            { fullWidthLover: true },
             styles.ZZZZZZZZZZ,
             className
         );
@@ -20,9 +20,8 @@ export const CodeBox = forwardRef<HTMLDivElement, CodeBoxProps>(
         return (
             <Card ref={ref} {...restProps} className={joinedClassNames}>
                 <pre>{children}</pre>
-                {copybutton && <Button icon={<Symbol icon="copy_all" />} />}
+                {copyButton && <Button icon={<Symbol icon="copy_all" />} />}
             </Card>
         );
     }
 );
-CodeBox.displayName = "CodeBox";

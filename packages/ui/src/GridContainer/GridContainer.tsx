@@ -10,10 +10,10 @@ export interface GridContainerProps
 }
 
 export const GridContainer = forwardRef<HTMLDivElement, GridContainerProps>(
-    (
+    function GridContainer(
         { gap = 1.5, columns = 12, className, style, children, ...restProps },
         ref
-    ) => {
+    ) {
         const joinedClassNames = classNames(
             styles.gridcontainer,
             styles[`gridColumns${columns}`],
@@ -37,4 +37,3 @@ export const GridContainer = forwardRef<HTMLDivElement, GridContainerProps>(
         );
     }
 );
-GridContainer.displayName = "GridContainer";

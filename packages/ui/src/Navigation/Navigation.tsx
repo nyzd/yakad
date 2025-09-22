@@ -4,14 +4,14 @@ import boxingStyles from "../boxing.module.css";
 import styles from "./Navigation.module.css";
 
 export interface NavigationProps extends React.HTMLAttributes<HTMLElement> {
-    align?: "start" | "center" | "end";
+    align?: "start" | "space" | "center" | "end";
     anchor?: "left" | "right" | "top" | "bottom" | "auto";
     open: boolean;
     children?: React.ReactNode;
 }
 
 export const Navigation = forwardRef<HTMLDivElement, NavigationProps>(
-    (
+    function Navigation(
         {
             align,
             anchor = "auto",
@@ -21,7 +21,7 @@ export const Navigation = forwardRef<HTMLDivElement, NavigationProps>(
             ...restProps
         },
         ref
-    ) => {
+    ) {
         const joinedClassNames = classNames(
             boxingStyles.flexColumnBox,
             { [boxingStyles[align as string]]: align },
@@ -40,4 +40,3 @@ export const Navigation = forwardRef<HTMLDivElement, NavigationProps>(
         );
     }
 );
-Navigation.displayName = "Navigation";
