@@ -4,7 +4,7 @@
     "private": true,
     "description": "Yakad - A comprehensive React component library and utilities",
     "workspaces": [
-        "packages/*"
+        "*"
     ],
     "scripts": {
         "build": "npm run build --workspaces",
@@ -12,12 +12,12 @@
         "typecheck": "npm run typecheck --workspaces",
         "test": "npm run test --workspaces",
         "prepublish:check": "npm run lint && npm run build && npm run typecheck && npm run test",
-        "publish:eslint-plugin-guard": "npm i && cd packages/eslint-plugin-guard && npm version patch && npm publish",
-        "publish:lib": "npm i && cd packages/lib && npm version patch && npm publish",
-        "publish:sync": "npm i && cd packages/sync && npm version patch && npm publish",
-        "publish:symbols": "npm i && cd packages/symbols && npm version patch && npm publish",
-        "publish:ui": "npm i && cd packages/ui && npm version patch && npm publish",
-        "publish:x": "npm i && cd packages/x && npm version patch && npm publis."
+        "publish:eslint-plugin-guard": "npm i && cd eslint-plugin-guard && npm version patch && npm publish",
+        "publish:lib": "npm i && cd lib && npm version patch && npm publish",
+        "publish:sync": "npm i && cd sync && npm version patch && npm publish",
+        "publish:symbols": "npm i && cd symbols && npm version patch && npm publish",
+        "publish:ui": "npm i && cd ui && npm version patch && npm publish",
+        "publish:x": "npm i && cd x && npm version patch && npm publis."
     },
     "devDependencies": {
         "@types/jest": "^30.0.0",
