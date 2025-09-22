@@ -1,21 +1,18 @@
-.yakadCardBlur {
-}
-
-.yakadCard,
+.yakadCardAutoLevel,
 .yakadCardLowLevel {
-    background: rgb(var(--surfaceContainerColor, 230 224 233));
+    --yakadCardBackgroundColor: var(--surfaceContainerColor);
 }
 
-.yakadCard .yakadCard,
-.yakadCardLowLevel .yakadCard,
+.yakadCardAutoLevel .yakadCardAutoLevel,
+.yakadCardLowLevel .yakadCardAutoLevel,
 .yakadCardMidLevel {
-    background: rgb(var(--surfaceContainerHighColor, 230 224 233));
+    --yakadCardBackgroundColor: var(--surfaceContainerHighColor);
 }
 
-.yakadCard .yakadCard .yakadCard,
-.yakadCardLowLevel .yakadCard .yakadCard,
-.yakadCardMidLevel .yakadCard,
+.yakadCardAutoLevel .yakadCardAutoLevel .yakadCardAutoLevel,
+.yakadCardLowLevel .yakadCardAutoLevel .yakadCardAutoLevel,
+.yakadCardMidLevel .yakadCardAutoLevel,
 .yakadCardHighLevel,
-.yakadCardHighLevel .yakadCard {
-    background: rgb(var(--surfaceContainerHighestColor, 230 224 233));
+.yakadCardHighLevel .yakadCardAutoLevel {
+    --yakadCardBackgroundColor: var(--surfaceContainerHighestColor);
 }
