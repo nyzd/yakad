@@ -4,8 +4,7 @@
     "private": false,
     "workspaces": [
         "apps/*",
-        "packages/*",
-        "docs"
+        "packages/*"
     ],
     "scripts": {
         "build": "npm run build --workspaces",
