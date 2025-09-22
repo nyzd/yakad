@@ -10,14 +10,14 @@
         "lint": "npm run lint --workspaces",
         "typecheck": "npm run typecheck --workspaces",
         "test": "npm run test --workspaces",
-        "idev:docs": "npm run build && cd apps/docs && npm i && npm run dev",
+        "idev:docs": "npm run build && npm run idev --prefix apps/docs",
         "prepublish:check": "npm run lint && npm run build && npm run typecheck && npm run test",
-        "publish:eslint-plugin-guard": "npm i && cd packages/eslint-plugin-guard && npm version patch && npm publish",
-        "publish:lib": "npm i && cd packages/lib && npm version patch && npm publish",
-        "publish:sync": "npm i && cd packages/sync && npm version patch && npm publish",
-        "publish:symbols": "npm i && cd packages/symbols && npm version patch && npm publish",
-        "publish:ui": "npm i && cd packages/ui && npm version patch && npm publish",
-        "publish:x": "npm i && cd packages/x && npm version patch && npm publis."
+        "publish:eslint-plugin-guard": "npm i && npm newPublish --prefix packages/eslint-plugin-guard",
+        "publish:lib": "npm i && npm newPublish --prefix packages/lib",
+        "publish:sync": "npm i && npm newPublish --prefix packages/sync",
+        "publish:symbols": "npm i && npm newPublish --prefix packages/symbols",
+        "publish:ui": "npm i && npm newPublish --prefix packages/ui",
+        "publish:x": "npm i && npm newPublis --prefix packages/x."
     },
     "engines": {
         "node": ">=16.0.0",
