@@ -7,7 +7,6 @@
     color: rgb(var(--onSurfaceColor, 28 27 31));
     fill: rgb(var(--onSurfaceColor, 28 27 31));
     overflow: hidden;
-    background-color: green;
 }
 
 .card.blur {
