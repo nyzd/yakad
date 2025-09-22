@@ -7,7 +7,7 @@ import {
     Row,
     Stack,
 } from "@yakad/ui";
-import Symbol from "@yakad/symbols";
+import { Symbol } from "@yakad/symbols";
 
 export default function DocsAppbar() {
     return (
@@ -91,10 +91,10 @@ export default function DocsAppbar() {
                         variant="outlined"
                         icon={<Symbol icon="shopping_bag" />}
                     />
-                    <Button variant="filledtonal" loadingvariant="dots">
+                    <Button variant="filledtonal" loadingVariant="dots">
                         Loading
                     </Button>
-                    <Button variant="filled" loadingvariant="scaleOut" disabled>
+                    <Button variant="filled" loadingVariant="scaleOut" disabled>
                         jhtfvtyfgy
                     </Button>
                     <Button icon={<Symbol icon="login" />} />
@@ -102,7 +102,7 @@ export default function DocsAppbar() {
                     <Button icon={<Symbol icon="menu" />} />
                     <Button
                         variant="outlined"
-                        loadingvariant="spinner"
+                        loadingVariant="spinner"
                         disabled
                     />
                 </Row>

@@ -1,4 +1,4 @@
-import Symbol from "@yakad/symbols";
+import { Symbol } from "@yakad/symbols";
 import {
     Button,
     Card,

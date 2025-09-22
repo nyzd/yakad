@@ -1,5 +1,5 @@
 import { Card, Row, Button, InputField, CheckBox, Stack, Hr } from "@yakad/ui";
-import Symbol from "@yakad/symbols";
+import { Symbol } from "@yakad/symbols";
 
 export default function Example1() {
     return (

@@ -1,4 +1,4 @@
-import Symbol from "@yakad/symbols";
+import { Symbol } from "@yakad/symbols";
 import {
     Button,
     Card,
@@ -133,7 +133,7 @@ export default function Page() {
                 <p>My problem is ...</p>
                 <Button>Check...</Button>
                 <h4>Rate to our Website!</h4>
-                <RadioGroup name="rateRadio" defaultvalue="check">
+                <RadioGroup name="rateRadio" defaultValue="check">
                     <RadioButton label="Very Good!" value="1" />
                     <RadioButton label="Good" value="2" />
                     <RadioButton label="Not Bad" value="3" />

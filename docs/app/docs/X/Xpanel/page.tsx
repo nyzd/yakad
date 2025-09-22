@@ -12,7 +12,7 @@ import {
     Button,
 } from "@yakad/ui";
 import Link from "next/link";
-import Symbol from "@yakad/symbols";
+import { Symbol } from "@yakad/symbols";
 
 export default function Page() {
     return (

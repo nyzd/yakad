@@ -1,4 +1,4 @@
-import Symbol from "@yakad/symbols";
+import { Symbol } from "@yakad/symbols";
 import {
     Button,
     Card,
@@ -7,7 +7,7 @@ import {
     GridItem,
     Stack,
     Hr,
-    Loading,
+    LoadingIcon,
     Row,
     Spacer,
     Table,
@@ -22,16 +22,16 @@ import React from "react";
 export default function Page() {
     return (
         <Container size="md">
-            <h1>Loading</h1>
+            <h1>LoadingIcon</h1>
             <Hr />
-            <p>This is a Loading from Yakad you can use to easy</p>
+            <p>This is a LoadingIcon from Yakad you can use to easy</p>
             <Card>
                 <Row>
                     <span>
-                        <code>{'import { Loading } from "@yakad/ui"'}</code>
+                        <code>{'import { LoadingIcon } from "@yakad/ui"'}</code>
                         <br />
                         <br />
-                        <code>{"<Loading>Loading</Loading>"}</code>
+                        <code>{"<LoadingIcon>LoadingIcon</LoadingIcon>"}</code>
                     </span>
                     <Spacer />
                     <Button icon={<Symbol icon="content_copy" />}></Button>
@@ -77,7 +77,7 @@ export default function Page() {
                             flexDirection: "column",
                         }}
                     >
-                        <Loading variant="dots" size="extraLarge" />
+                        <LoadingIcon variant="dots" size="extraLarge" />
                         <Stack align="center">
                             <div>dots</div>
                         </Stack>
@@ -92,7 +92,7 @@ export default function Page() {
                             flexDirection: "column",
                         }}
                     >
-                        <Loading variant="scaleOut" />
+                        <LoadingIcon variant="scaleOut" />
                         <Stack align="center">
                             <div>scaleOut</div>
                         </Stack>
@@ -107,7 +107,7 @@ export default function Page() {
                             flexDirection: "column",
                         }}
                     >
-                        <Loading variant="spinner" />
+                        <LoadingIcon variant="spinner" />
                         <Stack align="center">
                             <div>spinner</div>
                         </Stack>
@@ -126,7 +126,7 @@ export default function Page() {
                             flexDirection: "column",
                         }}
                     >
-                        <Loading size="extraSmall" />
+                        <LoadingIcon size="extraSmall" />
                         <div>extraSmall</div>
                     </Card>
                 </GridItem>
@@ -140,7 +140,7 @@ export default function Page() {
                             flexDirection: "column",
                         }}
                     >
-                        <Loading size="small" />
+                        <LoadingIcon size="small" />
                         <div>small</div>
                     </Card>
                 </GridItem>
@@ -153,7 +153,7 @@ export default function Page() {
                             flexDirection: "column",
                         }}
                     >
-                        <Loading size="medium" />
+                        <LoadingIcon size="medium" />
                         <div>medium</div>
                     </Card>
                 </GridItem>
@@ -166,7 +166,7 @@ export default function Page() {
                             flexDirection: "column",
                         }}
                     >
-                        <Loading size="large" />
+                        <LoadingIcon size="large" />
                         <div>large</div>
                     </Card>
                 </GridItem>
@@ -179,7 +179,7 @@ export default function Page() {
                             flexDirection: "column",
                         }}
                     >
-                        <Loading size="extraLarge" />
+                        <LoadingIcon size="extraLarge" />
                         <div>extraLarge</div>
                     </Card>
                 </GridItem>

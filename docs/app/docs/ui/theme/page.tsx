@@ -16,7 +16,7 @@ import {
     Theme,
     Tr,
 } from "@yakad/ui";
-import Symbol, { IconCode } from "@yakad/symbols";
+import { Symbol, IconCode } from "@yakad/symbols";
 
 interface themeModeProps {
     name: "Light" | "Dark" | "System";
@@ -90,7 +90,7 @@ export default function Page() {
             <GridContainer>
                 {themeModeList.map((themeModeItem, index) => (
                     <GridItem key={index} sm={12} xl={4}>
-                        <Theme zoom={6} mode={themeModeItem.value}>
+                        <Theme zoom={6} darkStyle={themeModeItem.value}>
                             <Card align="center">
                                 <Stack align="center">
                                     <Symbol

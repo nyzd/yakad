@@ -51,6 +51,9 @@
 .flexRowBox.shrink {
     white-space: nowrap;
 }
+.flexRowBox.shrink > * {
+    white-space: initial;
+}
 .flexRowBox.wrap {
     flex-wrap: wrap;
 }
@@ -60,6 +63,7 @@
     -webkit-overflow-scrolling: touch; /* Smooth scroll on mobile */
 }
 .flexRowBox.scroll > * {
+    white-space: initial;
     flex-shrink: 0;
 }
 .flexRowBox.scroll::-webkit-scrollbar {

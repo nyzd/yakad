@@ -15,7 +15,7 @@ import {
     Tbody,
     Td,
 } from "@yakad/ui";
-import Symbol from "@yakad/symbols";
+import { Symbol } from "@yakad/symbols";
 
 import Example1 from "./example1";
 import Example2 from "./example2";

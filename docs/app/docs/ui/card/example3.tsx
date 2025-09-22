@@ -1,5 +1,5 @@
 import { Container, GridContainer, GridItem, Card } from "@yakad/ui";
-import Symbol from "@yakad/symbols";
+import { Symbol } from "@yakad/symbols";
 
 import { IconCode } from "@yakad/symbols";
 

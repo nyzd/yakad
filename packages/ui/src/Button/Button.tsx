@@ -40,7 +40,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
         ref
     ) {
         const childrenFirst: boolean = Boolean(iconPosition === "end");
-        const isLoadingPositionCenter: boolean = Boolean(
+        const isloadingPositionCenter: boolean = Boolean(
             !icon || loadingPosition === "center"
         );
 
@@ -48,7 +48,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
             styles.button,
             styles[variant],
             { [styles.loading]: loadingVariant },
-            { [styles.loadingPositionCenter]: isLoadingPositionCenter },
+            { [styles.loadingPositionCenter]: isloadingPositionCenter },
             styles[size],
             styles[borderStyle],
             { [styles.iconButton]: !children && icon },
@@ -61,7 +61,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
                 {loadingVariant && (
                     <div
                         className={classNames(styles.displayOnDisabled, {
-                            [styles.positionCenter]: isLoadingPositionCenter,
+                            [styles.positionCenter]: isloadingPositionCenter,
                         })}
                     >
                         <LoadingIcon size={size} variant={loadingVariant} />

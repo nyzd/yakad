@@ -1,9 +1,9 @@
 import Link from "next/link";
 import { Container, Hr, CodeBox, Row, Button } from "@yakad/ui";
 import { XdataMap } from "@yakad/x";
-import Symbol from "@yakad/symbols";
+import { Symbol } from "@yakad/symbols";
 
-const dataFromServer: object[] = [
+const dataFromServer = [
     {
         name: "Mercedes-Benz",
         color: "Green",

@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { Container, Hr, CodeBox, Row, Button } from "@yakad/ui";
-import Symbol from "@yakad/symbols";
+import { Symbol } from "@yakad/symbols";
 
 export default function Page() {
     return (

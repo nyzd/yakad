@@ -14,7 +14,7 @@ import {
     Row,
 } from "@yakad/ui";
 import { XgetStart } from "@yakad/x";
-import Symbol from "@yakad/symbols";
+import { Symbol } from "@yakad/symbols";
 
 import LogoIcon from "@/app/logoicon";
 

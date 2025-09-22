@@ -12,7 +12,7 @@ import {
     Tbody,
     Td,
 } from "@yakad/ui";
-import Symbol from "@yakad/symbols";
+import { Symbol } from "@yakad/symbols";
 
 export default function Page() {
     return (

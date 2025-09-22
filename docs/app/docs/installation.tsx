@@ -1,5 +1,5 @@
 import { Button, Card, Container, Row, Spacer } from "@yakad/ui";
-import Symbol from "@yakad/symbols";
+import { Symbol } from "@yakad/symbols";
 
 export default function Installation() {
     return (

@@ -15,7 +15,7 @@ import {
     Td,
 } from "@yakad/ui";
 import LogoIcon from "@/app/logoicon";
-import Symbol from "@yakad/symbols";
+import { Symbol } from "@yakad/symbols";
 
 export default function Page() {
     return (
@@ -55,7 +55,7 @@ export default function Page() {
             <p>
                 If you scroll the page, the <b>AppBar</b> remains fixed
             </p>
-            <AppBar sticky>
+            <AppBar position="sticky">
                 <h1>AppBar</h1>
             </AppBar>
             <h2>Examples</h2>

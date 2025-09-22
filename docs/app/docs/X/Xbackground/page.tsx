@@ -15,7 +15,7 @@ import {
     Row,
 } from "@yakad/ui";
 import { Xbackground } from "@yakad/x";
-import Symbol from "@yakad/symbols";
+import { Symbol } from "@yakad/symbols";
 
 import backgroundImage from "./sky.webp";
 
