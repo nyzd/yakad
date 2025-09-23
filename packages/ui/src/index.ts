@@ -36,4 +36,4 @@ export * from "./CodeBox/CodeBox";
 export * from "./Display/Display";
 export * from "./WithInteractions/WithInteractions";
 export * from "./WithDropdawn/WithDropdawn";
-export * from "./WithPopup/WithPopup";
+export * from "./WithOverlay/WithOverlay";

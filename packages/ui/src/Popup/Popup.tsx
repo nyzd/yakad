@@ -1,3 +1,5 @@
+"use client";
+
 import { forwardRef } from "react";
 import classNames from "classnames";
 import { Symbol } from "@yakad/symbols";
@@ -16,17 +18,17 @@ import styles from "./Popup.module.css";
 export interface PopupProps extends CardProps {
     align?: "start" | "space" | "center" | "end";
     heading?: string;
-    onCloseButtClick?: () => void;
+    onClose?: () => void;
     children?: React.ReactNode;
 }
 
 export const Popup = forwardRef<HTMLDivElement, PopupProps>(function Popup(
-    { align, heading, onCloseButtClick, className, children, ...restProps },
+    { align, heading, onClose, className, children, ...restProps },
     ref
 ) {
     return (
         <div className={styles.popupscreen}>
-            <WithInteractions onOutsideClick={onCloseButtClick}>
+            <WithInteractions onOutsideClick={onClose}>
                 <Card
                     ref={ref}
                     {...restProps}
@@ -38,7 +40,7 @@ export const Popup = forwardRef<HTMLDivElement, PopupProps>(function Popup(
                         <Button
                             title="Close"
                             icon={<Symbol icon="close" />}
-                            onClick={onCloseButtClick}
+                            onClick={onClose}
                         />
                     </Row>
                     <Stack
