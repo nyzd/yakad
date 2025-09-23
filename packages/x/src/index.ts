@@ -4,7 +4,6 @@ export * from "./XloginBox/XloginBox";
 export * from "./XgetStart/XgetStart";
 export * from "./Xpanel/Xpanel";
 export * from "./XmenuList/XmenuList";
-export * from "./Xpopup/Xpopup";
 export * from "./XscrollContainer/XscrollContainer";
 export * from "./Xtable/Xtable";
 export * from "./Xtable/Xthead";
