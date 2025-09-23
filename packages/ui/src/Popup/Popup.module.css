@@ -1,4 +1,4 @@
-.xpopupscreen {
+.popupscreen {
     position: fixed;
     top: 0;
     left: 0;
@@ -12,7 +12,7 @@
     z-index: 3;
 }
 
-.xpopup {
+.popup {
     width: 90%;
     max-width: 60rem;
     min-height: 10rem;

@@ -1,4 +1,6 @@
 import { forwardRef } from "react";
+import classNames from "classnames";
+import { Symbol } from "@yakad/symbols";
 import {
     Button,
     Card,
@@ -8,29 +10,27 @@ import {
     Stack,
     Text,
     WithInteractions,
-} from "@yakad/ui";
-import { Symbol } from "@yakad/symbols";
-import styles from "./Xpopup.module.css";
-import classNames from "classnames";
+} from "..";
+import styles from "./Popup.module.css";
 
-export interface XpopupProps extends CardProps {
+export interface PopupProps extends CardProps {
     align?: "start" | "space" | "center" | "end";
     heading?: string;
     onCloseButtClick?: () => void;
     children?: React.ReactNode;
 }
 
-export const Xpopup = forwardRef<HTMLDivElement, XpopupProps>(function Xpopup(
+export const Popup = forwardRef<HTMLDivElement, PopupProps>(function Popup(
     { align, heading, onCloseButtClick, className, children, ...restProps },
     ref
 ) {
     return (
-        <div className={styles.xpopupscreen}>
+        <div className={styles.popupscreen}>
             <WithInteractions onOutsideClick={onCloseButtClick}>
                 <Card
                     ref={ref}
                     {...restProps}
-                    className={classNames(styles.xpopup, className)}
+                    className={classNames(styles.popup, className)}
                 >
                     <Row style={{ marginBottom: "2rem" }}>
                         <Text variant="heading4">{heading}</Text>

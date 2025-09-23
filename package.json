@@ -1,7 +1,7 @@
 {
     "name": "yakad",
     "version": "1.0.0",
-    "private": false,
+    "private": true,
     "description": "Yakad - A comprehensive React component library and utilities",
     "workspaces": [
         "packages/*"
