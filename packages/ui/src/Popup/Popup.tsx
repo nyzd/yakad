@@ -8,6 +8,7 @@ import {
     Card,
     CardProps,
     Row,
+    Screen,
     Spacer,
     Stack,
     Text,
@@ -27,7 +28,7 @@ export const Popup = forwardRef<HTMLDivElement, PopupProps>(function Popup(
     ref
 ) {
     return (
-        <div className={styles.popupscreen}>
+        <Screen align="center" className={styles.popupscreen}>
             <WithInteractions onOutsideClick={onClose}>
                 <Card
                     ref={ref}
@@ -51,6 +52,6 @@ export const Popup = forwardRef<HTMLDivElement, PopupProps>(function Popup(
                     </Stack>
                 </Card>
             </WithInteractions>
-        </div>
+        </Screen>
     );
 });

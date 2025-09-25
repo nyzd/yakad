@@ -15,6 +15,7 @@ export * from "./Theme/Theme";
 export * from "./Spacer/Spacer";
 export * from "./Hr/Hr";
 // UI Components
+export * from "./Dropdown/Dropdown";
 export * from "./Popup/Popup";
 export * from "./List/List";
 export * from "./ListItem/ListItem";
