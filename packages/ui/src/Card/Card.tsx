@@ -1,19 +1,18 @@
 import { forwardRef } from "react";
 import classNames from "classnames";
-import { BoxProps } from "../boxing";
 import boxingStyles from "../boxing.module.css";
 import styles from "./Card.module.css";
 import "./card.css";
 
-export interface CardProps
-    extends BoxProps,
-        React.HTMLAttributes<HTMLDivElement> {
+export interface CardProps extends React.HTMLAttributes<HTMLDivElement> {
+    align?: "start" | "space" | "center" | "end";
+    fullWidth?: boolean;
     blur?: boolean;
     level?: "low" | "mid" | "high";
 }
 
 export const Card = forwardRef<HTMLDivElement, CardProps>(function Card(
-    { fullWidth = true, align, blur, level, className, children, ...restProps },
+    { align, fullWidth = true, blur, level, className, children, ...restProps },
     ref
 ) {
     const joinedClassNames = classNames(

@@ -18,13 +18,11 @@ import {
 import styles from "./Popup.module.css";
 
 export interface PopupProps extends CardProps, OverlayProps {
-    align?: "start" | "space" | "center" | "end";
     heading?: string;
-    children?: React.ReactNode;
 }
 
 export const Popup = forwardRef<HTMLDivElement, PopupProps>(function Popup(
-    { align, heading, onClose, className, children, ...restProps },
+    { align, onClose, heading, className, children, ...restProps },
     ref
 ) {
     return (

@@ -1,12 +1,11 @@
 import { forwardRef } from "react";
 import classNames from "classnames";
 import styles from "./Form.module.css";
-import { BoxProps } from "../boxing";
 import boxingStyles from "../boxing.module.css";
 
-export interface FormProps
-    extends BoxProps,
-        React.HTMLAttributes<HTMLFormElement> {
+export interface FormProps extends React.HTMLAttributes<HTMLFormElement> {
+    align?: "start" | "space" | "center" | "end";
+    fullWidth?: boolean;
     children?: React.ReactNode;
 }
 

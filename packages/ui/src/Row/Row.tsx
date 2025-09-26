@@ -2,11 +2,10 @@ import { forwardRef } from "react";
 import classNames from "classnames";
 import boxingStyles from "../boxing.module.css";
 import styles from "./Row.module.css";
-import { BoxProps } from "../boxing";
 
-export interface RowProps
-    extends BoxProps,
-        React.HTMLAttributes<HTMLDivElement> {
+export interface RowProps extends React.HTMLAttributes<HTMLDivElement> {
+    align?: "start" | "space" | "center" | "end";
+    fullWidth?: boolean;
     overflow?: "shrink" | "wrap" | "scroll";
     size?: "xs" | "sm" | "md" | "lg" | "xl";
     children?: React.ReactNode;

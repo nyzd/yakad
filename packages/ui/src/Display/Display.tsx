@@ -1,12 +1,11 @@
 import { forwardRef } from "react";
 import classNames from "classnames";
-import { BoxProps } from "../boxing";
 import boxingStyles from "../boxing.module.css";
 import styles from "./Display.module.css";
 
-export interface DisplayProps
-    extends BoxProps,
-        React.HTMLAttributes<HTMLDivElement> {
+export interface DisplayProps extends React.HTMLAttributes<HTMLDivElement> {
+    align?: "start" | "space" | "center" | "end";
+    fullWidth?: boolean;
     minWidth?: "xs" | "sm" | "md" | "lg" | "xl";
     maxWidth?: "xs" | "sm" | "md" | "lg" | "xl";
     children?: React.ReactNode;

@@ -2,11 +2,10 @@ import { forwardRef } from "react";
 import classNames from "classnames";
 import boxingStyles from "../boxing.module.css";
 import styles from "./Stack.module.css";
-import { BoxProps } from "../boxing";
 
-export interface StackProps
-    extends BoxProps,
-        React.HTMLAttributes<HTMLDivElement> {
+export interface StackProps extends React.HTMLAttributes<HTMLDivElement> {
+    align?: "start" | "space" | "center" | "end";
+    fullWidth?: boolean;
     children?: React.ReactNode;
 }
 

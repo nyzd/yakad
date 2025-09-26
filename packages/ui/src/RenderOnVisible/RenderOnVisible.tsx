@@ -4,11 +4,11 @@ import { forwardRef, useImperativeHandle, useRef, useState } from "react";
 import classNames from "classnames";
 import boxingStyles from "../boxing.module.css";
 import { WithInteractions } from "..";
-import { BoxProps } from "../boxing";
 
 export interface RenderOnVisibleProps
-    extends BoxProps,
-        React.HTMLAttributes<HTMLDivElement> {
+    extends React.HTMLAttributes<HTMLDivElement> {
+    align?: "start" | "space" | "center" | "end";
+    fullWidth?: boolean;
     children?: React.ReactNode;
 }
 
