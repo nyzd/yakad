@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, cloneElement, useEffect } from "react";
+import { useState, cloneElement, useEffect, useRef, RefObject } from "react";
 import {
     Dropdown,
     DropdownProps,
@@ -8,12 +8,17 @@ import {
     PopupProps,
     WithInteractions,
 } from "..";
+import { mergeRefs } from "@yakad/lib";
 
+export interface OverlayProps {
+    triggerRef?: RefObject<HTMLElement | null>;
+    onClose?: () => void;
+}
 type AllowedOverlays =
     | React.ReactElement<PopupProps, typeof Popup>
     | React.ReactElement<DropdownProps, typeof Dropdown>;
 
-export interface WithPopupProps {
+export interface WithOverlayProps {
     trigger?: "onClick" | "onRightClick";
     overlay?: AllowedOverlays;
     children?: React.ReactElement<{
@@ -25,16 +30,18 @@ export function WithOverlay({
     trigger = "onClick",
     overlay,
     children,
-}: WithPopupProps) {
+}: WithOverlayProps) {
+    const triggerRef = useRef<HTMLElement>(null);
+
     const [showOverlay, setShowOverlay] = useState(false);
 
-    useEffect(() => {
-        document.body.style.overflow = showOverlay ? "hidden" : "initial";
+    // useEffect(() => {
+    //     document.body.style.overflow = showOverlay ? "hidden" : "initial";
 
-        return () => {
-            document.body.style.overflow = "initial";
-        };
-    }, [showOverlay]);
+    //     return () => {
+    //         document.body.style.overflow = "initial";
+    //     };
+    // }, [showOverlay]);
 
     return (
         <>
@@ -44,7 +51,13 @@ export function WithOverlay({
                 }
             >
                 {children &&
-                    cloneElement(children, {
+                    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+                    cloneElement(children as React.ReactElement<any, any>, {
+                        ref: mergeRefs(
+                            triggerRef,
+                            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+                            (children as any).props?.ref
+                        ),
                         onClick: (e: React.MouseEvent<HTMLElement>) => {
                             children.props.onClick?.(e);
                             trigger === "onClick" && setShowOverlay(true);
@@ -54,8 +67,9 @@ export function WithOverlay({
             {showOverlay &&
                 overlay &&
                 cloneElement(overlay, {
+                    triggerRef: triggerRef,
                     onClose: () => {
-                        overlay.props.onClose;
+                        overlay.props.onClose?.();
                         setShowOverlay(false);
                     },
                 })}

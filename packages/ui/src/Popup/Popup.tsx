@@ -7,6 +7,7 @@ import {
     Button,
     Card,
     CardProps,
+    OverlayProps,
     Row,
     Screen,
     Spacer,
@@ -16,15 +17,22 @@ import {
 } from "..";
 import styles from "./Popup.module.css";
 
-export interface PopupProps extends CardProps {
+export interface PopupProps extends CardProps, OverlayProps {
     align?: "start" | "space" | "center" | "end";
     heading?: string;
-    onClose?: () => void;
     children?: React.ReactNode;
 }
 
 export const Popup = forwardRef<HTMLDivElement, PopupProps>(function Popup(
-    { align, heading, onClose, className, children, ...restProps },
+    {
+        triggerRef, // TODOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO
+        align,
+        heading,
+        onClose,
+        className,
+        children,
+        ...restProps
+    },
     ref
 ) {
     return (
