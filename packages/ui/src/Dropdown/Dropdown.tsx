@@ -11,13 +11,13 @@ import classNames from "classnames";
 import { Card, CardProps, WithInteractions, OverlayProps } from "..";
 import styles from "./Dropdown.module.css";
 
-export interface DropdownProps extends CardProps, OverlayProps {}
+export interface DropdownProps extends Omit<CardProps, "level">, OverlayProps {}
 
 export const Dropdown = forwardRef<HTMLDivElement, DropdownProps>(
     function Dropdown(
         {
+            fullWidth = false,
             blur,
-            level = "high",
             triggerRef,
             onClose,
             className,
@@ -27,8 +27,10 @@ export const Dropdown = forwardRef<HTMLDivElement, DropdownProps>(
         },
         forwardedRef
     ) {
-        const containerRef = useRef<HTMLDivElement>(null);
+        const fallbackTriggerRef = useRef<HTMLDivElement>(null);
         const dropdownRef = useRef<HTMLDivElement>(null);
+
+        const placementTargetRef = triggerRef || fallbackTriggerRef;
 
         // Let the parent access our DOM node
         useImperativeHandle(
@@ -36,80 +38,101 @@ export const Dropdown = forwardRef<HTMLDivElement, DropdownProps>(
             () => dropdownRef.current as HTMLDivElement
         );
 
-        const [dropdownTop, setDropdownTop] = useState<number>(0);
-        const [dropdownX, setDropdownX] = useState<number>(0);
-        const [arrowTop, setArrowTop] = useState<number>(0);
-        const [arrowX, setArrowX] = useState<number>(0);
+        const [arrowPosition, setArrowPosition] = useState<{
+            top: number;
+            left: number;
+        }>({
+            top: 0,
+            left: 0,
+        });
+        const [dropdownPosition, setDropdownPosition] = useState<{
+            top: number;
+            left: number;
+        }>({
+            top: 0,
+            left: 0,
+        });
 
         const [isPlacedAbove, setIsPlacedAbove] = useState<boolean>(false);
-        const [placed, setPlaced] = useState<boolean>(false);
+        const [isPlaced, setIsPlaced] = useState<boolean>(false);
 
         useEffect(() => {
-            if (triggerRef?.current && dropdownRef.current) {
-                console.log("We have Trigger REf!");
-
-                const triggerRect = triggerRef.current.getBoundingClientRect();
+            if (placementTargetRef?.current && dropdownRef.current) {
+                const placementTarget =
+                    placementTargetRef.current.getBoundingClientRect();
                 const dropdownRect =
                     dropdownRef.current.getBoundingClientRect();
                 const padding = 10;
 
-                let dTop = triggerRect.bottom + padding;
-                let dX = triggerRect.width / 2;
-                let aTop = dTop;
-                const aX = dX;
+                let dropdownY = placementTarget.bottom + padding;
+                let dropdownXPos =
+                    placementTarget.left + placementTarget.width / 2;
+                let arrowY = dropdownY;
+                const arrowX = dropdownXPos;
 
                 // Prevent overflow bottom
-                if (dTop + dropdownRect.height > window.innerHeight) {
-                    dTop = triggerRect.top - dropdownRect.height - padding;
-                    aTop = triggerRect.top - padding;
+                if (
+                    dropdownY + dropdownRect.height > window.innerHeight &&
+                    placementTarget.top > dropdownRect.height
+                ) {
+                    dropdownY = placementTarget.top - padding;
+                    arrowY = placementTarget.top - padding;
                     setIsPlacedAbove(true);
                 } else setIsPlacedAbove(false);
 
                 // Prevent overflow right
-                if (dX + dropdownRect.width / 2 > window.innerWidth - padding) {
-                    dX = window.innerWidth - dropdownRect.width / 2 - padding;
+                if (
+                    dropdownXPos + dropdownRect.width / 2 >
+                    window.innerWidth - padding
+                ) {
+                    dropdownXPos =
+                        window.innerWidth - dropdownRect.width / 2 - padding;
                 }
 
                 // Prevent overflow left
-                if (dX - dropdownRect.width / 2 < padding) {
-                    dX = dropdownRect.width / 2 + padding;
+                if (dropdownXPos - dropdownRect.width / 2 < padding) {
+                    dropdownXPos = dropdownRect.width / 2 + padding;
                 }
 
-                setDropdownTop(dTop);
-                setDropdownX(dX);
+                setDropdownPosition({
+                    top: dropdownY,
+                    left: dropdownXPos,
+                });
 
-                // Arrow Placing
-                setArrowTop(aTop);
-                setArrowX(aX);
+                setArrowPosition({
+                    top: arrowY,
+                    left: arrowX,
+                });
 
-                setPlaced(true);
-            } else if (containerRef.current && dropdownRef.current) {
-                const baseRect = containerRef.current.getBoundingClientRect();
-                const dropdownRect =
-                    dropdownRef.current.getBoundingClientRect();
-
-                // Prevent overflow bottom
-                if (
-                    window.innerWidth - baseRect.bottom < dropdownRect.height &&
-                    baseRect.top > dropdownRect.height
-                ) {
-                    setIsPlacedAbove(true);
-                } else setIsPlacedAbove(false);
-
-                // Dropdown Placing
-                setDropdownTop(0);
-                setDropdownX(0);
-
-                // Arrow Placing
-                setArrowTop(0);
-                setArrowX(0);
-
-                setPlaced(true);
+                setIsPlaced(true);
             }
         }, [children]);
 
         return (
-            <div ref={containerRef} className={styles.dropdownContainer}>
+            <>
+                {!triggerRef && <div ref={fallbackTriggerRef} />}
+                <WithInteractions onOutsideClick={onClose}>
+                    <Card
+                        ref={dropdownRef}
+                        blur={blur}
+                        fullWidth={fullWidth}
+                        {...restProps}
+                        level="high"
+                        className={classNames(
+                            styles.dropdownCard,
+                            { [styles.isPlacedAbove]: isPlacedAbove },
+                            className
+                        )}
+                        style={{
+                            top: dropdownPosition.top,
+                            left: dropdownPosition.left,
+                            visibility: isPlaced ? "visible" : "hidden",
+                            ...style,
+                        }}
+                    >
+                        {children}
+                    </Card>
+                </WithInteractions>
                 <span
                     className={classNames(
                         styles.arrow,
@@ -119,29 +142,12 @@ export const Dropdown = forwardRef<HTMLDivElement, DropdownProps>(
                         { [styles.blur]: blur }
                     )}
                     style={{
-                        visibility: placed ? "visible" : "hidden",
+                        top: arrowPosition.top,
+                        left: arrowPosition.left,
+                        visibility: isPlaced ? "visible" : "hidden",
                     }}
                 />
-                <WithInteractions onOutsideClick={onClose}>
-                    <Card
-                        ref={dropdownRef}
-                        blur={blur}
-                        level={level}
-                        {...restProps}
-                        className={classNames(
-                            styles.dropdownCard,
-                            { [styles.isPlacedAbove]: isPlacedAbove },
-                            className
-                        )}
-                        style={{
-                            visibility: placed ? "visible" : "hidden",
-                            ...style,
-                        }}
-                    >
-                        {children}
-                    </Card>
-                </WithInteractions>
-            </div>
+            </>
         );
     }
 );

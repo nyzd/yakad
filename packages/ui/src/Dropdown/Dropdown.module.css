@@ -1,12 +1,5 @@
-.dropdownContainer {
-    position: relative;
-    display: inline-block;
-}
-
 .dropdownCard {
-    position: absolute;
-    top: 0;
-    left: 0;
+    position: fixed;
     min-width: 6rem;
     min-height: 10rem;
     max-width: calc(100vw - 10rem);
@@ -22,18 +15,16 @@
 
 /* Arrow */
 .arrow {
-    position: absolute;
-    top: 0;
-    left: 0;
+    position: fixed;
     width: 0;
     height: 0;
     border-left: 0.6rem solid transparent;
     border-right: 0.6rem solid transparent;
     border-bottom: 0.8rem solid
-        rgb(var(--surfaceContainerHighColor, 230 224 233));
-    border-bottom: 0.8rem solid red;
+        rgb(var(--surfaceContainerHighestColor, 230 224 233));
     transform: translate(-50%, calc(-100% + 1rem));
     visibility: hidden;
+    z-index: 4;
 }
 .arrow.isPlacedAbove {
     transform: translate(-50%, -1rem) rotate(180deg);

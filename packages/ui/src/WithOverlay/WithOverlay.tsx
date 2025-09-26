@@ -35,13 +35,13 @@ export function WithOverlay({
 
     const [showOverlay, setShowOverlay] = useState(false);
 
-    // useEffect(() => {
-    //     document.body.style.overflow = showOverlay ? "hidden" : "initial";
+    useEffect(() => {
+        document.body.style.overflow = showOverlay ? "hidden" : "initial";
 
-    //     return () => {
-    //         document.body.style.overflow = "initial";
-    //     };
-    // }, [showOverlay]);
+        return () => {
+            document.body.style.overflow = "initial";
+        };
+    }, [showOverlay]);
 
     return (
         <>

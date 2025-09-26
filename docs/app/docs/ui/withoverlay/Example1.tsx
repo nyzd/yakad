@@ -1,6 +1,5 @@
 "use client";
 
-import { useState } from "react";
 import {
     Button,
     Card,
@@ -13,7 +12,6 @@ import {
     Dropdown,
     WithInteractions,
 } from "../../../../../packages/ui/src";
-import { randomBytes } from "crypto";
 
 export default function Example1() {
     return (
@@ -56,19 +54,19 @@ export default function Example1() {
                     <WithOverlay
                         overlay={
                             <Dropdown>
-                                <H1>Hello</H1>
-                                <H1>Hello</H1>
-                                <H1>Hello</H1>
-                                <H1>Hello</H1>
-                                <H1>Hello</H1>
-                                <H1>Hello</H1>
-                                <H1>Hello</H1>
-                                <H1>Hello</H1>
-                                <H1>Hello</H1>
-                                <H1>Hello</H1>
-                                <H1>Hello</H1>
-                                <H1>Hello</H1>
-                                <H1>Hello</H1>
+                                <Button variant="filled">Hello</Button>
+                                <Button variant="filled">Hello</Button>
+                                <Button variant="filled">Hello</Button>
+                                <Button variant="filled">Hello</Button>
+                                <Button variant="filled">Hello</Button>
+                                <Button variant="filled">Hello</Button>
+                                <Button variant="filled">Hello</Button>
+                                <Button variant="filled">Hello</Button>
+                                <Button variant="filled">Hello</Button>
+                                <Button variant="filled">Hello</Button>
+                                <Button variant="filled">Hello</Button>
+                                <Button variant="filled">Hello</Button>
+                                <Button variant="filled">Hello</Button>
                             </Dropdown>
                         }
                     >
