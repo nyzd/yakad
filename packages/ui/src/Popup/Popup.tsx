@@ -24,15 +24,7 @@ export interface PopupProps extends CardProps, OverlayProps {
 }
 
 export const Popup = forwardRef<HTMLDivElement, PopupProps>(function Popup(
-    {
-        triggerRef, // TODOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO
-        align,
-        heading,
-        onClose,
-        className,
-        children,
-        ...restProps
-    },
+    { align, heading, onClose, className, children, ...restProps },
     ref
 ) {
     return (

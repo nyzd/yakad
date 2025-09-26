@@ -29,7 +29,7 @@ export default function Example1() {
                         ))}
                     </div>
                 </WithInteractions>
-                <Card align="space" style={{ height: "50rem" }}>
+                <Card align="start" style={{ height: "50rem" }}>
                     <WithOverlay
                         overlay={
                             <Popup>
@@ -54,7 +54,9 @@ export default function Example1() {
                     <WithOverlay
                         overlay={
                             <Dropdown>
-                                <Button variant="filled">Hello</Button>
+                                <Button variant="filled">
+                                    HelloHelloHelloHello
+                                </Button>
                                 <Button variant="filled">Hello</Button>
                                 <Button variant="filled">Hello</Button>
                                 <Button variant="filled">Hello</Button>
@@ -70,7 +72,7 @@ export default function Example1() {
                             </Dropdown>
                         }
                     >
-                        <Button variant="filled">Open New Popup</Button>
+                        <Button variant="filled">xxYxx</Button>
                     </WithOverlay>
                     <WithDropdawn>
                         <Button variant="outlined">Open Dropdawn</Button>

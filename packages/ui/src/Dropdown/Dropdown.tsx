@@ -11,13 +11,14 @@ import classNames from "classnames";
 import { Card, CardProps, WithInteractions, OverlayProps } from "..";
 import styles from "./Dropdown.module.css";
 
-export interface DropdownProps extends Omit<CardProps, "level">, OverlayProps {}
+export interface DropdownProps extends CardProps, OverlayProps {}
 
 export const Dropdown = forwardRef<HTMLDivElement, DropdownProps>(
     function Dropdown(
         {
             fullWidth = false,
             blur,
+            level = "high",
             triggerRef,
             onClose,
             className,
@@ -114,10 +115,10 @@ export const Dropdown = forwardRef<HTMLDivElement, DropdownProps>(
                 <WithInteractions onOutsideClick={onClose}>
                     <Card
                         ref={dropdownRef}
-                        blur={blur}
                         fullWidth={fullWidth}
+                        blur={blur}
+                        level={level}
                         {...restProps}
-                        level="high"
                         className={classNames(
                             styles.dropdownCard,
                             { [styles.isPlacedAbove]: isPlacedAbove },
