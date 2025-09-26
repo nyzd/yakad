@@ -3,22 +3,20 @@ import classNames from "classnames";
 import boxingStyles from "../boxing.module.css";
 import styles from "./Card.module.css";
 import "./card.css";
+import { BoxProps } from "../boxing";
 
-export interface CardProps extends React.HTMLAttributes<HTMLDivElement> {
-    align?: "start" | "space" | "center" | "end";
-    blur?: boolean;
+export interface CardProps extends BoxProps {
     level?: "low" | "mid" | "high";
-    children?: React.ReactNode;
 }
 
 export const Card = forwardRef<HTMLDivElement, CardProps>(function Card(
-    { align, blur, level, className, children, ...restProps },
+    { fullWidth = true, align, blur, level, className, children, ...restProps },
     ref
 ) {
     const joinedClassNames = classNames(
         boxingStyles.flexColumnBox,
         { [boxingStyles[align as string]]: align },
-        { fullWidthLover: true },
+        { fullWidthLover: fullWidth },
         styles.card,
         { [styles.blur]: blur },
         {

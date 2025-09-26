@@ -7,7 +7,9 @@ import {
     Button,
     Card,
     CardProps,
+    OverlayProps,
     Row,
+    Screen,
     Spacer,
     Stack,
     Text,
@@ -15,10 +17,9 @@ import {
 } from "..";
 import styles from "./Popup.module.css";
 
-export interface PopupProps extends CardProps {
+export interface PopupProps extends CardProps, OverlayProps {
     align?: "start" | "space" | "center" | "end";
     heading?: string;
-    onClose?: () => void;
     children?: React.ReactNode;
 }
 
@@ -27,7 +28,7 @@ export const Popup = forwardRef<HTMLDivElement, PopupProps>(function Popup(
     ref
 ) {
     return (
-        <div className={styles.popupscreen}>
+        <Screen align="center" className={styles.popupscreen}>
             <WithInteractions onOutsideClick={onClose}>
                 <Card
                     ref={ref}
@@ -51,6 +52,6 @@ export const Popup = forwardRef<HTMLDivElement, PopupProps>(function Popup(
                     </Stack>
                 </Card>
             </WithInteractions>
-        </div>
+        </Screen>
     );
 });

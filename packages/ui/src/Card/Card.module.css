@@ -6,7 +6,6 @@
     background-color: rgb(var(--yakadCardBackgroundColor, 230 224 233));
     color: rgb(var(--onSurfaceColor, 28 27 31));
     fill: rgb(var(--onSurfaceColor, 28 27 31));
-    overflow: hidden;
 }
 
 .card.blur {

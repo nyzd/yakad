@@ -1,3 +1,5 @@
+"use client";
+
 import {
     Button,
     Card,
@@ -7,22 +9,76 @@ import {
     Popup,
     WithOverlay,
     WithDropdawn,
-} from "@yakad/ui";
+    Dropdown,
+    WithInteractions,
+    RenderOnVisible,
+} from "../../../../../packages/ui/src";
 
 export default function Example1() {
     return (
         <>
-            <H3>Example 1</H3>
+            <H3>Example </H3>
             <Container size="sm">
-                <Card align="space" style={{ height: "20rem" }}>
+                <div style={{ height: "40rem", overflow: "auto" }}>
+                    {Array.from({ length: 100 }).map((_, index) => (
+                        <RenderOnVisible key={index}>
+                            <Button
+                                key={index}
+                                variant="filled"
+                                style={{
+                                    height: "10rem",
+                                    marginBottom: "2rem",
+                                }}
+                            >
+                                WithInteractions
+                            </Button>
+                        </RenderOnVisible>
+                    ))}
+                </div>
+                <Card align="start" style={{ height: "50rem" }}>
                     <WithOverlay
                         overlay={
                             <Popup>
+                                <H1>Hello</H1>
+                                <H1>Hello</H1>
+                                <H1>Hello</H1>
+                                <H1>Hello</H1>
+                                <H1>Hello</H1>
+                                <H1>Hello</H1>
+                                <H1>Hello</H1>
+                                <H1>Hello</H1>
+                                <H1>Hello</H1>
+                                <H1>Hello</H1>
+                                <H1>Hello</H1>
+                                <H1>Hello</H1>
                                 <H1>Hello</H1>
                             </Popup>
                         }
                     >
                         <Button variant="outlined">Open Popup</Button>
+                    </WithOverlay>
+                    <WithOverlay
+                        overlay={
+                            <Dropdown>
+                                <Button variant="filled">
+                                    HelloHelloHelloHello
+                                </Button>
+                                <Button variant="filled">Hello</Button>
+                                <Button variant="filled">Hello</Button>
+                                <Button variant="filled">Hello</Button>
+                                <Button variant="filled">Hello</Button>
+                                <Button variant="filled">Hello</Button>
+                                <Button variant="filled">Hello</Button>
+                                <Button variant="filled">Hello</Button>
+                                <Button variant="filled">Hello</Button>
+                                <Button variant="filled">Hello</Button>
+                                <Button variant="filled">Hello</Button>
+                                <Button variant="filled">Hello</Button>
+                                <Button variant="filled">Hello</Button>
+                            </Dropdown>
+                        }
+                    >
+                        <Button variant="filled">xxYxx</Button>
                     </WithOverlay>
                     <WithDropdawn>
                         <Button variant="outlined">Open Dropdawn</Button>
