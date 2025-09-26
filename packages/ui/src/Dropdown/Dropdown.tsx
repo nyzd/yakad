@@ -107,7 +107,7 @@ export const Dropdown = forwardRef<HTMLDivElement, DropdownProps>(
 
                 setIsPlaced(true);
             }
-        }, [children]);
+        }, [children, placementTargetRef]);
 
         return (
             <>

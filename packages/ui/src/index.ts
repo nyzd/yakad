@@ -38,3 +38,5 @@ export * from "./Display/Display";
 export * from "./WithInteractions/WithInteractions";
 export * from "./WithDropdawn/WithDropdawn";
 export * from "./WithOverlay/WithOverlay";
+
+export * from "./RenderOnVisible/RenderOnVisible";

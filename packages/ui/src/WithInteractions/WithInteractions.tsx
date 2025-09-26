@@ -25,10 +25,14 @@ export interface WithInteractionsProps {
     onPinchOut?: () => void;
     onRotate?: (angle: number) => void;
 
+    onScrollStart?: () => void;
+    onScrollStop?: () => void;
+
     onResize?: (entry: ResizeObserverEntry) => void;
-    onScrollChange?: (scrolling: boolean) => void;
-    onVisibilityChange?: (visible: boolean) => void;
-    onMouseHoverChange?: (hover: boolean) => void;
+    onVisible?: () => void;
+    onHidden?: () => void;
+    onMouseHoverStart?: (e: MouseEvent) => void;
+    onMouseHoverLeave?: (e: MouseEvent) => void;
 
     children?: React.ReactElement;
 }
@@ -48,10 +52,13 @@ export const WithInteractions = forwardRef<HTMLElement, WithInteractionsProps>(
             onPinchIn,
             onPinchOut,
             onRotate,
-            onScrollChange,
+            onScrollStart,
+            onScrollStop,
             onResize,
-            onVisibilityChange,
-            onMouseHoverChange,
+            onVisible,
+            onHidden,
+            onMouseHoverStart,
+            onMouseHoverLeave,
             ...restProps
         },
         forwardedRef
@@ -225,9 +232,9 @@ export const WithInteractions = forwardRef<HTMLElement, WithInteractionsProps>(
 
             // === VISIBILITY OBSERVER ===
             let intersectionObserver: IntersectionObserver | null = null;
-            if (onVisibilityChange) {
+            if (onVisible || onHidden) {
                 intersectionObserver = new IntersectionObserver((entries) => {
-                    onVisibilityChange(entries[0].isIntersecting);
+                    entries[0].isIntersecting ? onVisible?.() : onHidden?.();
                 });
                 intersectionObserver.observe(el);
                 cleanupFns.push(() => intersectionObserver?.disconnect());
@@ -235,9 +242,9 @@ export const WithInteractions = forwardRef<HTMLElement, WithInteractionsProps>(
 
             // === On Hover Change ===
             const hasFinePointer = window.matchMedia("(pointer: fine)").matches;
-            if (hasFinePointer && onMouseHoverChange) {
-                const mouseEnter = () => onMouseHoverChange(true);
-                const mouseLeave = () => onMouseHoverChange(false);
+            if (hasFinePointer && (onMouseHoverStart || onMouseHoverLeave)) {
+                const mouseEnter = (e: MouseEvent) => onMouseHoverStart?.(e);
+                const mouseLeave = (e: MouseEvent) => onMouseHoverLeave?.(e);
                 el.addEventListener("mouseenter", mouseEnter);
                 el.addEventListener("mouseleave", mouseLeave);
                 cleanupFns.push(() => {
@@ -247,19 +254,19 @@ export const WithInteractions = forwardRef<HTMLElement, WithInteractionsProps>(
             }
 
             // === SCROLL START/END ===
-            if (onScrollChange) {
+            if (onScrollStart) {
                 let scrolling = false;
                 let scrollTimeout: NodeJS.Timeout;
 
                 const scrollHandler = () => {
                     if (!scrolling) {
                         scrolling = true;
-                        onScrollChange(true);
+                        onScrollStart?.();
                     }
                     clearTimeout(scrollTimeout);
                     scrollTimeout = setTimeout(() => {
                         scrolling = false;
-                        onScrollChange(false);
+                        onScrollStop?.();
                     }, 150);
                 };
 
@@ -285,23 +292,26 @@ export const WithInteractions = forwardRef<HTMLElement, WithInteractionsProps>(
             onPinchIn,
             onPinchOut,
             onRotate,
-            onScrollChange,
+            onScrollStart,
+            onScrollStop,
             onResize,
-            onVisibilityChange,
-            onMouseHoverChange,
+            onVisible,
+            onHidden,
+            onMouseHoverStart,
+            onMouseHoverLeave,
         ]);
 
         if (!isValidElement(children)) return null;
 
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
         return cloneElement(children as React.ReactElement<any, any>, {
+            ...restProps,
             ref: mergeRefs(
                 localRef,
                 forwardedRef,
                 // eslint-disable-next-line @typescript-eslint/no-explicit-any
                 (children as any).props?.ref
             ),
-            ...restProps,
         });
     }
 );
