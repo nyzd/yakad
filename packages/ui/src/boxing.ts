@@ -1,6 +1,4 @@
-export interface BoxProps extends React.HTMLAttributes<HTMLDivElement> {
+export interface BoxProps {
     align?: "start" | "space" | "center" | "end";
-    blur?: boolean;
     fullWidth?: boolean;
-    children?: React.ReactNode;
 }

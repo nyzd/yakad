@@ -2,20 +2,22 @@ import { forwardRef } from "react";
 import classNames from "classnames";
 import boxingStyles from "../boxing.module.css";
 import styles from "./Stack.module.css";
+import { BoxProps } from "../boxing";
 
-export interface StackProps extends React.HTMLAttributes<HTMLDivElement> {
-    align?: "start" | "space" | "center" | "end";
+export interface StackProps
+    extends BoxProps,
+        React.HTMLAttributes<HTMLDivElement> {
     children?: React.ReactNode;
 }
 
 export const Stack = forwardRef<HTMLDivElement, StackProps>(function Stack(
-    { align, className, children, ...restProps },
+    { align, fullWidth = true, className, children, ...restProps },
     ref
 ) {
     const joinedClassNames = classNames(
         boxingStyles.flexColumnBox,
         { [boxingStyles[align as string]]: align },
-        { fullWidthLover: true },
+        { fullWidth: fullWidth },
         styles.stack,
         className
     );

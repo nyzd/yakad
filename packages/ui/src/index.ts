@@ -15,8 +15,6 @@ export * from "./Theme/Theme";
 export * from "./Spacer/Spacer";
 export * from "./Hr/Hr";
 // UI Components
-export * from "./Dropdown/Dropdown";
-export * from "./Popup/Popup";
 export * from "./List/List";
 export * from "./ListItem/ListItem";
 export * from "./Table/Table";
@@ -35,8 +33,9 @@ export * from "./RadioButton/RadioButton";
 export * from "./CodeBox/CodeBox";
 // Utilities
 export * from "./Display/Display";
-export * from "./WithInteractions/WithInteractions";
-export * from "./WithDropdawn/WithDropdawn";
-export * from "./WithOverlay/WithOverlay";
-
 export * from "./RenderOnVisible/RenderOnVisible";
+export * from "./WithInteractions/WithInteractions";
+export * from "./WithOverlay/WithOverlay";
+// Overlays
+export * from "./Dropdown/Dropdown";
+export * from "./Popup/Popup";

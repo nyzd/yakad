@@ -8,9 +8,7 @@ import {
     H3,
     Popup,
     WithOverlay,
-    WithDropdawn,
     Dropdown,
-    WithInteractions,
     RenderOnVisible,
 } from "../../../../../packages/ui/src";
 
@@ -80,9 +78,6 @@ export default function Example1() {
                     >
                         <Button variant="filled">xxYxx</Button>
                     </WithOverlay>
-                    <WithDropdawn>
-                        <Button variant="outlined">Open Dropdawn</Button>
-                    </WithDropdawn>
                 </Card>
             </Container>
         </>

@@ -3,15 +3,18 @@
 import { forwardRef, useImperativeHandle, useRef, useState } from "react";
 import classNames from "classnames";
 import boxingStyles from "../boxing.module.css";
-import styles from "./RenderOnVisible.module.css";
-import { WithInteractions } from "../WithInteractions/WithInteractions";
+import { WithInteractions } from "..";
 import { BoxProps } from "../boxing";
 
-export interface RenderOnVisibleProps extends BoxProps {}
+export interface RenderOnVisibleProps
+    extends BoxProps,
+        React.HTMLAttributes<HTMLDivElement> {
+    children?: React.ReactNode;
+}
 
 export const RenderOnVisible = forwardRef<HTMLDivElement, RenderOnVisibleProps>(
     function RenderOnVisible(
-        { align, blur, fullWidth, className, style, children, ...restProps },
+        { align, fullWidth = true, className, style, children, ...restProps },
         forwardedRef
     ) {
         const localRef = useRef<HTMLDivElement>(null);
@@ -37,8 +40,7 @@ export const RenderOnVisible = forwardRef<HTMLDivElement, RenderOnVisibleProps>(
         const joinedClassNames = classNames(
             boxingStyles.flexColumnBox,
             { [boxingStyles[align as string]]: align },
-            { fullWidthLover: fullWidth },
-            { [styles.blur]: blur },
+            { fullWidth: fullWidth },
             className
         );
 
