@@ -1,0 +1,3 @@
+.notVisible > * {
+    display: none;
+}

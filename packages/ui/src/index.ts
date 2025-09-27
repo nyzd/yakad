@@ -33,7 +33,7 @@ export * from "./RadioButton/RadioButton";
 export * from "./CodeBox/CodeBox";
 // Utilities
 export * from "./Display/Display";
-export * from "./RenderOnVisible/RenderOnVisible";
+export * from "./DisplayOnVisible/DisplayOnVisible";
 export * from "./WithInteractions/WithInteractions";
 export * from "./WithOverlay/WithOverlay";
 // Overlays
