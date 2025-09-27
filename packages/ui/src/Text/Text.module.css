@@ -1,3 +1,12 @@
+.onSurfaceColor {
+    color: rgb(var(--onSurfaceColor, 28 27 31));
+    fill: rgb(var(--onSurfaceColor, 28 27 31));
+}
+.onSurfaceVariantColor {
+    color: rgb(var(--onSurfaceVariantColor, 73 69 78));
+    fill: rgb(var(--onSurfaceVariantColor, 73 69 78));
+}
+
 .text {
     margin: 0;
 }

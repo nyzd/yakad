@@ -334,7 +334,6 @@
     --surfaceContainerHighColor: var(--LightSurfaceContainerHighColor);
     --surfaceContainerHighestColor: var(--LightSurfaceContainerHighestColor);
     --onSurfaceColor: var(--LightOnSurfaceColor);
-    --onSurfaceRGBColor: var(--LightOnSurfaceRGBColor);
     --onSurfaceVariantColor: var(--LightOnSurfaceVariantColor);
     --outlineColor: var(--LightOutlineColor);
     --outlineVariantColor: var(--LightOutlineVariantColor);
@@ -364,7 +363,6 @@
     --surfaceContainerHighColor: var(--DarkSurfaceContainerHighColor);
     --surfaceContainerHighestColor: var(--DarkSurfaceContainerHighestColor);
     --onSurfaceColor: var(--DarkOnSurfaceColor);
-    --onSurfaceRGBColor: var(--DarkOnSurfaceRGBColor);
     --onSurfaceVariantColor: var(--DarkOnSurfaceVariantColor);
     --outlineColor: var(--DarkOutlineColor);
     --outlineVariantColor: var(--DarkOutlineVariantColor);
@@ -395,7 +393,6 @@
         --surfaceContainerHighColor: var(--DarkSurfaceContainerHighColor);
         --surfaceContainerHighestColor: var(--DarkSurfaceContainerHighestColor);
         --onSurfaceColor: var(--DarkOnSurfaceColor);
-        --onSurfaceRGBColor: var(--DarkOnSurfaceRGBColor);
         --onSurfaceVariantColor: var(--DarkOnSurfaceVariantColor);
         --outlineColor: var(--DarkOutlineColor);
         --outlineVariantColor: var(--DarkOutlineVariantColor);
