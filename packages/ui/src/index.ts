@@ -39,3 +39,5 @@ export * from "./WithOverlay/WithOverlay";
 // Overlays
 export * from "./Dropdown/Dropdown";
 export * from "./Popup/Popup";
+
+export * from "./LoadingControl/LoadingControl";

@@ -9,12 +9,25 @@ export interface RenderOnVisibleProps
     extends React.HTMLAttributes<HTMLDivElement> {
     align?: "start" | "space" | "center" | "end";
     fullWidth?: boolean;
+    render?: boolean;
+    onVisibilityChange?: (visible: boolean) => void;
+    onVisible?: () => void;
     children?: React.ReactNode;
 }
 
 export const RenderOnVisible = forwardRef<HTMLDivElement, RenderOnVisibleProps>(
     function RenderOnVisible(
-        { align, fullWidth = true, className, style, children, ...restProps },
+        {
+            align,
+            fullWidth = true,
+            render = true,
+            onVisibilityChange,
+            onVisible,
+            className,
+            style,
+            children,
+            ...restProps
+        },
         forwardedRef
     ) {
         const localRef = useRef<HTMLDivElement>(null);
@@ -29,12 +42,15 @@ export const RenderOnVisible = forwardRef<HTMLDivElement, RenderOnVisibleProps>(
 
         const handleOnVisible = () => {
             setBoxHeight(0);
+            onVisibilityChange?.(true);
+            onVisible?.();
         };
         const handleOnHidden = () => {
             if (localRef.current) {
                 const boxRect = localRef.current.getBoundingClientRect();
                 setBoxHeight(boxRect.height);
             }
+            onVisibilityChange?.(false);
         };
 
         const joinedClassNames = classNames(
@@ -55,7 +71,7 @@ export const RenderOnVisible = forwardRef<HTMLDivElement, RenderOnVisibleProps>(
                     className={joinedClassNames}
                     style={{ height: boxHeight || "auto", ...style }}
                 >
-                    {isVisible && children}
+                    {render && isVisible && children}
                 </div>
             </WithInteractions>
         );
