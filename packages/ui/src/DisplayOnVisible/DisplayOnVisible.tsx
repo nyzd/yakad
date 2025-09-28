@@ -11,6 +11,7 @@ export interface DisplayOnVisibleProps
     align?: "start" | "space" | "center" | "end";
     fullWidth?: boolean;
     onVisible?: () => void;
+    onHidden?: () => void;
     children?: React.ReactNode;
 }
 
@@ -22,6 +23,7 @@ export const DisplayOnVisible = forwardRef<
         align,
         fullWidth = true,
         onVisible,
+        onHidden,
         className,
         style,
         children,
@@ -45,6 +47,7 @@ export const DisplayOnVisible = forwardRef<
             const boxRect = localRef.current.getBoundingClientRect();
             setBoxHeight(boxRect.height);
         }
+        onHidden?.();
     };
 
     const joinedClassNames = classNames(
