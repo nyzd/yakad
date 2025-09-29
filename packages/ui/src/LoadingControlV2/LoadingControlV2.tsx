@@ -1,6 +1,6 @@
 "use client";
 
-import React, { forwardRef, useEffect, useMemo, useState } from "react";
+import React, { forwardRef, useEffect, useState } from "react";
 import classNames from "classnames";
 import boxingStyles from "../boxing.module.css";
 import { DisplayOnVisible } from "..";
@@ -35,6 +35,7 @@ export const LoadingControlV2 = forwardRef<
         useState<number>(3); // Min: default
     const extraLoading = maxTotalVisibledItems * 2;
 
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const [loadedItems, setLoadedItems] = useState<any[]>([
         React.cloneElement(children, {
             index: 0,

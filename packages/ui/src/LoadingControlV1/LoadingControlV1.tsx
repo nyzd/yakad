@@ -4,18 +4,18 @@ import React, { forwardRef, useEffect, useState } from "react";
 import classNames from "classnames";
 import boxingStyles from "../boxing.module.css";
 import { DisplayOnVisible } from "../DisplayOnVisible/DisplayOnVisible";
-import { Button } from "../Button/Button";
 import { Hr } from "../Hr/Hr";
+
+type LoadingControlV2Children = React.ReactElement<{
+    index?: number;
+}>;
 
 export interface LoadingControlV1Props
     extends React.HTMLAttributes<HTMLDivElement> {
     align?: "start" | "space" | "center" | "end";
     fullWidth?: boolean;
     loadingLimit?: number;
-    children: React.ReactElement<{
-        index?: number;
-        onLoad?: () => void;
-    }>;
+    children: LoadingControlV2Children;
 }
 
 export const LoadingControlV1 = forwardRef<
@@ -34,16 +34,17 @@ export const LoadingControlV1 = forwardRef<
 ) {
     const [maxLoadedItem, setMaxLoadedItem] = useState<number>(0);
     const [maxVisibledItem, setMaxVisibledItem] = useState<number>(0);
-    const [loadedItems, setLoadedItems] = useState<any[]>([
+    const [loadedItems, setLoadedItems] = useState<LoadingControlV2Children[]>([
         React.cloneElement(children, {
             index: 0,
         }),
     ]);
 
-    const handleOnVisible = (i: number) => {
-        if (maxVisibledItem < i) setMaxVisibledItem(i);
+    const handleOnVisible = (i?: number) => {
+        if (i !== undefined && maxVisibledItem < i) setMaxVisibledItem(i);
     };
 
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     useEffect(() => {
         if (maxLoadedItem < maxVisibledItem + 5) {
             const prevIndex = maxLoadedItem;
