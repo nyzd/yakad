@@ -11,7 +11,7 @@ import {
 import { mergeRefs } from "@yakad/lib";
 
 export interface OverlayProps {
-    triggerRef?: RefObject<HTMLElement | null>;
+    triggerref?: RefObject<HTMLElement | null>;
     onClose?: () => void;
 }
 type AllowedOverlays =
@@ -67,7 +67,7 @@ export function WithOverlay({
             {showOverlay &&
                 overlay &&
                 cloneElement(overlay, {
-                    triggerRef: triggerRef,
+                    triggerref: triggerRef,
                     onClose: () => {
                         overlay.props.onClose?.();
                         setShowOverlay(false);

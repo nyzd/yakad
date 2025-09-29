@@ -1,12 +1,12 @@
-import { Container, LoadingControl } from "../../../../packages/ui/src";
+import { Container, LoadingControlV2 } from "../../../../packages/ui/src";
 import { Time } from "./Time";
 
 export default function Page() {
     return (
         <Container size="md">
-            <LoadingControl>
+            <LoadingControlV2>
                 <Time />
-            </LoadingControl>
+            </LoadingControlV2>
         </Container>
     );
 }

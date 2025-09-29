@@ -200,7 +200,14 @@ export const Text = forwardRef<HTMLDivElement, TextProps>(function Text(
     { variant = "body5", color, className, children, ...restProps },
     ref
 ) {
-    const joinedClassNames = classNames(styles[variant as string], className);
+    const joinedClassNames = classNames(
+        styles[variant as string],
+        {
+            [styles.onSurfaceColor]: color === "onSurfaceColor",
+            [styles.onSurfaceVariantColor]: color === "onSurfaceVariantColor",
+        },
+        className
+    );
     return (
         <div ref={ref} {...restProps} className={joinedClassNames}>
             {children}

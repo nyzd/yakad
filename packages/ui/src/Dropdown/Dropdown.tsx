@@ -19,7 +19,7 @@ export const Dropdown = forwardRef<HTMLDivElement, DropdownProps>(
             fullWidth = false,
             blur,
             level = "high",
-            triggerRef,
+            triggerref,
             onClose,
             className,
             style,
@@ -31,7 +31,7 @@ export const Dropdown = forwardRef<HTMLDivElement, DropdownProps>(
         const fallbackTriggerRef = useRef<HTMLDivElement>(null);
         const dropdownRef = useRef<HTMLDivElement>(null);
 
-        const placementTargetRef = triggerRef || fallbackTriggerRef;
+        const placementTargetRef = triggerref || fallbackTriggerRef;
 
         // Let the parent access our DOM node
         useImperativeHandle(
@@ -111,7 +111,7 @@ export const Dropdown = forwardRef<HTMLDivElement, DropdownProps>(
 
         return (
             <>
-                {!triggerRef && <div ref={fallbackTriggerRef} />}
+                {!triggerref && <div ref={fallbackTriggerRef} />}
                 <WithInteractions onOutsideClick={onClose}>
                     <Card
                         ref={dropdownRef}

@@ -10,6 +10,7 @@ export interface DisplayOnVisibleProps
     extends React.HTMLAttributes<HTMLDivElement> {
     align?: "start" | "space" | "center" | "end";
     fullWidth?: boolean;
+    onVisibilityChange?: (visible: boolean) => void;
     onVisible?: () => void;
     onHidden?: () => void;
     children?: React.ReactNode;
@@ -22,6 +23,7 @@ export const DisplayOnVisible = forwardRef<
     {
         align,
         fullWidth = true,
+        onVisibilityChange,
         onVisible,
         onHidden,
         className,
@@ -40,6 +42,7 @@ export const DisplayOnVisible = forwardRef<
 
     const handleOnVisible = () => {
         setBoxHeight(0);
+        onVisibilityChange?.(true);
         onVisible?.();
     };
     const handleOnHidden = () => {
@@ -47,6 +50,7 @@ export const DisplayOnVisible = forwardRef<
             const boxRect = localRef.current.getBoundingClientRect();
             setBoxHeight(boxRect.height);
         }
+        onVisibilityChange?.(false);
         onHidden?.();
     };
 

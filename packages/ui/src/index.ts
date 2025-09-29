@@ -33,11 +33,14 @@ export * from "./RadioButton/RadioButton";
 export * from "./CodeBox/CodeBox";
 // Utilities
 export * from "./Display/Display";
-export * from "./DisplayOnVisible/DisplayOnVisible";
 export * from "./WithInteractions/WithInteractions";
 export * from "./WithOverlay/WithOverlay";
 // Overlays
 export * from "./Dropdown/Dropdown";
 export * from "./Popup/Popup";
 
-export * from "./LoadingControl/LoadingControl";
+// Loading Control
+export * from "./LoadingControlV1/LoadingControlV1";
+export * from "./LoadingControlV2/LoadingControlV2";
+export * from "./DisplayOnVisible/DisplayOnVisible";
+export * from "./RenderOnVisible/RenderOnVisible";
