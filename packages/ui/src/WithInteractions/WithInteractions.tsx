@@ -29,6 +29,7 @@ export interface WithInteractionsProps {
     onScrollStop?: () => void;
 
     onResize?: (entry: ResizeObserverEntry) => void;
+    onVisibilityChange?: (visible: boolean) => void;
     onVisible?: () => void;
     onHidden?: () => void;
     onMouseHoverStart?: (e: MouseEvent) => void;
@@ -55,6 +56,7 @@ export const WithInteractions = forwardRef<HTMLElement, WithInteractionsProps>(
             onScrollStart,
             onScrollStop,
             onResize,
+            onVisibilityChange,
             onVisible,
             onHidden,
             onMouseHoverStart,
@@ -232,9 +234,10 @@ export const WithInteractions = forwardRef<HTMLElement, WithInteractionsProps>(
 
             // === VISIBILITY OBSERVER ===
             let intersectionObserver: IntersectionObserver | null = null;
-            if (onVisible || onHidden) {
+            if (onVisibilityChange || onVisible || onHidden) {
                 intersectionObserver = new IntersectionObserver((entries) => {
                     entries[0].isIntersecting ? onVisible?.() : onHidden?.();
+                    onVisibilityChange?.(entries[0].isIntersecting);
                 });
                 intersectionObserver.observe(el);
                 cleanupFns.push(() => intersectionObserver?.disconnect());
@@ -295,6 +298,7 @@ export const WithInteractions = forwardRef<HTMLElement, WithInteractionsProps>(
             onScrollStart,
             onScrollStop,
             onResize,
+            onVisibilityChange,
             onVisible,
             onHidden,
             onMouseHoverStart,

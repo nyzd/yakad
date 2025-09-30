@@ -1,12 +1,17 @@
-import { Container, LoadingControlV2 } from "../../../../packages/ui/src";
+import { Container, LoadingControlV4 } from "../../../../packages/ui/src";
 import { Time } from "./Time";
 
 export default function Page() {
     return (
         <Container size="md">
-            <LoadingControlV2>
+            {/* <LoadingControl>
                 <Time />
-            </LoadingControlV2>
+            </LoadingControl> */}
+            <LoadingControlV4>
+                {Array.from({ length: 100 }).map((_, i) => (
+                    <Time key={i} index={i} />
+                ))}
+            </LoadingControlV4>
         </Container>
     );
 }

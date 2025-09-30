@@ -40,7 +40,8 @@ export * from "./Dropdown/Dropdown";
 export * from "./Popup/Popup";
 
 // Loading Control
-export * from "./LoadingControlV1/LoadingControlV1";
-export * from "./LoadingControlV2/LoadingControlV2";
+export * from "./LoadingControl/LoadingControl";
+export * from "./LoadingControlV3/LoadingControlV3";
+export * from "./LoadingControlV4/LoadingControlV4";
 export * from "./DisplayOnVisible/DisplayOnVisible";
 export * from "./RenderOnVisible/RenderOnVisible";

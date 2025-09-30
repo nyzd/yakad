@@ -9,6 +9,7 @@ import {
     WithInteractions,
 } from "..";
 import { mergeRefs } from "@yakad/lib";
+import { createPortal } from "react-dom";
 
 export interface OverlayProps {
     triggerref?: RefObject<HTMLElement | null>;
@@ -66,13 +67,17 @@ export function WithOverlay({
             </WithInteractions>
             {showOverlay &&
                 overlay &&
-                cloneElement(overlay, {
-                    triggerref: triggerRef,
-                    onClose: () => {
-                        overlay.props.onClose?.();
-                        setShowOverlay(false);
-                    },
-                })}
+                createPortal(
+                    cloneElement(overlay, {
+                        triggerref: triggerRef,
+                        onClose: () => {
+                            overlay.props.onClose?.();
+                            setShowOverlay(false);
+                        },
+                    }),
+                    document.getElementsByClassName("portalRoot")[0] ||
+                        document.body
+                )}
         </>
     );
 }
