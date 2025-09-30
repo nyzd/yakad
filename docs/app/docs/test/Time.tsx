@@ -2,14 +2,20 @@
 
 import React, { useEffect } from "react";
 import ServerFetchData from "./ServerFetchData";
-import { LoadingControlV3ChildrenProps } from "../../../../packages/ui/src";
 
-export const Time = ({ index, onLoad }: LoadingControlV3ChildrenProps) => {
+export interface TimeProps {
+    index?: number;
+    onLoad?: () => void;
+}
+
+export const Time = ({ index, onLoad }: TimeProps) => {
     useEffect(() => {
         onLoad?.();
     }, [onLoad]);
 
-    console.log("Im a Time that Rendered!");
+    useEffect(() => {
+        console.log("Im a Time that Rendered! index:", index);
+    }, []);
 
     return (
         <div>

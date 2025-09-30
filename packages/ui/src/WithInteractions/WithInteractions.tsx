@@ -65,7 +65,7 @@ export const WithInteractions = forwardRef<HTMLElement, WithInteractionsProps>(
         },
         forwardedRef
     ) {
-        const localRef = useRef<HTMLElement>(null);
+        const localRef = useRef<HTMLDivElement>(null);
 
         // Let the parent access our DOM node
         useImperativeHandle(
@@ -306,6 +306,8 @@ export const WithInteractions = forwardRef<HTMLElement, WithInteractionsProps>(
         ]);
 
         if (!isValidElement(children)) return null;
+
+        return <div ref={localRef}>{children}</div>;
 
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
         return cloneElement(children as React.ReactElement<any, any>, {
