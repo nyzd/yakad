@@ -2,25 +2,22 @@
 
 import React, { forwardRef, useEffect, useState } from "react";
 import classNames from "classnames";
-import { DisplayOnVisible, RenderOnVisible, WithInteractions } from "..";
+import { WithInteractions } from "..";
 import boxingStyles from "../boxing.module.css";
-
-export interface LoadingControlV4ChildrenProps {
-    onLoad?: () => void;
-}
 
 export interface LoadingControlV4Props
     extends React.HTMLAttributes<HTMLDivElement> {
     align?: "start" | "space" | "center" | "end";
     fullWidth?: boolean;
-    children: React.ReactElement<LoadingControlV4ChildrenProps>[];
+    renderLimit?: number;
+    children: React.ReactElement[];
 }
 
 export const LoadingControlV4 = forwardRef<
     HTMLDivElement,
     LoadingControlV4Props
 >(function LoadingControlV4(
-    { align, fullWidth = true, className, children, ...restProps },
+    { align, fullWidth = true, renderLimit, className, children, ...restProps },
     ref
 ) {
     // Collect Visibility Data
@@ -57,20 +54,33 @@ export const LoadingControlV4 = forwardRef<
     const [lowestRenderedChild, setLowestRenderedChild] = useState<number>(0);
     const [highestRenderedChild, setHighestRenderedChild] = useState<number>(1);
 
-    const renderArray = (
-        childrenArray as React.ReactElement<LoadingControlV4ChildrenProps>[]
-    ).slice(lowestRenderedChild, highestRenderedChild);
+    const renderArray = childrenArray.slice(
+        lowestRenderedChild,
+        highestRenderedChild
+    );
 
     useEffect(() => {
-        if (lowestVisibleChildIndex - lowestRenderedChild < extraLoading) {
-            setLowestRenderedChild(Math.max(0, lowestRenderedChild - 1));
+        const overLoadededOnBottom =
+            lowestVisibleChildIndex - lowestRenderedChild;
+        const overLoadededOnTop =
+            highestRenderedChild - highestVisibleChildIndex;
+
+        if (
+            renderArray.length <=
+            (renderLimit ? renderLimit : childrenArray.length)
+        ) {
+            if (overLoadededOnBottom < extraLoading) {
+                setLowestRenderedChild(Math.max(0, lowestRenderedChild - 1));
+                console.log("1 Item added to BOTTOM");
+            }
+            if (overLoadededOnTop < extraLoading) {
+                setHighestRenderedChild(
+                    Math.min(childrenArray.length, highestRenderedChild + 1)
+                );
+                console.log("1 Item added to TOP");
+            }
         }
-        if (highestRenderedChild - highestVisibleChildIndex < extraLoading) {
-            setHighestRenderedChild(
-                Math.min(childrenArray.length, highestRenderedChild + 1)
-            );
-        }
-    }, [visibleIndexes]);
+    }, [visibleIndexes, renderLimit]);
 
     console.log(
         "L:",
