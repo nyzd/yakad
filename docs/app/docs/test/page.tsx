@@ -6,7 +6,7 @@ import { LoadingPages } from "./LoadPages";
 export default function Page() {
     return (
         <Container size="md">
-            <LoadingPages />
+            <LoadingPages jump={20} />
         </Container>
     );
 }

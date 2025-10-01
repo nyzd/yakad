@@ -14,8 +14,9 @@ export const Time = ({ index, onLoad }: TimeProps) => {
     }, [onLoad]);
 
     useEffect(() => {
-        console.log("Im a Time that Rendered! index:", index);
+        console.log("Im a Time that Loaded for first time! index:", index);
     }, []);
+    // console.log("Im a Time that Rendered! index:", index);
 
     return (
         <div>
