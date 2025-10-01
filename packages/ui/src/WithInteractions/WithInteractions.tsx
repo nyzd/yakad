@@ -35,7 +35,7 @@ export interface WithInteractionsProps {
     onMouseHoverStart?: (e: MouseEvent) => void;
     onMouseHoverLeave?: (e: MouseEvent) => void;
 
-    children?: React.ReactElement;
+    children?: React.ReactNode;
 }
 
 export const WithInteractions = forwardRef<HTMLElement, WithInteractionsProps>(
