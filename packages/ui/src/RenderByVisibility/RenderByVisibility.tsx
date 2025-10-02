@@ -1,0 +1,142 @@
+"use client";
+
+import React, { forwardRef, useEffect, useRef, useState } from "react";
+import { Stack, StackProps, WithInteractions } from "..";
+
+export interface RenderByVisibilityProps extends StackProps {
+    scrollMarginTop?: number;
+    extraRender?: number;
+    jumpToIndex?: number;
+    stopNewRenders?: boolean;
+    newChildRendered?: (index: number) => void;
+    children?: React.ReactNode;
+}
+
+const data = Array.from({ length: 78 });
+
+export const RenderByVisibility = forwardRef<
+    HTMLDivElement,
+    RenderByVisibilityProps
+>(function RenderByVisibility(
+    {
+        scrollMarginTop = 2,
+        extraRender = 5,
+        jumpToIndex = 0,
+        stopNewRenders,
+        newChildRendered,
+        style,
+        children,
+        ...restProps
+    },
+    ref
+) {
+    const childrenArray = React.Children.toArray(children);
+
+    // Scroll Zone
+    const childRefs = useRef<Record<number, HTMLElement | null>>({});
+    const scrollTo = (i: number, smooth?: boolean) =>
+        childRefs.current[i]?.scrollIntoView({
+            behavior: smooth ? "smooth" : "auto",
+        });
+
+    // Collect Visibled Childs
+    const [visibled, setVisibled] = useState<{
+        lowest: number;
+        highest: number;
+    }>({ lowest: jumpToIndex, highest: jumpToIndex });
+    const handleOnVisible = (i: number) => {
+        if (i < visibled.lowest) setVisibled({ ...visibled, lowest: i });
+        if (i > visibled.highest) setVisibled({ ...visibled, highest: i });
+    };
+
+    // Collect Rendered Childs
+    const [rendered, setRendered] = useState<{
+        lowest: number;
+        highest: number;
+    }>({ lowest: jumpToIndex, highest: jumpToIndex });
+    const overRenderedOnLowSide = visibled.lowest - rendered.lowest;
+    const overRenderedOnHighSide = rendered.highest - visibled.highest;
+
+    // Is Visible Loading Box
+    const [isVisibleLowSideLoadingBox, setIsVisibleLowSideLoadingBox] =
+        useState<boolean>(false);
+
+    // Render new Childs if needed
+    useEffect(() => {
+        if (!stopNewRenders) {
+            if (overRenderedOnHighSide <= overRenderedOnLowSide) {
+                if (
+                    rendered.highest < data.length &&
+                    overRenderedOnHighSide < extraRender
+                ) {
+                    setRendered({ ...rendered, highest: rendered.highest + 1 });
+                    newChildRendered?.(rendered.highest + 1);
+                }
+            } else {
+                if (
+                    rendered.lowest > 0 &&
+                    overRenderedOnLowSide < extraRender
+                ) {
+                    if (isVisibleLowSideLoadingBox) {
+                        scrollTo(rendered.lowest);
+                    }
+                    setRendered({ ...rendered, lowest: rendered.lowest - 1 });
+                    newChildRendered?.(rendered.lowest - 1);
+                }
+            }
+        }
+        // eslint-disable-next-line
+    }, [visibled, rendered, extraRender, stopNewRenders]);
+
+    // Scroll to jumpToIndex
+    useEffect(() => {
+        const isJumpToIndexOutOfRenderedRange =
+            jumpToIndex < rendered.lowest || jumpToIndex > rendered.highest;
+        if (isJumpToIndexOutOfRenderedRange) {
+            setVisibled({ lowest: jumpToIndex, highest: jumpToIndex });
+            setRendered({ lowest: jumpToIndex, highest: jumpToIndex });
+        }
+        const timeout = setTimeout(() => {
+            scrollTo(jumpToIndex, true);
+        }, 300);
+        return () => clearTimeout(timeout);
+        // eslint-disable-next-line
+    }, [jumpToIndex]);
+
+    // console.log("visibled", visibled);
+    // console.log("rendered", rendered);
+    // console.log("stopNewRenders", stopNewRenders);
+
+    return (
+        <Stack
+            ref={ref}
+            {...restProps}
+            style={{ minHeight: "100vh", ...style }}
+        >
+            {rendered.lowest > 0 && (
+                <WithInteractions
+                    style={{
+                        marginBottom: `${scrollMarginTop}rem`,
+                    }}
+                    onVisibilityChange={(v) => setIsVisibleLowSideLoadingBox(v)}
+                />
+            )}
+            {childrenArray.map(
+                (child, i) =>
+                    i >= rendered.lowest &&
+                    i <= rendered.highest && (
+                        <WithInteractions
+                            key={i}
+                            ref={(el) => {
+                                childRefs.current[i] = el;
+                            }}
+                            onVisible={() => handleOnVisible(i)}
+                            style={{ scrollMarginTop: `${scrollMarginTop}rem` }}
+                        >
+                            {child}
+                        </WithInteractions>
+                    )
+            )}
+        </Stack>
+    );
+});

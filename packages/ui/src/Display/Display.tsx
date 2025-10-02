@@ -1,8 +1,11 @@
 import { forwardRef } from "react";
 import classNames from "classnames";
+import boxingStyles from "../boxing.module.css";
 import styles from "./Display.module.css";
 
-export interface DisplayProps extends React.HTMLAttributes<HTMLElement> {
+export interface DisplayProps extends React.HTMLAttributes<HTMLDivElement> {
+    align?: "start" | "space" | "center" | "end";
+    fullWidth?: boolean;
     minWidth?: "xs" | "sm" | "md" | "lg" | "xl";
     maxWidth?: "xs" | "sm" | "md" | "lg" | "xl";
     children?: React.ReactNode;
@@ -10,11 +13,21 @@ export interface DisplayProps extends React.HTMLAttributes<HTMLElement> {
 
 export const Display = forwardRef<HTMLDivElement, DisplayProps>(
     function Display(
-        { minWidth, maxWidth, className, children, ...restProps },
+        {
+            align,
+            fullWidth = true,
+            minWidth,
+            maxWidth,
+            className,
+            children,
+            ...restProps
+        },
         ref
     ) {
         const joinedClassNames = classNames(
-            { fullWidthLover: true },
+            boxingStyles.flexColumnBox,
+            { [boxingStyles[align as string]]: align },
+            { fullWidth: fullWidth },
             { [styles[`${minWidth}MinWidth`]]: minWidth },
             { [styles[`${maxWidth}MaxWidth`]]: maxWidth },
             className

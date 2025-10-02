@@ -21,8 +21,8 @@
     justify-content: flex-end;
     align-items: flex-end;
 }
-/* fullWidthLover */
-.flexColumnBox > :global(.fullWidthLover) {
+/* Full Width Childs */
+.flexColumnBox > :global(.fullWidth) {
     width: 100%;
 }
 

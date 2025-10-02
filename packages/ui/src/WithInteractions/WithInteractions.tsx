@@ -1,16 +1,9 @@
 "use client";
 
-import { mergeRefs } from "@yakad/lib";
-import {
-    cloneElement,
-    forwardRef,
-    isValidElement,
-    useEffect,
-    useImperativeHandle,
-    useRef,
-} from "react";
+import { forwardRef, useEffect, useImperativeHandle, useRef } from "react";
+import { Stack, StackProps } from "../Stack/Stack";
 
-export interface WithInteractionsProps {
+export interface WithInteractionsProps extends StackProps {
     onRightClick?: (e: MouseEvent) => void;
     onTap?: (e: TouchEvent) => void;
     onDoubleTap?: (e: TouchEvent) => void;
@@ -29,12 +22,13 @@ export interface WithInteractionsProps {
     onScrollStop?: () => void;
 
     onResize?: (entry: ResizeObserverEntry) => void;
+    onVisibilityChange?: (visible: boolean) => void;
     onVisible?: () => void;
     onHidden?: () => void;
     onMouseHoverStart?: (e: MouseEvent) => void;
     onMouseHoverLeave?: (e: MouseEvent) => void;
 
-    children?: React.ReactElement;
+    children?: React.ReactNode;
 }
 
 export const WithInteractions = forwardRef<HTMLElement, WithInteractionsProps>(
@@ -55,6 +49,7 @@ export const WithInteractions = forwardRef<HTMLElement, WithInteractionsProps>(
             onScrollStart,
             onScrollStop,
             onResize,
+            onVisibilityChange,
             onVisible,
             onHidden,
             onMouseHoverStart,
@@ -63,7 +58,7 @@ export const WithInteractions = forwardRef<HTMLElement, WithInteractionsProps>(
         },
         forwardedRef
     ) {
-        const localRef = useRef<HTMLElement>(null);
+        const localRef = useRef<HTMLDivElement>(null);
 
         // Let the parent access our DOM node
         useImperativeHandle(
@@ -232,9 +227,10 @@ export const WithInteractions = forwardRef<HTMLElement, WithInteractionsProps>(
 
             // === VISIBILITY OBSERVER ===
             let intersectionObserver: IntersectionObserver | null = null;
-            if (onVisible || onHidden) {
+            if (onVisibilityChange || onVisible || onHidden) {
                 intersectionObserver = new IntersectionObserver((entries) => {
                     entries[0].isIntersecting ? onVisible?.() : onHidden?.();
+                    onVisibilityChange?.(entries[0].isIntersecting);
                 });
                 intersectionObserver.observe(el);
                 cleanupFns.push(() => intersectionObserver?.disconnect());
@@ -295,23 +291,17 @@ export const WithInteractions = forwardRef<HTMLElement, WithInteractionsProps>(
             onScrollStart,
             onScrollStop,
             onResize,
+            onVisibilityChange,
             onVisible,
             onHidden,
             onMouseHoverStart,
             onMouseHoverLeave,
         ]);
 
-        if (!isValidElement(children)) return null;
-
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        return cloneElement(children as React.ReactElement<any, any>, {
-            ...restProps,
-            ref: mergeRefs(
-                localRef,
-                forwardedRef,
-                // eslint-disable-next-line @typescript-eslint/no-explicit-any
-                (children as any).props?.ref
-            ),
-        });
+        return (
+            <Stack ref={localRef} {...restProps}>
+                {children}
+            </Stack>
+        );
     }
 );

@@ -14,8 +14,8 @@ import {
     Tbody,
     Td,
 } from "@yakad/ui";
-import LogoIcon from "@/app/logoicon";
 import { Symbol } from "@yakad/symbols";
+import LogoIcon from "@/app/logoicon";
 
 export default function Page() {
     return (

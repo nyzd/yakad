@@ -2,12 +2,12 @@
     position: fixed;
     max-width: 100%;
     padding: 1rem 0;
-    z-index: 3;
     background: rgb(var(--surfaceContainerColor, 243 237 247));
     color: rgb(var(--onSurfaceColor, 28 27 31));
     fill: rgb(var(--onSurfaceColor, 28 27 31));
     transition: transform 0.3s;
     overflow-y: auto;
+    z-index: 3;
 }
 
 .auto,
@@ -17,7 +17,7 @@
     width: 21.9rem;
     height: calc(100% - 6rem);
     max-height: 100%;
-    border-inline-end: 0.2rem solid #7d7d7d40;
+    border-inline-end: 0.2rem solid rgb(var(--outlineColor, 121 116 126));
     transform: translate(-100%, 0);
 }
 [dir="rtl"] .auto,
@@ -27,7 +27,8 @@
     width: 21.9rem;
     height: calc(100% - 6rem);
     max-height: 100%;
-    border-inline-end: 0.2rem solid #7d7d7d40;
+    border-inline-end: 0.2rem solid rgb(var(--outlineColor, 121 116 126));
+
     transform: translate(100%, 0);
 }
 
@@ -35,14 +36,14 @@
     top: 0;
     width: 100%;
     height: auto;
-    border-bottom: 0.2rem solid #7d7d7d40;
+    border-bottom: 0.2rem solid rgb(var(--outlineColor, 121 116 126));
     transform: translate(0, -100%);
 }
 .bottom {
     bottom: 0;
     width: 100%;
     height: auto;
-    border-top: 0.2rem solid #7d7d7d40;
+    border-top: 0.2rem solid rgb(var(--outlineColor, 121 116 126));
     transform: translate(0, 100%);
 }
 

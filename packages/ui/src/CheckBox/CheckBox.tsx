@@ -12,7 +12,7 @@ export interface CheckBoxProps
 export const CheckBox = forwardRef<HTMLInputElement, CheckBoxProps>(
     function CheckBox({ label, className, style, ...restProps }, ref) {
         const joinedClassNames = classNames(
-            { fullWidthLover: label },
+            { fullWidth: label },
             styles.label,
             { [styles.labeled]: label },
             { [styles.disabled]: restProps.disabled },

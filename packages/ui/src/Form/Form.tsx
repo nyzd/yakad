@@ -5,17 +5,18 @@ import boxingStyles from "../boxing.module.css";
 
 export interface FormProps extends React.HTMLAttributes<HTMLFormElement> {
     align?: "start" | "space" | "center" | "end";
+    fullWidth?: boolean;
     children?: React.ReactNode;
 }
 
 export const Form = forwardRef<HTMLFormElement, FormProps>(function Form(
-    { align, className, children, ...restProps },
+    { align, fullWidth = true, className, children, ...restProps },
     ref
 ) {
     const joinedClassNames = classNames(
         boxingStyles.flexColumnBox,
         { [boxingStyles[align as string]]: align },
-        { fullWidthLover: true },
+        { fullWidth: fullWidth },
         styles.form,
         className
     );

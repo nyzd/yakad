@@ -2,9 +2,8 @@ import { forwardRef } from "react";
 import classNames from "classnames";
 import styles from "./Spacer.module.css";
 
-type ExcludedTypes = "children";
 export interface SpacerProps
-    extends Omit<React.HTMLAttributes<HTMLDivElement>, ExcludedTypes> {}
+    extends Omit<React.HTMLAttributes<HTMLDivElement>, "children"> {}
 
 export const Spacer = forwardRef<HTMLDivElement, SpacerProps>(function Spacer(
     { className, ...restProps },

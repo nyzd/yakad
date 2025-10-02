@@ -33,12 +33,7 @@ export const Select = forwardRef<HTMLSelectElement, SelectProps>(
         );
 
         return (
-            <div
-                className={classNames(
-                    { fullWidthLover: true },
-                    inputStyles.div
-                )}
-            >
+            <div className={classNames({ fullWidth: true }, inputStyles.div)}>
                 <select ref={ref} {...restProps} className={joinedClassNames}>
                     {children}
                 </select>

@@ -12,14 +12,13 @@
         "typecheck": "npm run typecheck --workspaces",
         "test": "npm run test --workspaces",
         "prepublish:check": "npm run lint && npm run build && npm run typecheck && npm run test",
-        "publish:eslint-plugin-guard": "npm i && npm run newPublish --prefix packages/eslint-plugin-guard",
-        "publish:lib": "npm i && npm run newPublish --prefix packages/lib",
-        "publish:sync": "npm i && npm run newPublish --prefix packages/sync",
-        "publish:symbols": "npm i && npm run newPublish --prefix packages/symbols",
-        "publish:ui": "npm i && npm run newPublish --prefix packages/ui",
-        "publish:x": "npm i && npm run newPublish --prefix packages/x.",
-        "idev:docs": "npm run idev --prefix docs",
-        "ldev:docs": "npm run build && cd docs && npm run ldev"
+        "publish:eslint-plugin-guard": "npm i && cd packages/eslint-plugin-guard && npm publish",
+        "publish:lib": "npm i && cd packages/lib && npm publish",
+        "publish:sync": "npm i && cd packages/sync && npm publish",
+        "publish:symbols": "npm i && cd packages/symbols && npm publish",
+        "publish:ui": "npm i && cd packages/ui && npm publish",
+        "publish:x": "npm i && cd packages/x && npm publish",
+        "idev:docs": "cd docs && npm run idev"
     },
     "devDependencies": {
         "@types/jest": "^30.0.0",

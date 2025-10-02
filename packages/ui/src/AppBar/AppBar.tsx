@@ -7,8 +7,8 @@ import styles from "./AppBar.module.css";
 
 export interface AppBarProps extends React.HTMLAttributes<HTMLDivElement> {
     align?: "start" | "space" | "center" | "end";
-    overflow?: "shrink" | "wrap" | "scroll";
     position?: "initial" | "sticky" | "scroll";
+    overflow?: "shrink" | "wrap" | "scroll";
     size?: "xs" | "sm" | "md" | "lg" | "xl";
     blur?: boolean;
     children?: React.ReactNode;
