@@ -95,7 +95,9 @@ export const RenderByVisibility = forwardRef<
             setVisibled({ lowest: jumpToIndex, highest: jumpToIndex });
             setRendered({ lowest: jumpToIndex, highest: jumpToIndex });
         }
-        scrollTo(jumpToIndex);
+        const timeout = setTimeout(() => {
+            scrollTo(jumpToIndex, true);
+        }, 300);
     }, [jumpToIndex]);
 
     // console.log("visibled", visibled);
@@ -111,8 +113,6 @@ export const RenderByVisibility = forwardRef<
             {rendered.lowest > 0 && (
                 <WithInteractions
                     style={{
-                        height: "1px",
-                        background: "red",
                         marginBottom: `${scrollMarginTop}rem`,
                     }}
                     onVisibilityChange={(v) => setIsVisibleLowSideLoadingBox(v)}

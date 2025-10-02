@@ -18,8 +18,8 @@ export const Time = ({ index, onLoad, children }: TimeProps) => {
         const timeout = setTimeout(() => {
             setLoaded(true);
             onLoad?.();
-            // console.log("Im a Child that Loaded for first time! index:", index);
-        }, 3000);
+            console.log("Im a Child that Loaded for first time! index:", index);
+        }, 1000);
 
         // console.log("Rendered:", index);
 

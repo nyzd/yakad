@@ -17,6 +17,7 @@ export default function Page() {
     return (
         <Container size="md">
             <RenderByVisibility
+                scrollMarginTop={12}
                 jumpToIndex={jumpToIndex}
                 stopNewRenders={loadingInProgress}
                 newChildRendered={() => setLoadingInProgress(true)}
