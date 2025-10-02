@@ -4,6 +4,7 @@ import React, { forwardRef, useEffect, useRef, useState } from "react";
 import { Stack, StackProps, WithInteractions } from "..";
 
 export interface RenderByVisibilityProps extends StackProps {
+    scrollMarginTop?: number;
     extraRender?: number;
     jumpToIndex?: number;
     stopNewRenders?: boolean;
@@ -18,6 +19,7 @@ export const RenderByVisibility = forwardRef<
     RenderByVisibilityProps
 >(function RenderByVisibility(
     {
+        scrollMarginTop = 2,
         extraRender = 5,
         jumpToIndex = 0,
         stopNewRenders,
@@ -111,7 +113,7 @@ export const RenderByVisibility = forwardRef<
                     style={{
                         height: "1px",
                         background: "red",
-                        marginBottom: `${300}px`,
+                        marginBottom: `${scrollMarginTop}rem`,
                     }}
                     onVisibilityChange={(v) => setIsVisibleLowSideLoadingBox(v)}
                 />
@@ -126,7 +128,7 @@ export const RenderByVisibility = forwardRef<
                                 childRefs.current[i] = el;
                             }}
                             onVisible={() => handleOnVisible(i)}
-                            style={{ scrollMarginTop: `${200}px` }}
+                            style={{ scrollMarginTop: `${scrollMarginTop}rem` }}
                         >
                             {child}
                         </WithInteractions>

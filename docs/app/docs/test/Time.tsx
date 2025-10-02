@@ -19,14 +19,18 @@ export const Time = ({ index, onLoad, children }: TimeProps) => {
             setLoaded(true);
             onLoad?.();
             // console.log("Im a Child that Loaded for first time! index:", index);
-        }, 500);
+        }, 3000);
 
         // console.log("Rendered:", index);
 
         return () => clearTimeout(timeout);
     }, []);
 
-    if (!loaded) return <LoadingIcon size="extraLarge" variant="dots" />;
+    if (!loaded)
+        return (
+            // <div style={{ height: "10px", background: "red" }} />;
+            <LoadingIcon size="extraLarge" variant="dots" />
+        );
 
     if (loaded)
         return (

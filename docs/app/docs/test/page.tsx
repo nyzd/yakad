@@ -15,14 +15,9 @@ export default function Page() {
     const [jumpToIndex, setjumpToIndex] = useState<number>(0);
 
     return (
-        <Container
-            size="md"
-            //  style={{ padding: 0 }}
-        >
+        <Container size="md">
             <RenderByVisibility
-                extraRender={2}
-                // jumpToIndex={jumpToIndex}
-                jumpToIndex={70}
+                jumpToIndex={jumpToIndex}
                 stopNewRenders={loadingInProgress}
                 newChildRendered={() => setLoadingInProgress(true)}
             >
