@@ -85,7 +85,8 @@ export const RenderByVisibility = forwardRef<
                 }
             }
         }
-    }, [visibled, rendered, stopNewRenders]);
+        // eslint-disable-next-line
+    }, [visibled, rendered, extraRender, stopNewRenders]);
 
     // Scroll to jumpToIndex
     useEffect(() => {
@@ -98,6 +99,8 @@ export const RenderByVisibility = forwardRef<
         const timeout = setTimeout(() => {
             scrollTo(jumpToIndex, true);
         }, 300);
+        return () => clearTimeout(timeout);
+        // eslint-disable-next-line
     }, [jumpToIndex]);
 
     // console.log("visibled", visibled);

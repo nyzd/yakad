@@ -5,18 +5,17 @@ import styles from "./Stack.module.css";
 
 export interface StackProps extends React.HTMLAttributes<HTMLDivElement> {
     align?: "start" | "space" | "center" | "end";
-    fullWidth?: boolean;
     children?: React.ReactNode;
 }
 
 export const Stack = forwardRef<HTMLDivElement, StackProps>(function Stack(
-    { align, fullWidth = true, className, children, ...restProps },
+    { align, className, children, ...restProps },
     ref
 ) {
     const joinedClassNames = classNames(
         boxingStyles.flexColumnBox,
         { [boxingStyles[align as string]]: align },
-        { fullWidth: fullWidth },
+        { fullWidthLover: true },
         styles.stack,
         className
     );

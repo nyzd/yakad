@@ -1,14 +1,6 @@
 "use client";
 
-import { mergeRefs } from "@yakad/lib";
-import {
-    cloneElement,
-    forwardRef,
-    isValidElement,
-    useEffect,
-    useImperativeHandle,
-    useRef,
-} from "react";
+import { forwardRef, useEffect, useImperativeHandle, useRef } from "react";
 import { Stack, StackProps } from "../Stack/Stack";
 
 export interface WithInteractionsProps extends StackProps {
