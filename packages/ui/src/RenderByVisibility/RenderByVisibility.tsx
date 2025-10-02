@@ -31,10 +31,7 @@ export const RenderByVisibility = forwardRef<
 
     // Scroll Zone
     const childRefs = useRef<Record<number, HTMLElement | null>>({});
-    const scrollTo = (i: number) =>
-        childRefs.current[i]?.scrollIntoView({
-            behavior: "smooth",
-        });
+    const scrollTo = (i: number) => childRefs.current[i]?.scrollIntoView({});
 
     // Collect Visibled Childs
     const [visibled, setVisibled] = useState<{
@@ -54,6 +51,12 @@ export const RenderByVisibility = forwardRef<
     const overRenderedOnLowSide = visibled.lowest - rendered.lowest;
     const overRenderedOnHighSide = rendered.highest - visibled.highest;
 
+    // Is Visible Loading Box
+    const [isVisibleLowSideLoadingBox, setIsVisibleLowSideLoadingBox] =
+        useState<boolean>(false);
+    const [isVisibleHighSideLoadingBox, setIsVisibleHighSideLoadingBox] =
+        useState<boolean>(false);
+
     // Render new Childs if needed
     useEffect(() => {
         if (!stopNewRenders) {
@@ -70,9 +73,11 @@ export const RenderByVisibility = forwardRef<
                     rendered.lowest > 0 &&
                     overRenderedOnLowSide < extraRender
                 ) {
+                    if (isVisibleLowSideLoadingBox) {
+                        scrollTo(rendered.lowest);
+                    }
                     setRendered({ ...rendered, lowest: rendered.lowest - 1 });
                     newChildRendered?.(rendered.lowest - 1);
-                    if (overRenderedOnLowSide === 0) scrollTo(visibled.lowest);
                 }
             }
         }
@@ -80,8 +85,13 @@ export const RenderByVisibility = forwardRef<
 
     // Scroll to jumpToIndex
     useEffect(() => {
-        childRefs.current[jumpToIndex]?.scrollIntoView({ behavior: "smooth" });
-        console.log("SCROLL TO JUMPToIndex:", jumpToIndex);
+        const isJumpToIndexOutOfRenderedRange =
+            jumpToIndex < rendered.lowest || jumpToIndex > rendered.highest;
+        if (isJumpToIndexOutOfRenderedRange) {
+            setVisibled({ lowest: jumpToIndex, highest: jumpToIndex });
+            setRendered({ lowest: jumpToIndex, highest: jumpToIndex });
+        }
+        scrollTo(jumpToIndex);
     }, [jumpToIndex]);
 
     // console.log("visibled", visibled);
@@ -90,22 +100,14 @@ export const RenderByVisibility = forwardRef<
 
     return (
         <Stack ref={ref} {...restProps} style={{ minHeight: "100vh" }}>
-            {rendered.lowest > 0 && <LoadingBox />}
-            {/* SSR Child: 0 */}
-            {rendered.lowest === 0 && (
+            {rendered.lowest > 0 && (
                 <WithInteractions
-                    ref={(el) => {
-                        childRefs.current[0] = el;
-                    }}
-                    onVisible={() => handleOnVisible(0)}
-                >
-                    {childrenArray[0]}
-                </WithInteractions>
+                    style={{ height: "1px", background: "red" }}
+                    onVisibilityChange={(v) => setIsVisibleLowSideLoadingBox(v)}
+                />
             )}
-            {/* Lazy load other Childs */}
             {childrenArray.map(
                 (child, i) =>
-                    i !== 0 &&
                     i >= rendered.lowest &&
                     i <= rendered.highest && (
                         <WithInteractions
@@ -115,17 +117,11 @@ export const RenderByVisibility = forwardRef<
                             key={i}
                             onVisible={() => handleOnVisible(i)}
                         >
+                            <h1>{i}</h1>
                             {child}
                         </WithInteractions>
                     )
             )}
-            {rendered.highest < data.length && <LoadingBox />}
         </Stack>
     );
 });
-
-const LoadingBox = () => (
-    <Card style={{ height: "15rem" }}>
-        <LoadingIcon variant="dots" size="extraLarge" />
-    </Card>
-);

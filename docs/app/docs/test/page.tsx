@@ -1,17 +1,24 @@
 "use client";
 
 import { Container } from "@yakad/ui";
-import { RenderByVisibility } from "../../../../packages/ui/src";
+import {
+    Footer,
+    InputField,
+    RenderByVisibility,
+    WithInteractions,
+} from "../../../../packages/ui/src";
 import { useState } from "react";
 import { Time } from "./Time";
 
 export default function Page() {
-    const [loadingInProgress, setLoadingInProgress] = useState<boolean>(false);
+    const [loadingInProgress, setLoadingInProgress] = useState<boolean>(true);
+    const [jumpToIndex, setjumpToIndex] = useState<number>(0);
 
     return (
         <Container size="md">
             <RenderByVisibility
-                extraRender={5}
+                extraRender={2}
+                // jumpToIndex={jumpToIndex}
                 jumpToIndex={20}
                 stopNewRenders={loadingInProgress}
                 newChildRendered={() => setLoadingInProgress(true)}
@@ -22,6 +29,16 @@ export default function Page() {
                     </Time>
                 ))}
             </RenderByVisibility>
+            <Footer position="sticky" align="center">
+                <InputField
+                    style={{ width: "100%" }}
+                    variant="filled"
+                    type="number"
+                    placeholder="Jump to Index"
+                    value={jumpToIndex}
+                    onChange={(e) => setjumpToIndex(Number(e.target.value))}
+                />
+            </Footer>
         </Container>
     );
 }

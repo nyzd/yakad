@@ -9,8 +9,9 @@ import {
     useImperativeHandle,
     useRef,
 } from "react";
+import { Stack, StackProps } from "../Stack/Stack";
 
-export interface WithInteractionsProps {
+export interface WithInteractionsProps extends StackProps {
     onRightClick?: (e: MouseEvent) => void;
     onTap?: (e: TouchEvent) => void;
     onDoubleTap?: (e: TouchEvent) => void;
@@ -305,19 +306,10 @@ export const WithInteractions = forwardRef<HTMLElement, WithInteractionsProps>(
             onMouseHoverLeave,
         ]);
 
-        if (!isValidElement(children)) return null;
-
-        return <div ref={localRef}>{children}</div>;
-
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        return cloneElement(children as React.ReactElement<any, any>, {
-            ...restProps,
-            ref: mergeRefs(
-                localRef,
-                forwardedRef,
-                // eslint-disable-next-line @typescript-eslint/no-explicit-any
-                (children as any).props?.ref
-            ),
-        });
+        return (
+            <Stack ref={localRef} {...restProps}>
+                {children}
+            </Stack>
+        );
     }
 );
