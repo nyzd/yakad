@@ -1,9 +1,9 @@
 "use client";
 
 import React, { forwardRef, useEffect, useRef, useState } from "react";
-import { Card, LoadingIcon, Stack, WithInteractions } from "..";
+import { Hr, LoadingIcon, Stack, StackProps, WithInteractions } from "..";
 
-export interface RenderByVisibilityProps {
+export interface RenderByVisibilityProps extends StackProps {
     extraRender?: number;
     jumpToIndex?: number;
     stopNewRenders?: boolean;
@@ -22,12 +22,16 @@ export const RenderByVisibility = forwardRef<
         jumpToIndex = 0,
         stopNewRenders,
         newChildRendered,
+        style,
         children,
         ...restProps
     },
     ref
 ) {
     const childrenArray = React.Children.toArray(children);
+
+    // Calculate Parrent top on first load
+    const [parrentTop, setParrentTop] = useState<number>(0);
 
     // Scroll Zone
     const childRefs = useRef<Record<number, HTMLElement | null>>({});
@@ -53,8 +57,6 @@ export const RenderByVisibility = forwardRef<
 
     // Is Visible Loading Box
     const [isVisibleLowSideLoadingBox, setIsVisibleLowSideLoadingBox] =
-        useState<boolean>(false);
-    const [isVisibleHighSideLoadingBox, setIsVisibleHighSideLoadingBox] =
         useState<boolean>(false);
 
     // Render new Childs if needed
@@ -99,10 +101,18 @@ export const RenderByVisibility = forwardRef<
     // console.log("stopNewRenders", stopNewRenders);
 
     return (
-        <Stack ref={ref} {...restProps} style={{ minHeight: "100vh" }}>
-            {rendered.lowest > 0 && (
+        <Stack
+            ref={ref}
+            {...restProps}
+            style={{ minHeight: "100vh", ...style }}
+        >
+            {rendered.lowest >= 0 && (
                 <WithInteractions
-                    style={{ height: "1px", background: "red" }}
+                    style={{
+                        height: "1px",
+                        background: "red",
+                        marginBottom: `${60}px`,
+                    }}
                     onVisibilityChange={(v) => setIsVisibleLowSideLoadingBox(v)}
                 />
             )}
@@ -111,13 +121,13 @@ export const RenderByVisibility = forwardRef<
                     i >= rendered.lowest &&
                     i <= rendered.highest && (
                         <WithInteractions
+                            key={i}
                             ref={(el) => {
                                 childRefs.current[i] = el;
                             }}
-                            key={i}
                             onVisible={() => handleOnVisible(i)}
+                            style={{ scrollMarginTop: `${80}px` }}
                         >
-                            <h1>{i}</h1>
                             {child}
                         </WithInteractions>
                     )

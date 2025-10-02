@@ -18,9 +18,9 @@ export const Time = ({ index, onLoad, children }: TimeProps) => {
             setLoaded(true);
             onLoad?.();
             console.log("Im a Child that Loaded for first time! index:", index);
-        }, 1000);
+        }, 500);
 
-        console.log("Rendered:", index);
+        // console.log("Rendered:", index);
 
         return () => clearTimeout(timeout);
     }, []);
@@ -37,6 +37,9 @@ export const Time = ({ index, onLoad, children }: TimeProps) => {
         return (
             <Card>
                 <h2>{children}</h2>
+                <h2>Client time: {new Date().toLocaleString()}</h2>
+                <h2>Client time: {new Date().toLocaleString()}</h2>
+                <h2>Client time: {new Date().toLocaleString()}</h2>
                 <h2>Client time: {new Date().toLocaleString()}</h2>
                 <Hr />
                 <ServerFetchData />
