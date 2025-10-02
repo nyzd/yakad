@@ -1,7 +1,7 @@
 "use client";
 
 import React, { forwardRef, useEffect, useRef, useState } from "react";
-import { Hr, LoadingIcon, Stack, StackProps, WithInteractions } from "..";
+import { Stack, StackProps, WithInteractions } from "..";
 
 export interface RenderByVisibilityProps extends StackProps {
     extraRender?: number;
@@ -30,12 +30,12 @@ export const RenderByVisibility = forwardRef<
 ) {
     const childrenArray = React.Children.toArray(children);
 
-    // Calculate Parrent top on first load
-    const [parrentTop, setParrentTop] = useState<number>(0);
-
     // Scroll Zone
     const childRefs = useRef<Record<number, HTMLElement | null>>({});
-    const scrollTo = (i: number) => childRefs.current[i]?.scrollIntoView({});
+    const scrollTo = (i: number, smooth?: boolean) =>
+        childRefs.current[i]?.scrollIntoView({
+            behavior: smooth ? "smooth" : "auto",
+        });
 
     // Collect Visibled Childs
     const [visibled, setVisibled] = useState<{
@@ -106,12 +106,12 @@ export const RenderByVisibility = forwardRef<
             {...restProps}
             style={{ minHeight: "100vh", ...style }}
         >
-            {rendered.lowest >= 0 && (
+            {rendered.lowest > 0 && (
                 <WithInteractions
                     style={{
                         height: "1px",
                         background: "red",
-                        marginBottom: `${60}px`,
+                        marginBottom: `${300}px`,
                     }}
                     onVisibilityChange={(v) => setIsVisibleLowSideLoadingBox(v)}
                 />
@@ -126,7 +126,7 @@ export const RenderByVisibility = forwardRef<
                                 childRefs.current[i] = el;
                             }}
                             onVisible={() => handleOnVisible(i)}
-                            style={{ scrollMarginTop: `${80}px` }}
+                            style={{ scrollMarginTop: `${200}px` }}
                         >
                             {child}
                         </WithInteractions>
