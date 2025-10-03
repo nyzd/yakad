@@ -1,6 +1,6 @@
 {
     "name": "@yakad/symbols",
-    "version": "1.0.25",
+    "version": "1.0.27",
     "private": false,
     "author": "Natiq",
     "description": "Material Symbols",
@@ -31,7 +31,8 @@
         "prepublishOnly": "npm run lint && npm run test && npm run build && npm run typecheck"
     },
     "dependencies": {
-        "classnames": "2.5.1"
+        "classnames": "2.5.1",
+        "material-symbols": "^0.36.2"
     },
     "peerDependencies": {
         "react": "^18.0.0 || ^19.0.0"

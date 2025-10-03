@@ -2,6 +2,9 @@ import { forwardRef } from "react";
 import classNames from "classnames";
 import { IconCode } from "./types";
 import styles from "./public/css/style.module.css";
+import "material-symbols/outlined.css";
+import "material-symbols/rounded.css";
+import "material-symbols/sharp.css";
 
 export interface SymbolProps extends React.HTMLAttributes<HTMLElement> {
     icon: IconCode;
@@ -33,9 +36,15 @@ export const Symbol = forwardRef<HTMLSpanElement, SymbolProps>(function Symbol(
     },
     ref
 ) {
+    const typeClassName =
+        type === "round"
+            ? "material-symbols-rounded"
+            : type === "sharp"
+            ? "material-symbols-sharp"
+            : "material-symbols-outlined";
+
     const joinedClassNames = classNames(
-        styles.materialIcons,
-        styles[type],
+        typeClassName,
         { [styles[mirror + "Mirror"]]: mirror },
         className
     );
@@ -43,12 +52,15 @@ export const Symbol = forwardRef<HTMLSpanElement, SymbolProps>(function Symbol(
     const sizeValue: string =
         (typeof size === "number" ? size : symbolSizeMaps[size]) + "rem";
 
+    const isFilled = type === "default" || type === "twoTone";
+    
     const joinedStyles = {
         ...style,
         width: sizeValue,
         height: sizeValue,
         fontSize: sizeValue,
         lineHeight: sizeValue,
+        fontVariationSettings: isFilled ? '"FILL" 1' : '"FILL" 0',
     };
 
     return (
