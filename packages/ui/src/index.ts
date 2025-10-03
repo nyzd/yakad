@@ -35,7 +35,7 @@ export * from "./CodeBox/CodeBox";
 export * from "./Display/Display"; // Stack Based
 export * from "./WithOverlay/WithOverlay";
 export * from "./WithInteractions/WithInteractions"; // Stack Based
-export * from "./RenderByVisibility/RenderByVisibility"; // Stack Based
+export * from "./RenderByScroll/RenderByScroll"; // Stack Based
 export * from "./ActiveOnVisible/ActiveOnVisible"; // Stack Based
 // Overlays
 export * from "./Dropdown/Dropdown"; // Card Based

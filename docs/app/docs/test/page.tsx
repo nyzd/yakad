@@ -1,14 +1,14 @@
 "use client";
 
-import { Container } from "@yakad/ui";
-import {
-    Footer,
-    InputField,
-    RenderByVisibility,
-    WithInteractions,
-} from "../../../../packages/ui/src";
 import { useState } from "react";
 import { Time } from "./Time";
+import { Container } from "@yakad/ui";
+import {
+    ActiveOnVisible,
+    Footer,
+    InputField,
+    RenderByScroll,
+} from "../../../../packages/ui/src";
 
 export default function Page() {
     const [loadingInProgress, setLoadingInProgress] = useState<boolean>(true);
@@ -16,9 +16,10 @@ export default function Page() {
 
     return (
         <Container size="md">
-            <RenderByVisibility
+            <RenderByScroll
                 scrollMarginTop={12}
-                jumpToIndex={jumpToIndex}
+                // jumpToIndex={jumpToIndex}
+                jumpToIndex={40}
                 stopNewRenders={loadingInProgress}
                 newChildRendered={() => setLoadingInProgress(true)}
             >
@@ -27,7 +28,7 @@ export default function Page() {
                         {i}
                     </Time>
                 ))}
-            </RenderByVisibility>
+            </RenderByScroll>
             <Footer position="sticky" align="center">
                 <InputField
                     style={{ width: "100%" }}

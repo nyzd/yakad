@@ -25,6 +25,7 @@ export interface WithInteractionsProps extends StackProps {
     onVisibilityChange?: (visible: boolean) => void;
     onVisible?: () => void;
     onHidden?: () => void;
+    onMouseHoverChange?: (isHover: boolean, e: MouseEvent) => void;
     onMouseHoverStart?: (e: MouseEvent) => void;
     onMouseHoverLeave?: (e: MouseEvent) => void;
 
@@ -52,13 +53,14 @@ export const WithInteractions = forwardRef<HTMLElement, WithInteractionsProps>(
             onVisibilityChange,
             onVisible,
             onHidden,
+            onMouseHoverChange,
             onMouseHoverStart,
             onMouseHoverLeave,
             ...restProps
         },
         forwardedRef
     ) {
-        const localRef = useRef<HTMLDivElement>(null);
+        const localRef = useRef<HTMLDivElement | null>(null);
 
         // Let the parent access our DOM node
         useImperativeHandle(
@@ -238,9 +240,18 @@ export const WithInteractions = forwardRef<HTMLElement, WithInteractionsProps>(
 
             // === On Hover Change ===
             const hasFinePointer = window.matchMedia("(pointer: fine)").matches;
-            if (hasFinePointer && (onMouseHoverStart || onMouseHoverLeave)) {
-                const mouseEnter = (e: MouseEvent) => onMouseHoverStart?.(e);
-                const mouseLeave = (e: MouseEvent) => onMouseHoverLeave?.(e);
+            if (
+                hasFinePointer &&
+                (onMouseHoverChange || onMouseHoverStart || onMouseHoverLeave)
+            ) {
+                const mouseEnter = (e: MouseEvent) => {
+                    onMouseHoverChange?.(true, e);
+                    onMouseHoverStart?.(e);
+                };
+                const mouseLeave = (e: MouseEvent) => {
+                    onMouseHoverChange?.(true, e);
+                    onMouseHoverLeave?.(e);
+                };
                 el.addEventListener("mouseenter", mouseEnter);
                 el.addEventListener("mouseleave", mouseLeave);
                 cleanupFns.push(() => {
@@ -294,6 +305,7 @@ export const WithInteractions = forwardRef<HTMLElement, WithInteractionsProps>(
             onVisibilityChange,
             onVisible,
             onHidden,
+            onMouseHoverChange,
             onMouseHoverStart,
             onMouseHoverLeave,
         ]);
