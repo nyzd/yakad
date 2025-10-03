@@ -8,7 +8,6 @@ import {
     PopupProps,
     WithInteractions,
 } from "..";
-import { mergeRefs } from "@yakad/lib";
 import { createPortal } from "react-dom";
 
 export interface OverlayProps {
@@ -22,9 +21,7 @@ type AllowedOverlays =
 export interface WithOverlayProps {
     trigger?: "onClick" | "onRightClick";
     overlay?: AllowedOverlays;
-    children?: React.ReactElement<{
-        onClick?: (e: React.MouseEvent<HTMLElement>) => void;
-    }>;
+    children?: React.ReactElement;
 }
 
 export function WithOverlay({
@@ -32,10 +29,12 @@ export function WithOverlay({
     overlay,
     children,
 }: WithOverlayProps) {
-    const triggerRef = useRef<HTMLElement>(null);
+    // Get Triggers ref and send to Overlay
+    const triggerRef = useRef<HTMLDivElement | null>(null);
 
     const [showOverlay, setShowOverlay] = useState(false);
 
+    // Disable Body Scroll on showOverlay
     useEffect(() => {
         document.body.style.overflow = showOverlay ? "hidden" : "initial";
 
@@ -44,40 +43,32 @@ export function WithOverlay({
         };
     }, [showOverlay]);
 
+    // Teleport Overlay to portalRoot or body
+    const teleport =
+        overlay &&
+        createPortal(
+            cloneElement(overlay, {
+                triggerref: triggerRef,
+                onClose: () => {
+                    overlay.props.onClose?.();
+                    setShowOverlay(false);
+                },
+            }),
+            document.getElementsByClassName("portalRoot")[0] || document.body
+        );
+
     return (
         <>
             <WithInteractions
+                ref={triggerRef}
                 onRightClick={() =>
                     trigger === "onRightClick" && setShowOverlay(true)
                 }
+                onClick={() => trigger === "onClick" && setShowOverlay(true)}
             >
-                {children &&
-                    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-                    cloneElement(children as React.ReactElement<any, any>, {
-                        ref: mergeRefs(
-                            triggerRef,
-                            // eslint-disable-next-line @typescript-eslint/no-explicit-any
-                            (children as any).props?.ref
-                        ),
-                        onClick: (e: React.MouseEvent<HTMLElement>) => {
-                            children.props.onClick?.(e);
-                            trigger === "onClick" && setShowOverlay(true);
-                        },
-                    })}
+                {children}
             </WithInteractions>
-            {showOverlay &&
-                overlay &&
-                createPortal(
-                    cloneElement(overlay, {
-                        triggerref: triggerRef,
-                        onClose: () => {
-                            overlay.props.onClose?.();
-                            setShowOverlay(false);
-                        },
-                    }),
-                    document.getElementsByClassName("portalRoot")[0] ||
-                        document.body
-                )}
+            {showOverlay && teleport}
         </>
     );
 }

@@ -28,8 +28,8 @@ export const Dropdown = forwardRef<HTMLDivElement, DropdownProps>(
         },
         forwardedRef
     ) {
-        const fallbackTriggerRef = useRef<HTMLDivElement>(null);
-        const dropdownRef = useRef<HTMLDivElement>(null);
+        const fallbackTriggerRef = useRef<HTMLDivElement | null>(null);
+        const dropdownRef = useRef<HTMLDivElement | null>(null);
 
         const placementTargetRef = triggerref || fallbackTriggerRef;
 

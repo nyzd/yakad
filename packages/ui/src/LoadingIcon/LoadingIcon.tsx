@@ -9,7 +9,7 @@ export interface LoadingIconProps extends React.HTMLAttributes<HTMLDivElement> {
 
 export const LoadingIcon = forwardRef<HTMLDivElement, LoadingIconProps>(
     function LoadingIcon(
-        { size = "medium", variant = "spinner", className, ...restProps },
+        { size = "medium", variant = "dots", className, ...restProps },
         ref
     ) {
         const joinedClassNames = classNames(

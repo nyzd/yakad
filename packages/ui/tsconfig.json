@@ -4,6 +4,6 @@
         "outDir": "./dist",
         "rootDir": "./src"
     },
-    "include": ["src", "../../docs/app/docs/test/LoadingControlV5.tsx"],
+    "include": ["src", "../../docs/app/testzone/LoadingControlV5.tsx"],
     "exclude": ["node_modules", "dist", "tests"]
 }
