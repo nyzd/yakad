@@ -52,12 +52,15 @@ export const Symbol = forwardRef<HTMLSpanElement, SymbolProps>(function Symbol(
     const sizeValue: string =
         (typeof size === "number" ? size : symbolSizeMaps[size]) + "rem";
 
+    const isFilled = type === "default" || type === "twoTone";
+    
     const joinedStyles = {
         ...style,
         width: sizeValue,
         height: sizeValue,
         fontSize: sizeValue,
         lineHeight: sizeValue,
+        fontVariationSettings: isFilled ? '"FILL" 1' : '"FILL" 0',
     };
 
     return (
