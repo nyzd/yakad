@@ -41,10 +41,8 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
         },
         ref
     ) {
-        const childrenFirst: boolean = Boolean(iconPosition === "end");
-        const isloadingPositionCenter: boolean = Boolean(
-            !icon || loadingPosition === "center"
-        );
+        const childrenFirst = iconPosition === "end";
+        const isloadingPositionCenter = !icon || loadingPosition === "center";
 
         const joinedClassNames = classNames(
             { fullWidth: fullWidth },

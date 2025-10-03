@@ -17,7 +17,7 @@ const data = Array.from({ length: 78 });
 export const RenderByScroll = forwardRef<HTMLDivElement, RenderByScrollProps>(
     function RenderByScroll(
         {
-            scrollMarginTop = 2, // Sticky Header Height
+            scrollMarginTop = 8, // Sticky Header Height
             extraRender = 5,
             jumpToIndex = 0,
             stopNewRenders,
@@ -80,7 +80,7 @@ export const RenderByScroll = forwardRef<HTMLDivElement, RenderByScrollProps>(
                         overRenderedOnLowSide < extraRender
                     ) {
                         if (isVisibleLowSideLimitBox) {
-                            scrollTo(rendered.lowest, true);
+                            scrollTo(rendered.lowest);
                         }
                         const newLow = rendered.lowest - 1;
                         setRendered({ ...rendered, lowest: newLow });
@@ -101,20 +101,10 @@ export const RenderByScroll = forwardRef<HTMLDivElement, RenderByScrollProps>(
             }
             const timeout = setTimeout(() => {
                 scrollTo(jumpToIndex, true);
-            }, 300);
+            }, 100);
             return () => clearTimeout(timeout);
             // eslint-disable-next-line
         }, [jumpToIndex]);
-
-        const LowSideLimitBox = () =>
-            rendered.lowest > 0 && (
-                <WithInteractions
-                    style={{
-                        marginBottom: `${scrollMarginTop}rem`,
-                    }}
-                    onVisibilityChange={(v) => setIsVisibleLowSideLimitBox(v)}
-                />
-            );
 
         return (
             <Stack
@@ -122,7 +112,16 @@ export const RenderByScroll = forwardRef<HTMLDivElement, RenderByScrollProps>(
                 {...restProps}
                 style={{ minHeight: "100vh", ...style }}
             >
-                <LowSideLimitBox />
+                {rendered.lowest > 0 && (
+                    <WithInteractions
+                        style={{
+                            marginBottom: `${scrollMarginTop}rem`,
+                        }}
+                        onVisibilityChange={(v) =>
+                            setIsVisibleLowSideLimitBox(v)
+                        }
+                    />
+                )}
                 {childrenArray.map(
                     (child, i) =>
                         i >= rendered.lowest &&
