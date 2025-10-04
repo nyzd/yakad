@@ -56,30 +56,32 @@ export const RenderByScroll = forwardRef<HTMLDivElement, RenderByScrollProps>(
         const overRenderedOnHighSide = rendered.highest - visibled.highest;
 
         // Is Visible Loading Box
-        const [isVisibleLowSideLimitBox, setIsVisibleLowSideLimitBox] =
+        const [isVisibleLowSideLimitSensor, setIsVisibleLowSideLimitSensor] =
             useState<boolean>(false);
 
         // Render new Childs if needed
         useEffect(() => {
+            const isPriorityBYHighSide =
+                overRenderedOnHighSide < 1 ||
+                overRenderedOnHighSide - 1 <= overRenderedOnLowSide;
+            const isHighSideNewRenderRemains =
+                rendered.highest < data.length - 1;
+            const isLowSideNewRenderRemains = rendered.lowest > 0;
             if (!stopNewRenders) {
                 if (
-                    overRenderedOnHighSide < 1 ||
-                    overRenderedOnHighSide - 1 <= overRenderedOnLowSide
+                    isPriorityBYHighSide &&
+                    isHighSideNewRenderRemains &&
+                    overRenderedOnHighSide < extraRender
                 ) {
-                    if (
-                        rendered.highest < data.length &&
-                        overRenderedOnHighSide < extraRender
-                    ) {
-                        const newHigh = rendered.highest + 1;
-                        setRendered({ ...rendered, highest: newHigh });
-                        newChildRendered?.(newHigh);
-                    }
+                    const newHigh = rendered.highest + 1;
+                    setRendered({ ...rendered, highest: newHigh });
+                    newChildRendered?.(newHigh);
                 } else {
                     if (
-                        rendered.lowest > 0 &&
+                        isLowSideNewRenderRemains &&
                         overRenderedOnLowSide < extraRender
                     ) {
-                        if (isVisibleLowSideLimitBox) {
+                        if (isVisibleLowSideLimitSensor) {
                             scrollTo(rendered.lowest);
                         }
                         const newLow = rendered.lowest - 1;
@@ -118,7 +120,7 @@ export const RenderByScroll = forwardRef<HTMLDivElement, RenderByScrollProps>(
                             marginBottom: `${scrollMarginTop}rem`,
                         }}
                         onVisibilityChange={(v) =>
-                            setIsVisibleLowSideLimitBox(v)
+                            setIsVisibleLowSideLimitSensor(v)
                         }
                     />
                 )}
@@ -131,10 +133,10 @@ export const RenderByScroll = forwardRef<HTMLDivElement, RenderByScrollProps>(
                                 ref={(el) => {
                                     childRefs.current[i] = el;
                                 }}
-                                onVisible={() => handleOnVisible(i)}
                                 style={{
                                     scrollMarginTop: `${scrollMarginTop}rem`,
                                 }}
+                                onVisible={() => handleOnVisible(i)}
                             >
                                 {child}
                             </WithInteractions>

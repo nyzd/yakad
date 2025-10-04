@@ -7,7 +7,7 @@ import { RenderByScroll } from "../../../packages/ui/src";
 
 export default function Page() {
     const [loadingInProgress, setLoadingInProgress] = useState<boolean>(true);
-    const [jumpToIndex, setjumpToIndex] = useState<number>(50);
+    const [jumpToIndex, setjumpToIndex] = useState<number>(70);
 
     return (
         <Theme>
