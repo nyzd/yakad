@@ -16,7 +16,7 @@ export interface DropdownProps extends CardProps, OverlayProps {}
 export const Dropdown = forwardRef<HTMLDivElement, DropdownProps>(
     function Dropdown(
         {
-            fullWidth = false,
+            fullWidthOnParentDemand = false, // Def in Card is True
             blur,
             level = "high",
             triggerref,
@@ -115,7 +115,7 @@ export const Dropdown = forwardRef<HTMLDivElement, DropdownProps>(
                 <WithInteractions onOutsideClick={onClose}>
                     <Card
                         ref={dropdownRef}
-                        fullWidth={fullWidth}
+                        fullWidthOnParentDemand={fullWidthOnParentDemand}
                         blur={blur}
                         level={level}
                         {...restProps}

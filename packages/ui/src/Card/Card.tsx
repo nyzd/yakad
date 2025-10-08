@@ -6,23 +6,33 @@ import "./card.css";
 
 export interface CardProps extends React.HTMLAttributes<HTMLDivElement> {
     align?: "start" | "space" | "center" | "end";
-    fullWidth?: boolean;
+    fullWidthOnParentDemand?: boolean;
     blur?: boolean;
-    level?: "low" | "mid" | "high";
+    level?: "transparent" | "low" | "mid" | "high";
 }
 
 export const Card = forwardRef<HTMLDivElement, CardProps>(function Card(
-    { align, fullWidth = true, blur, level, className, children, ...restProps },
+    {
+        align,
+        fullWidthOnParentDemand = true,
+        blur,
+        level,
+        className,
+        children,
+        ...restProps
+    },
     ref
 ) {
     const joinedClassNames = classNames(
         boxingStyles.flexColumnBox,
         { [boxingStyles[align as string]]: align },
-        { fullWidth: fullWidth },
+        { demandChildsToBeFullWidth: true },
+        { fullWidthOnParentDemand: fullWidthOnParentDemand },
         styles.card,
         { [styles.blur]: blur },
+        { [styles.elevated]: level !== "transparent" },
         {
-            yakadCardAutoLevel: level === undefined,
+            yakadCardAutoLevel: !level || level === "transparent",
             yakadCardLowLevel: level === "low",
             yakadCardMidLevel: level === "mid",
             yakadCardHighLevel: level === "high",

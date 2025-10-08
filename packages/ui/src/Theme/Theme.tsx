@@ -38,9 +38,10 @@ export const Theme = forwardRef<HTMLDivElement, ThemeProps>(function Theme(
     }, [zoomPercentage]);
 
     const joinedClassNames = classNames(
-        "portalRoot",
+        { portalRoot: true },
         boxingStyles.flexColumnBox,
         { [boxingStyles[align as string]]: align },
+        { demandChildsToBeFullWidth: true },
         styles.theme,
         styles[darkStyle],
         styles[color],
