@@ -15,6 +15,7 @@ export const Screen = forwardRef<HTMLDivElement, ScreenProps>(function Screen(
     const joinedClassNames = classNames(
         boxingStyles.flexColumnBox,
         { [boxingStyles[align as string]]: align },
+        { demandChildsToBeFullWidth: true },
         styles.screen,
         className
     );

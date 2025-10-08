@@ -5,7 +5,7 @@ import styles from "./Button.module.css";
 
 export interface ButtonProps
     extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-    fullWidth?: boolean;
+    fullWidthOnParentDemand?: boolean;
     size?: "small" | "medium" | "large";
     variant?:
         | "text"
@@ -27,7 +27,7 @@ export interface ButtonProps
 export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
     function Button(
         {
-            fullWidth = false,
+            fullWidthOnParentDemand = false,
             size = "medium",
             variant = "text",
             borderStyle = "rounded",
@@ -45,7 +45,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
         const isloadingPositionCenter = !icon || loadingPosition === "center";
 
         const joinedClassNames = classNames(
-            { fullWidth: fullWidth },
+            { fullWidthOnParentDemand: fullWidthOnParentDemand },
             styles.button,
             styles[variant],
             { [styles.loading]: loadingVariant },

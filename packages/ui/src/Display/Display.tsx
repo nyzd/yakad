@@ -5,7 +5,7 @@ import styles from "./Display.module.css";
 
 export interface DisplayProps extends React.HTMLAttributes<HTMLDivElement> {
     align?: "start" | "space" | "center" | "end";
-    fullWidth?: boolean;
+    fullWidthOnParentDemand?: boolean;
     minWidth?: "xs" | "sm" | "md" | "lg" | "xl";
     maxWidth?: "xs" | "sm" | "md" | "lg" | "xl";
     children?: React.ReactNode;
@@ -15,7 +15,7 @@ export const Display = forwardRef<HTMLDivElement, DisplayProps>(
     function Display(
         {
             align,
-            fullWidth = true,
+            fullWidthOnParentDemand = true,
             minWidth,
             maxWidth,
             className,
@@ -27,7 +27,8 @@ export const Display = forwardRef<HTMLDivElement, DisplayProps>(
         const joinedClassNames = classNames(
             boxingStyles.flexColumnBox,
             { [boxingStyles[align as string]]: align },
-            { fullWidth: fullWidth },
+            { demandChildsToBeFullWidth: true },
+            { fullWidthOnParentDemand: fullWidthOnParentDemand },
             { [styles[`${minWidth}MinWidth`]]: minWidth },
             { [styles[`${maxWidth}MaxWidth`]]: maxWidth },
             className

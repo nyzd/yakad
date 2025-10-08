@@ -5,7 +5,7 @@ import styles from "./Row.module.css";
 
 export interface RowProps extends React.HTMLAttributes<HTMLDivElement> {
     align?: "start" | "space" | "center" | "end";
-    fullWidth?: boolean;
+    fullWidthOnParentDemand?: boolean;
     overflow?: "shrink" | "wrap" | "scroll";
     size?: "xs" | "sm" | "md" | "lg" | "xl";
     children?: React.ReactNode;
@@ -14,7 +14,7 @@ export interface RowProps extends React.HTMLAttributes<HTMLDivElement> {
 export const Row = forwardRef<HTMLDivElement, RowProps>(function Row(
     {
         align,
-        fullWidth = true,
+        fullWidthOnParentDemand = true,
         overflow = "shrink",
         size = "xl",
         className,
@@ -28,7 +28,7 @@ export const Row = forwardRef<HTMLDivElement, RowProps>(function Row(
         { [boxingStyles[align as string]]: align },
         boxingStyles[overflow],
         styles.row,
-        { fullWidth: fullWidth },
+        { fullWidthOnParentDemand: fullWidthOnParentDemand },
         styles[size],
         className
     );

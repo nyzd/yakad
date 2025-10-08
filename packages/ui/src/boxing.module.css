@@ -1,3 +1,8 @@
+/* Full Width Childs */
+:global(.demandChildsToBeFullWidth) > :global(.fullWidthOnParentDemand) {
+    width: 100%;
+}
+
 /* Column Box */
 .flexColumnBox {
     display: flex;
@@ -20,10 +25,6 @@
 .flexColumnBox.end {
     justify-content: flex-end;
     align-items: flex-end;
-}
-/* Full Width Childs */
-.flexColumnBox > :global(.fullWidth) {
-    width: 100%;
 }
 
 /* Row Box */

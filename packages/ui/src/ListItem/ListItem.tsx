@@ -16,6 +16,7 @@ export const ListItem = forwardRef<HTMLLIElement, ListItemProps>(
                 className={classNames(
                     boxingStyles.flexColumnBox,
                     { [boxingStyles[align as string]]: align },
+                    { demandChildsToBeFullWidth: true },
                     styles.listItem,
                     className
                 )}
