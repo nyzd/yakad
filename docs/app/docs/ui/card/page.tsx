@@ -12,6 +12,7 @@ import {
     Th,
     Thead,
     Tr,
+    Stack,
 } from "@yakad/ui";
 import { Symbol } from "@yakad/symbols";
 
@@ -39,43 +40,87 @@ export default function Page() {
             </Card>
 
             <h2>Properties</h2>
+
             <p>Properties that are accepted as attributes:</p>
             <Table>
                 <Thead>
                     <Tr>
                         <Th>Property</Th>
                         <Th>Value</Th>
+                        <Th>Default</Th>
+                        <Th>Mandatory</Th>
                     </Tr>
                 </Thead>
                 <Tbody>
                     <Tr>
                         <Td>align</Td>
-                        <Td>start | center | end</Td>
+                        <Td>start | space | center | end</Td>
+                        <Td>undefined</Td>
+                        <Td>
+                            <Symbol type="sharp" icon="close"></Symbol>
+                        </Td>
+                    </Tr>
+                    <Tr>
+                        <Td>fullWidthOnParentDemand</Td>
+                        <Td>boolean</Td>
+                        <Td>true</Td>
+                        <Td>
+                            <Symbol type="sharp" icon="close"></Symbol>
+                        </Td>
+                    </Tr>
+                    <Tr>
+                        <Td>blur</Td>
+                        <Td>boolean</Td>
+                        <Td>undefined</Td>
+                        <Td>
+                            <Symbol type="sharp" icon="close"></Symbol>
+                        </Td>
+                    </Tr>
+                    <Tr>
+                        <Td>level</Td>
+                        <Td>transparent | low | mid | high</Td>
+                        <Td>undefined</Td>
+                        <Td>
+                            <Symbol type="sharp" icon="close"></Symbol>
+                        </Td>
                     </Tr>
                 </Tbody>
             </Table>
-            <h3>align</h3>
             <p>
-                Center the content, align it to the right, or align it to the
-                left.
+                Also, the **Card** accepts the default attributes of a **div**
+                elemnt.
             </p>
-            <Card
-                align="start"
-                style={{ maxWidth: "60rem", marginBottom: "1rem" }}
-            >
-                Start
-            </Card>
-            <Card
-                align="center"
-                style={{ maxWidth: "60rem", marginBottom: "1rem" }}
-            >
-                Center
-            </Card>
-            <Card
-                align="end"
-                style={{ maxWidth: "60rem", marginBottom: "1rem" }}
-            >
-                End
+            <h3>Align</h3>
+            <p>Align the content to the center, right, or left.</p>
+            <Card align="space">
+                <Card
+                    align="start"
+                    level="high"
+                    style={{ maxWidth: "60rem", marginBottom: "1rem" }}
+                >
+                    Start
+                </Card>
+                <Card
+                    align="center"
+                    level="high"
+                    style={{ maxWidth: "60rem", marginBottom: "1rem" }}
+                >
+                    Space
+                </Card>
+                <Card
+                    align="center"
+                    level="high"
+                    style={{ maxWidth: "60rem", marginBottom: "1rem" }}
+                >
+                    Center
+                </Card>
+                <Card
+                    align="end"
+                    level="high"
+                    style={{ maxWidth: "60rem", marginBottom: "1rem" }}
+                >
+                    End
+                </Card>
             </Card>
             <CardLevel />
             <h2>Examples</h2>
@@ -117,12 +162,49 @@ export default function Page() {
 
 const CardLevel = () => (
     <>
-        <h3>level</h3>
+        <>
+            <h3>Blur</h3>
+            <p>
+                {" "}
+                This is a sample text that is displayed through the blur effect.
+                This effect gives a beautiful and modern look to the design.
+            </p>
+            <Card style={{ maxWidth: "70rem", position: "relative" }}>
+                <div
+                    style={{ padding: "2rem", position: "relative", zIndex: 1 }}
+                >
+                    <p>
+                        Lorem ipsum dolor sit amet, consectetur adipisicing
+                        elit. Numquam a eveniet ex nostrum quod quaerat eius
+                        omnis officiis, recusandae facilis illo voluptate aut
+                        dignissimos libero quos, at nobis! Saepe, nam. Lorem
+                        ipsum dolor sit amet consectetur adipisicing elit. Quae
+                        in aut at, aperiam commodi saepe odit quod est voluptate
+                        deserunt. Ut veniam, in aliquam ducimus voluptatibus
+                        esse et velit fuga!
+                    </p>
+                </div>
+
+                <Card
+                    blur
+                    style={{
+                        position: "absolute",
+                        top: 0,
+                        left: 0,
+                        right: 0,
+                        bottom: 0,
+                        zIndex: 2,
+                    }}
+                ></Card>
+            </Card>
+        </>
+
+        <h3>Level</h3>
         <p>
-            Change level to change card background color or let it auto choose
-            level.
+            Manually select a level to change the card's background color, or
+            leave it on auto.
         </p>
-        <Card align="center" style={{ maxWidth: "60rem" }}>
+        <Card align="center" style={{ maxWidth: "400rem" }}>
             <Card align="center">
                 <Card align="center">
                     <Text variant="body4">High Level</Text>
