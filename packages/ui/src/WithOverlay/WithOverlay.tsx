@@ -1,14 +1,23 @@
 "use client";
 
-import { useState, cloneElement, useEffect, useRef, RefObject } from "react";
+import {
+    useState,
+    cloneElement,
+    useEffect,
+    useRef,
+    RefObject,
+    forwardRef,
+    useImperativeHandle,
+} from "react";
+import { createPortal } from "react-dom";
 import {
     Dropdown,
     DropdownProps,
     Popup,
     PopupProps,
     WithInteractions,
+    WithInteractionsProps,
 } from "..";
-import { createPortal } from "react-dom";
 
 export interface OverlayProps {
     triggerref?: RefObject<HTMLElement | null>;
@@ -18,57 +27,75 @@ type AllowedOverlays =
     | React.ReactElement<PopupProps, typeof Popup>
     | React.ReactElement<DropdownProps, typeof Dropdown>;
 
-export interface WithOverlayProps {
+export interface WithOverlayProps extends WithInteractionsProps {
     trigger?: "onClick" | "onRightClick";
     overlay?: AllowedOverlays;
     children?: React.ReactElement;
 }
 
-export function WithOverlay({
-    trigger = "onClick",
-    overlay,
-    children,
-}: WithOverlayProps) {
-    // Get Triggers ref and send to Overlay
-    const triggerRef = useRef<HTMLDivElement | null>(null);
-
-    const [showOverlay, setShowOverlay] = useState(false);
-
-    // Disable Body Scroll on showOverlay
-    useEffect(() => {
-        document.body.style.overflow = showOverlay ? "hidden" : "initial";
-
-        return () => {
-            document.body.style.overflow = "initial";
-        };
-    }, [showOverlay]);
-
-    // Teleport Overlay to portalRoot or body
-    const teleport =
-        overlay &&
-        createPortal(
-            cloneElement(overlay, {
-                triggerref: triggerRef,
-                onClose: () => {
-                    overlay.props.onClose?.();
-                    setShowOverlay(false);
-                },
-            }),
-            document.getElementsByClassName("portalRoot")[0] || document.body
+export const WithOverlay = forwardRef<HTMLDivElement, WithOverlayProps>(
+    function WithOverlay(
+        {
+            trigger = "onClick",
+            overlay,
+            children,
+            onRightClick,
+            onClick,
+            ...restProps
+        },
+        forwardedRef
+    ) {
+        // Get Triggers ref and send to Overlay
+        const triggerRef = useRef<HTMLDivElement | null>(null);
+        // Let the parent access our DOM node
+        useImperativeHandle(
+            forwardedRef,
+            () => triggerRef.current as HTMLDivElement
         );
 
-    return (
-        <>
-            <WithInteractions
-                ref={triggerRef}
-                onRightClick={() =>
-                    trigger === "onRightClick" && setShowOverlay(true)
-                }
-                onClick={() => trigger === "onClick" && setShowOverlay(true)}
-            >
-                {children}
-            </WithInteractions>
-            {showOverlay && teleport}
-        </>
-    );
-}
+        const [showOverlay, setShowOverlay] = useState(false);
+
+        // Disable Body Scroll on showOverlay
+        useEffect(() => {
+            document.body.style.overflow = showOverlay ? "hidden" : "initial";
+            return () => {
+                document.body.style.overflow = "initial";
+            };
+        }, [showOverlay]);
+
+        // Teleport Overlay to portalRoot or body
+        const teleport =
+            overlay &&
+            createPortal(
+                cloneElement(overlay, {
+                    triggerref: triggerRef,
+                    onClose: () => {
+                        overlay.props.onClose?.();
+                        setShowOverlay(false);
+                    },
+                }),
+                document.getElementsByClassName("portalRoot")[0] ||
+                    document.body
+            );
+
+        return (
+            <>
+                <WithInteractions
+                    ref={triggerRef}
+                    {...restProps}
+                    onRightClick={(e) => {
+                        trigger === "onRightClick" && setShowOverlay(true);
+                        onRightClick?.(e);
+                    }}
+                    onClick={(e) => {
+                        trigger === "onClick" && setShowOverlay(true);
+                        onClick?.(e);
+                    }}
+                >
+                    {children}
+                </WithInteractions>
+                {showOverlay && teleport}
+            </>
+        );
+    }
+);

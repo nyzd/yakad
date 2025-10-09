@@ -27,7 +27,7 @@ export const Popup = forwardRef<HTMLDivElement, PopupProps>(function Popup(
 ) {
     return (
         <Screen align="center" className={styles.popupscreen}>
-            <WithInteractions onOutsideClick={onClose}>
+            <WithInteractions align="center" onOutsideClick={onClose}>
                 <Card
                     ref={ref}
                     {...restProps}

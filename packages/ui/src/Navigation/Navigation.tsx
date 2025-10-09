@@ -25,6 +25,7 @@ export const Navigation = forwardRef<HTMLDivElement, NavigationProps>(
         const joinedClassNames = classNames(
             boxingStyles.flexColumnBox,
             { [boxingStyles[align as string]]: align },
+            { demandChildsToBeFullWidth: true },
             styles.navigation,
             styles[anchor],
             {
