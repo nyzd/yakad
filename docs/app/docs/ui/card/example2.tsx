@@ -16,6 +16,7 @@ export default function Example2() {
                     style={{ borderRadius: "50%" }}
                 />
                 <Card
+                    level="high"
                     style={{
                         padding: "2rem",
                         marginBottom: "1rem",
@@ -24,7 +25,7 @@ export default function Example2() {
                     }}
                 >
                     <p style={{ fontSize: "1.8rem", margin: 0 }}>
-                        Hey! My name is Martis. What is your name?
+                        Hey! My name is Marcus. What is your name?
                     </p>
                 </Card>
             </Row>
@@ -38,7 +39,7 @@ export default function Example2() {
                 >
                     <Row>
                         <p style={{ fontSize: "1.8rem", margin: "0" }}>
-                            Hi! My name is Leycci.
+                            Hi! My name is Rabert.
                         </p>
                     </Row>
                 </Card>
@@ -58,7 +59,7 @@ export default function Example2() {
                     height="45"
                     style={{ borderRadius: "50%" }}
                 />
-                <Card style={{ maxWidth: "30rem", margin: "0" }}>
+                <Card level="high" style={{ maxWidth: "30rem", margin: "0" }}>
                     <p style={{ fontSize: "1.8rem", margin: "0" }}>
                         Leycci have you ever used Yakad Cards?
                     </p>

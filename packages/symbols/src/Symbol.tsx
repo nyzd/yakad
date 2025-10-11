@@ -8,9 +8,13 @@ import "material-symbols/sharp.css";
 
 export interface SymbolProps extends React.HTMLAttributes<HTMLElement> {
     icon: IconCode;
-    type?: "default" | "outlined" | "round" | "sharp" | "twoTone";
+    filled?: boolean,
+    type?: "outlined" | "round" | "sharp";
     size?: number | "small" | "medium" | "large";
     mirror?: "horizontal" | "vertical" | "diagonal";
+    weight?: 100 | 200 | 300 | 400 | 500 | 600 | 700;
+    grade?: "low" | "medium" | "high";
+    opticalSize?: 20 | 24 | 40 | 48;
 }
 
 interface SymbolSizeMap {
@@ -27,15 +31,25 @@ const symbolSizeMaps: SymbolSizeMap = {
 export const Symbol = forwardRef<HTMLSpanElement, SymbolProps>(function Symbol(
     {
         icon,
-        type = "default",
+        type = "outlined",
         size = 2.4,
         mirror,
         className,
         style,
+        filled,
+        weight,
+        grade,
+        opticalSize,
         ...restProps
     },
     ref
 ) {
+    const gradePresetMap = {
+        low: -25,
+        medium: 0,
+        high: 150,
+    };
+
     const typeClassName =
         type === "round"
             ? "material-symbols-rounded"
@@ -51,16 +65,27 @@ export const Symbol = forwardRef<HTMLSpanElement, SymbolProps>(function Symbol(
 
     const sizeValue: string =
         (typeof size === "number" ? size : symbolSizeMaps[size]) + "rem";
-
-    const isFilled = type === "default" || type === "twoTone";
     
+    // Determine font variation axis values
+    const computedWeight = weight ?? 400;
+    const computedGrade = gradePresetMap[grade ?? "medium"];
+
+    const computedOpsz = (opticalSize ?? 24) as 20 | 24 | 40 | 48;
+
+    const fontVariationParts = [
+        `"FILL" ${filled ? 1 : 0}`,
+        `"wght" ${computedWeight}`,
+        `"GRAD" ${computedGrade}`,
+        `"opsz" ${computedOpsz}`,
+    ].join(", ");
+
     const joinedStyles = {
         ...style,
         width: sizeValue,
         height: sizeValue,
         fontSize: sizeValue,
         lineHeight: sizeValue,
-        fontVariationSettings: isFilled ? '"FILL" 1' : '"FILL" 0',
+        fontVariationSettings: fontVariationParts,
     };
 
     return (
