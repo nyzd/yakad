@@ -1,3 +1,22 @@
+/* BackgroundColor Levels */
+.yakadCardAutoLevel,
+.yakadCardLowLevel {
+    --yakadCardBackgroundColor: var(--surfaceContainerColor);
+}
+.yakadCardAutoLevel .yakadCardAutoLevel,
+.yakadCardLowLevel .yakadCardAutoLevel,
+.yakadCardMidLevel {
+    --yakadCardBackgroundColor: var(--surfaceContainerHighColor);
+    --yakadCardBackgroundColor: var(--surfaceContainerHighColor);
+}
+.yakadCardAutoLevel .yakadCardAutoLevel .yakadCardAutoLevel,
+.yakadCardLowLevel .yakadCardAutoLevel .yakadCardAutoLevel,
+.yakadCardMidLevel .yakadCardAutoLevel,
+.yakadCardHighLevel,
+.yakadCardHighLevel .yakadCardAutoLevel {
+    --yakadCardBackgroundColor: var(--surfaceContainerHighestColor);
+}
+
 .card {
     padding: 2rem;
     border-radius: 2rem;
