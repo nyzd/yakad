@@ -1,12 +1,12 @@
 .yakadCardAutoLevel,
 .yakadCardLowLevel {
-    --yakadCardBackgroundColor: var(--surfaceContainerLowColor);
+    --yakadCardBackgroundColor: var(--surfaceContainerColor);
 }
 
 .yakadCardAutoLevel .yakadCardAutoLevel,
 .yakadCardLowLevel .yakadCardAutoLevel,
 .yakadCardMidLevel {
-    --yakadCardBackgroundColor: var(--surfaceContainerColor);
+    --yakadCardBackgroundColor: var(--surfaceContainerHighColor);
 }
 
 .yakadCardAutoLevel .yakadCardAutoLevel .yakadCardAutoLevel,
@@ -14,5 +14,5 @@
 .yakadCardMidLevel .yakadCardAutoLevel,
 .yakadCardHighLevel,
 .yakadCardHighLevel .yakadCardAutoLevel {
-    --yakadCardBackgroundColor: var(--surfaceContainerHighColor);
+    --yakadCardBackgroundColor: var(--surfaceContainerHighestColor);
 }
