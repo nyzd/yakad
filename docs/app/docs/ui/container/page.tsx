@@ -48,33 +48,47 @@ export default function Page() {
                         <Tr>
                             <Th>Property</Th>
                             <Th>Value</Th>
+                            <Th>Default</Th>
+                            <Th>Required</Th>
                         </Tr>
                     </Thead>
                     <Tbody>
                         <Tr>
                             <Td>align</Td>
-                            <Td>start | center | end</Td>
+                            <Td>start | space | center | end</Td>
+                            <Td>undefined</Td>
+                            <Td>
+                                <Symbol type="sharp" icon="close"></Symbol>
+                            </Td>
                         </Tr>
                         <Tr>
-                            <Td>maxWidth</Td>
-                            <Td>{'"xs" | "sm" | "md" | "lg" | "xl"'}</Td>
+                            <Td>size</Td>
+                            <Td>"xs" | "sm" | "md" | "lg" | "xl"</Td>
+                            <Td>undefined</Td>
+                            <Td>
+                                <Symbol type="sharp" icon="close"></Symbol>
+                            </Td>
                         </Tr>
                     </Tbody>
                 </Table>
+                <p>
+                    Also, the container accepts the default attributes of a div
+                    elemnt.
+                </p>
                 <h3>align</h3>
                 <p>
-                    With this property, you can easily move all the things you
-                    put in the Container, that is, you can fold it in the middle
-                    and simply fold it left or right.
+                    With this feature, you can easily move everything you've
+                    placed in the container. It folds in the middle and can be
+                    simply tucked away to the left or right.
                 </p>
                 <Container align="start" style={{ padding: "1rem" }}>
                     <Card>Start</Card>
                 </Container>
                 <Container align="center" style={{ padding: "1rem" }}>
-                    <Card>center</Card>
+                    <Card align="center">center</Card>
                 </Container>
                 <Container align="end" style={{ padding: "1rem" }}>
-                    <Card>end</Card>
+                    <Card align="end">end</Card>
                 </Container>
             </Container>
             <Container size="md">
