@@ -42,12 +42,50 @@ export default function Page() {
                     <Tr>
                         <Th>Property</Th>
                         <Th>Value</Th>
+                        <Th>Default</Th>
+                        <Th>Required</Th>
                     </Tr>
                 </Thead>
                 <Tbody>
                     <Tr>
-                        <Td>positionSticky</Td>
-                        <Td>True | False</Td>
+                        <Td>align</Td>
+                        <Td>start | space | center | end</Td>
+                        <Td>undefined</Td>
+                        <Td>
+                            <Symbol type="sharp" icon="close"></Symbol>
+                        </Td>
+                    </Tr>
+                    <Tr>
+                        <Td>position </Td>
+                        <Td>initial | sticky | scroll</Td>
+                        <Td>initial</Td>
+                        <Td>
+                            <Symbol type="sharp" icon="check"></Symbol>
+                        </Td>
+                    </Tr>
+                    <Tr>
+                        <Td>overflow </Td>
+                        <Td>shrink | warp | scroll</Td>
+                        <Td>shrink</Td>
+                        <Td>
+                            <Symbol type="sharp" icon="check"></Symbol>
+                        </Td>
+                    </Tr>
+                    <Tr>
+                        <Td>size</Td>
+                        <Td> "xs" | "sm" | "md" | "lg" | "xl" </Td>
+                        <Td>undefined</Td>
+                        <Td>
+                            <Symbol type="sharp" icon="check"></Symbol>
+                        </Td>
+                    </Tr>
+                    <Tr>
+                        <Td>blur</Td>
+                        <Td>boolean</Td>
+                        <Td>undefined</Td>
+                        <Td>
+                            <Symbol type="sharp" icon="close"></Symbol>
+                        </Td>
                     </Tr>
                 </Tbody>
             </Table>
