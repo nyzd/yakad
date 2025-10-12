@@ -17,7 +17,7 @@ export const Container = forwardRef<HTMLDivElement, ContainerProps>(
         const joinedClassNames = classNames(
             boxingStyles.flexColumnBox,
             { [boxingStyles[align as string]]: align },
-            { demandChildsToBeFullWidth: true },
+            { [boxingStyles.demandChildsToBeFullWidth]: true },
             styles.container,
             styles[size],
             className

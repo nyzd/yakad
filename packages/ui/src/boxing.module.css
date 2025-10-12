@@ -1,5 +1,5 @@
 /* Full Width Childs */
-:global(.demandChildsToBeFullWidth) > :global(.fullWidthOnParentDemand) {
+.demandChildsToBeFullWidth > .fullWidthOnParentDemand {
     width: 100%;
 }
 

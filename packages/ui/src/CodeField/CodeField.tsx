@@ -51,7 +51,7 @@ export const CodeField = forwardRef<HTMLInputElement, CodeFieldsProps>(
         ref
     ) {
         const joinedClassNames = classNames(
-            { fullWidthOnParentDemand: true },
+            { [boxingStyles.fullWidthOnParentDemand]: true },
             styles.input,
             className
         );

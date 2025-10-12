@@ -22,8 +22,8 @@ export const Stack = forwardRef<HTMLDivElement, StackProps>(function Stack(
     const joinedClassNames = classNames(
         boxingStyles.flexColumnBox,
         { [boxingStyles[align as string]]: align },
-        { demandChildsToBeFullWidth: true },
-        { fullWidthOnParentDemand: fullWidthOnParentDemand },
+        { [boxingStyles.demandChildsToBeFullWidth]: true },
+        { [boxingStyles.fullWidthOnParentDemand]: fullWidthOnParentDemand },
         styles.stack,
         className
     );
