@@ -2,6 +2,7 @@ import { forwardRef } from "react";
 import classNames from "classnames";
 import { Symbol } from "@yakad/symbols";
 import { Button, Card } from "..";
+import boxingStyles from "../boxing.module.css";
 import styles from "./CodeBox.module.css";
 
 export interface CodeBoxProps extends React.HTMLAttributes<HTMLDivElement> {

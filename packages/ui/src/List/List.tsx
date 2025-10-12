@@ -1,5 +1,6 @@
 import { forwardRef } from "react";
 import classNames from "classnames";
+import boxingStyles from "../boxing.module.css";
 import styles from "./List.module.css";
 
 export interface ListProps extends React.HTMLAttributes<HTMLUListElement> {

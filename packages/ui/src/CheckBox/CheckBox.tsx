@@ -1,6 +1,7 @@
 import { forwardRef } from "react";
 import classNames from "classnames";
 import { Symbol } from "@yakad/symbols";
+import boxingStyles from "../boxing.module.css";
 import styles from "./CheckBox.module.css";
 
 type ExcludedTypes = "type";

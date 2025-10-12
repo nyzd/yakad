@@ -1,6 +1,7 @@
 import { forwardRef } from "react";
 import classNames from "classnames";
 import { LoadingIcon } from "..";
+import boxingStyles from "../boxing.module.css";
 import styles from "./Button.module.css";
 
 export interface ButtonProps
