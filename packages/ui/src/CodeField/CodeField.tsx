@@ -2,6 +2,7 @@
 
 import { forwardRef } from "react";
 import classNames from "classnames";
+import boxingStyles from "../boxing.module.css";
 import styles from "./CodeField.module.css";
 
 type ExcludedTypes = "minLength" | "maxLength" | "type";

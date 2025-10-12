@@ -1,5 +1,6 @@
 import React, { forwardRef } from "react";
 import classNames from "classnames";
+import boxingStyles from "../boxing.module.css";
 import styles from "./InputField.module.css";
 
 export interface InputFieldProps
