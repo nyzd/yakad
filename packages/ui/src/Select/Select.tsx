@@ -35,7 +35,7 @@ export const Select = forwardRef<HTMLSelectElement, SelectProps>(
         return (
             <div
                 className={classNames(
-                    { fullWidthOnParentDemand: true },
+                    { [boxingStyles.fullWidthOnParentDemand]: true },
                     inputStyles.div
                 )}
             >

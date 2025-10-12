@@ -41,7 +41,7 @@ export const Theme = forwardRef<HTMLDivElement, ThemeProps>(function Theme(
         { portalRoot: true },
         boxingStyles.flexColumnBox,
         { [boxingStyles[align as string]]: align },
-        { demandChildsToBeFullWidth: true },
+        { [boxingStyles.demandChildsToBeFullWidth]: true },
         styles.theme,
         styles[darkStyle],
         styles[color],

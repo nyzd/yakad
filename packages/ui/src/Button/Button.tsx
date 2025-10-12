@@ -45,7 +45,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
         const isloadingPositionCenter = !icon || loadingPosition === "center";
 
         const joinedClassNames = classNames(
-            { fullWidthOnParentDemand: fullWidthOnParentDemand },
+            { [boxingStyles.fullWidthOnParentDemand]: fullWidthOnParentDemand },
             styles.button,
             styles[variant],
             { [styles.loading]: loadingVariant },

@@ -16,7 +16,7 @@ export const Main = forwardRef<HTMLDivElement, MainProps>(function Main(
     const joinedClassNames = classNames(
         boxingStyles.flexColumnBox,
         { [boxingStyles[align as string]]: align },
-        { demandChildsToBeFullWidth: true },
+        { [boxingStyles.demandChildsToBeFullWidth]: true },
         styles.main,
         { [styles.navOpen]: navOpen },
         className

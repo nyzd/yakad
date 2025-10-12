@@ -30,7 +30,7 @@ export const InputField = forwardRef<HTMLInputElement, InputFieldProps>(
         return (
             <div
                 className={classNames(
-                    { fullWidthOnParentDemand: true },
+                    { [boxingStyles.fullWidthOnParentDemand]: true },
                     styles.div
                 )}
             >

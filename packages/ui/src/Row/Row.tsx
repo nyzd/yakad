@@ -28,7 +28,7 @@ export const Row = forwardRef<HTMLDivElement, RowProps>(function Row(
         { [boxingStyles[align as string]]: align },
         boxingStyles[overflow],
         styles.row,
-        { fullWidthOnParentDemand: fullWidthOnParentDemand },
+        { [boxingStyles.fullWidthOnParentDemand]: fullWidthOnParentDemand },
         styles[size],
         className
     );

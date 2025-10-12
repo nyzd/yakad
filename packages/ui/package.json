@@ -32,7 +32,7 @@
     },
     "dependencies": {
         "@yakad/lib": "1.0.22",
-        "@yakad/symbols": "1.0.25",
+        "@yakad/symbols": "1.0.28",
         "classnames": "2.5.1"
     },
     "peerDependencies": {
