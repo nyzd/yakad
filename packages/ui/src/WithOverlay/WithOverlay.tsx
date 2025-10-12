@@ -64,8 +64,11 @@ export const WithOverlay = forwardRef<HTMLDivElement, WithOverlayProps>(
         }, [showOverlay]);
 
         // Teleport Overlay to portalRoot or body
+        const portalRoot =
+            document.getElementsByClassName("portalRoot")[0] || document;
         const teleport =
             overlay &&
+            portalRoot &&
             createPortal(
                 cloneElement(overlay, {
                     triggerref: triggerRef,
@@ -74,8 +77,7 @@ export const WithOverlay = forwardRef<HTMLDivElement, WithOverlayProps>(
                         setShowOverlay(false);
                     },
                 }),
-                document.getElementsByClassName("portalRoot")[0] ||
-                    document.body
+                portalRoot
             );
 
         return (

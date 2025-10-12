@@ -1,4 +1,10 @@
-import { Container, Hr } from "@yakad/ui";
+import {
+    Button,
+    Container,
+    Hr,
+    Popup,
+    WithOverlay,
+} from "../../../packages/ui/src";
 import Installation from "./installation";
 import Link from "next/link";
 
@@ -18,6 +24,9 @@ export default function Docs() {
                 <Hr />
             </Container>
             <Installation />
+            <WithOverlay overlay={<Popup>Jafar</Popup>}>
+                <Button>HELLO</Button>
+            </WithOverlay>
         </>
     );
 }
