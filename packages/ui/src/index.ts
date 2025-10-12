@@ -40,3 +40,5 @@ export * from "./ActiveOnVisible/ActiveOnVisible"; // Stack Based
 // Overlays
 export * from "./Dropdown/Dropdown"; // Card Based
 export * from "./Popup/Popup"; // Card Based
+
+export * from "./Avatar/Avatar";

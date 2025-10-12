@@ -1,6 +1,6 @@
 {
     "name": "@yakad/ui",
-    "version": "1.3.152",
+    "version": "1.3.156",
     "private": false,
     "author": "Natiq",
     "description": "UI components for NextJS/React",
@@ -23,8 +23,9 @@
     "homepage": "https://yakad.natiq.net",
     "scripts": {
         "clean": "rimraf dist/",
-        "copy-files": "copyfiles -u 1 src/*.css src/**/*.css dist/",
-        "build": "npm run clean && tsc && npm run copy-files",
+        "copy-files:css": "copyfiles -u 1 src/*.css src/**/*.css dist/",
+        "copy-files:svg": "copyfiles -u 1 src/*.svg src/**/*.svg dist/",
+        "build": "npm run clean && tsc && npm run copy-files:css && npm run copy-files:svg",
         "typecheck": "tsc --noEmit",
         "lint": "eslint src/**/*.{ts,tsx}",
         "test": "echo \"No tests specified\" && exit 0",
