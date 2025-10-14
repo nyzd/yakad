@@ -40,3 +40,15 @@ export * from "./ActiveOnVisible/ActiveOnVisible"; // Stack Based
 // Overlays
 export * from "./Dropdown/Dropdown"; // Card Based
 export * from "./Popup/Popup"; // Card Based
+
+export * from "./Avatar/Avatar";
+export * from "./interactionHooks/useOnRightClick";
+export * from "./interactionHooks/useOnOutsideClick";
+export * from "./interactionHooks/useOnDoubleTap";
+export * from "./interactionHooks/useOnSwipe";
+export * from "./interactionHooks/useOnPinch";
+export * from "./interactionHooks/useOnRotate";
+export * from "./interactionHooks/useOnResizeObserver";
+export * from "./interactionHooks/useOnVisibilityObserver";
+export * from "./interactionHooks/useOnHoverChange";
+export * from "./interactionHooks/useOnScroll";
