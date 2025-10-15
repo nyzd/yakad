@@ -1,29 +1,29 @@
 import { RefObject, useCallback, useEffect, useRef } from "react";
 
 export function useOnScroll<T extends HTMLElement = HTMLElement>(
-    callback: (action: "start" | "stop") => void
+    callback: (scrolling: boolean) => void,
+    ref?: RefObject<T | null> | undefined
 ): RefObject<T | null> {
-    const ref = useRef<T>(null);
+    const defaultRef = useRef<T | null>(null);
+    const targetRef = ref ?? defaultRef;
     const scrollTimeoutRef = useRef<NodeJS.Timeout | undefined>(undefined);
     const scrollingRef = useRef(false);
 
     const handleScroll = useCallback(() => {
-        console.log("bb123");
-
         if (!scrollingRef.current) {
             scrollingRef.current = true;
-            callback("start");
+            callback(true);
         }
 
         clearTimeout(scrollTimeoutRef.current);
         scrollTimeoutRef.current = setTimeout(() => {
             scrollingRef.current = false;
-            callback("stop");
+            callback(false);
         }, 150);
     }, [callback]);
 
     useEffect(() => {
-        const element = ref.current;
+        const element = targetRef.current;
         if (!element) return;
 
         element.addEventListener("scroll", handleScroll);
@@ -31,7 +31,7 @@ export function useOnScroll<T extends HTMLElement = HTMLElement>(
             element.removeEventListener("scroll", handleScroll);
             clearTimeout(scrollTimeoutRef.current);
         };
-    }, [handleScroll]);
+    }, [handleScroll, targetRef]);
 
-    return ref;
+    return targetRef;
 }

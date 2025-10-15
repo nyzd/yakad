@@ -1,9 +1,11 @@
 import { RefObject, useCallback, useEffect, useRef } from "react";
 
 export function useOnRightClick<T extends HTMLElement = HTMLElement>(
-    callback: (e: MouseEvent) => void
+    callback: (e: MouseEvent) => void,
+    ref?: RefObject<T | null> | undefined
 ): RefObject<T | null> {
-    const ref = useRef<T>(null);
+    const defaultRef = useRef<T | null>(null);
+    const targetRef = ref ?? defaultRef;
 
     const handleContextMenu = useCallback(
         (e: MouseEvent) => {
@@ -14,14 +16,14 @@ export function useOnRightClick<T extends HTMLElement = HTMLElement>(
     );
 
     useEffect(() => {
-        const element = ref.current;
+        const element = targetRef.current;
         if (!element) return;
 
         element.addEventListener("contextmenu", handleContextMenu);
         return () => {
             element.removeEventListener("contextmenu", handleContextMenu);
         };
-    }, [handleContextMenu]);
+    }, [handleContextMenu, targetRef]);
 
-    return ref;
+    return targetRef;
 }

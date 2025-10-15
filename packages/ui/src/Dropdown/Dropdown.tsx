@@ -8,7 +8,7 @@ import {
     useImperativeHandle,
 } from "react";
 import classNames from "classnames";
-import { Card, CardProps, WithInteractions, OverlayProps } from "..";
+import { Card, CardProps, OverlayProps, useOnOutsideClick } from "..";
 import styles from "./Dropdown.module.css";
 
 export interface DropdownProps extends CardProps, OverlayProps {}
@@ -109,31 +109,33 @@ export const Dropdown = forwardRef<HTMLDivElement, DropdownProps>(
             }
         }, [children, placementTargetRef]);
 
+        useOnOutsideClick(() => {
+            onClose?.();
+        }, dropdownRef);
+
         return (
             <>
                 {!triggerref && <div ref={fallbackTriggerRef} />}
-                <WithInteractions onOutsideClick={onClose}>
-                    <Card
-                        ref={dropdownRef}
-                        fullWidthOnParentDemand={fullWidthOnParentDemand}
-                        blur={blur}
-                        level={level}
-                        {...restProps}
-                        className={classNames(
-                            styles.dropdownCard,
-                            { [styles.isPlacedAbove]: isPlacedAbove },
-                            className
-                        )}
-                        style={{
-                            top: dropdownPosition.top,
-                            left: dropdownPosition.left,
-                            visibility: isPlaced ? "visible" : "hidden",
-                            ...style,
-                        }}
-                    >
-                        {children}
-                    </Card>
-                </WithInteractions>
+                <Card
+                    ref={dropdownRef}
+                    fullWidthOnParentDemand={fullWidthOnParentDemand}
+                    blur={blur}
+                    level={level}
+                    {...restProps}
+                    className={classNames(
+                        styles.dropdownCard,
+                        { [styles.isPlacedAbove]: isPlacedAbove },
+                        className
+                    )}
+                    style={{
+                        top: dropdownPosition.top,
+                        left: dropdownPosition.left,
+                        visibility: isPlaced ? "visible" : "hidden",
+                        ...style,
+                    }}
+                >
+                    {children}
+                </Card>
                 <span
                     className={classNames(
                         styles.arrow,

@@ -1,9 +1,11 @@
 import { RefObject, useCallback, useEffect, useRef, useState } from "react";
 
 export function useOnRotate<T extends HTMLElement = HTMLElement>(
-    callback: (e: TouchEvent, deltaAngle: number) => void
+    callback: (e: TouchEvent, deltaAngle: number) => void,
+    ref?: RefObject<T | null> | undefined
 ): RefObject<T | null> {
-    const ref = useRef<T>(null);
+    const defaultRef = useRef<T | null>(null);
+    const targetRef = ref ?? defaultRef;
     const [startAngle, setStartAngle] = useState(0);
 
     const getAngle = (t1: Touch, t2: Touch) =>
@@ -30,7 +32,7 @@ export function useOnRotate<T extends HTMLElement = HTMLElement>(
     }, [callback, startAngle]);
 
     useEffect(() => {
-        const element = ref.current;
+        const element = targetRef.current;
         if (!element) return;
 
         element.addEventListener("touchstart", handleStart);
@@ -39,7 +41,7 @@ export function useOnRotate<T extends HTMLElement = HTMLElement>(
             element.removeEventListener("touchstart", handleStart);
             element.removeEventListener("touchmove", handleMove);
         };
-    }, [handleMove, handleStart]);
+    }, [handleMove, handleStart, targetRef]);
 
-    return ref;
+    return targetRef;
 }

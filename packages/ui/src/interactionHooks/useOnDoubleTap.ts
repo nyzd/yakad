@@ -1,9 +1,11 @@
 import { RefObject, useCallback, useEffect, useRef, useState } from "react";
 
 export function useOnDoubleTap<T extends HTMLElement = HTMLElement>(
-    callback: (e: TouchEvent) => void
+    callback: (e: TouchEvent) => void,
+    ref?: RefObject<T | null> | undefined
 ): RefObject<T | null> {
-    const ref = useRef<T>(null);
+    const defaultRef = useRef<T | null>(null);
+    const targetRef = ref ?? defaultRef;
     const [lastTap, setLastTap] = useState(0);
 
     const handleDoubleTap = useCallback(
@@ -18,7 +20,7 @@ export function useOnDoubleTap<T extends HTMLElement = HTMLElement>(
     );
 
     useEffect(() => {
-        const element = ref.current;
+        const element = targetRef.current;
         if (!element) return;
 
         element.addEventListener("touchend", handleDoubleTap);
@@ -26,7 +28,7 @@ export function useOnDoubleTap<T extends HTMLElement = HTMLElement>(
         return () => {
             element.removeEventListener("touchend", handleDoubleTap)
         };
-    }, [handleDoubleTap]);
+    }, [handleDoubleTap, targetRef]);
 
-    return ref;
+    return targetRef;
 }

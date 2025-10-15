@@ -15,8 +15,9 @@ import {
     DropdownProps,
     Popup,
     PopupProps,
-    WithInteractions,
-    WithInteractionsProps,
+    Stack,
+    StackProps,
+    useOnRightClick,
 } from "..";
 
 export interface OverlayProps {
@@ -27,7 +28,7 @@ type AllowedOverlays =
     | React.ReactElement<PopupProps, typeof Popup>
     | React.ReactElement<DropdownProps, typeof Dropdown>;
 
-export interface WithOverlayProps extends WithInteractionsProps {
+export interface WithOverlayProps extends StackProps {
     trigger?: "onClick" | "onRightClick";
     overlay?: AllowedOverlays;
     children?: React.ReactElement;
@@ -35,25 +36,27 @@ export interface WithOverlayProps extends WithInteractionsProps {
 
 export const WithOverlay = forwardRef<HTMLDivElement, WithOverlayProps>(
     function WithOverlay(
-        {
-            trigger = "onClick",
-            overlay,
-            children,
-            onRightClick,
-            onClick,
-            ...restProps
-        },
+        { trigger = "onClick", overlay, children, onClick, ...restProps },
         forwardedRef
     ) {
         // Get Triggers ref and send to Overlay
-        const triggerRef = useRef<HTMLDivElement | null>(null);
+        const localRef = useRef<HTMLDivElement | null>(null);
+        const [showOverlay, setShowOverlay] = useState(false);
+
+        useOnRightClick(() => {
+            setShowOverlay(true);
+        }, localRef);
+
+        const onClickHandler: React.MouseEventHandler<HTMLDivElement> = (e) => {
+            trigger === "onClick" && setShowOverlay((prev) => !prev);
+            onClick?.(e);
+        };
+
         // Let the parent access our DOM node
         useImperativeHandle(
             forwardedRef,
-            () => triggerRef.current as HTMLDivElement
+            () => localRef.current as HTMLDivElement
         );
-
-        const [showOverlay, setShowOverlay] = useState(false);
 
         // Disable Body Scroll on showOverlay
         useEffect(() => {
@@ -71,7 +74,7 @@ export const WithOverlay = forwardRef<HTMLDivElement, WithOverlayProps>(
             portalRoot &&
             createPortal(
                 cloneElement(overlay, {
-                    triggerref: triggerRef,
+                    triggerref: localRef,
                     onClose: () => {
                         overlay.props.onClose?.();
                         setShowOverlay(false);
@@ -82,20 +85,9 @@ export const WithOverlay = forwardRef<HTMLDivElement, WithOverlayProps>(
 
         return (
             <>
-                <WithInteractions
-                    ref={triggerRef}
-                    {...restProps}
-                    onRightClick={(e) => {
-                        trigger === "onRightClick" && setShowOverlay(true);
-                        onRightClick?.(e);
-                    }}
-                    onClick={(e) => {
-                        trigger === "onClick" && setShowOverlay(true);
-                        onClick?.(e);
-                    }}
-                >
+                <Stack ref={localRef} {...restProps} onClick={onClickHandler}>
                     {children}
-                </WithInteractions>
+                </Stack>
                 {showOverlay && teleport}
             </>
         );

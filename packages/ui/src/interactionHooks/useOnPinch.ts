@@ -1,9 +1,11 @@
 import { RefObject, useCallback, useEffect, useRef, useState } from "react";
 
 export function useOnPinch<T extends HTMLElement = HTMLElement>(
-    callback: (e: TouchEvent, action: "in" | "out") => void
+    callback: (e: TouchEvent, action: "in" | "out") => void,
+    ref?: RefObject<T | null> | undefined
 ): RefObject<T | null> {
-    const ref = useRef<T>(null);
+    const defaultRef = useRef<T | null>(null);
+    const targetRef = ref ?? defaultRef;
     const [startDistance, setStartDistance] = useState(0);
 
     const getDistance = (t1: Touch, t2: Touch) =>
@@ -32,7 +34,7 @@ export function useOnPinch<T extends HTMLElement = HTMLElement>(
     );
 
     useEffect(() => {
-        const element = ref.current;
+        const element = targetRef.current;
         if (!element) return;
         element.addEventListener("touchstart", handleStart);
         element.addEventListener("touchmove", handleMove);
@@ -40,7 +42,7 @@ export function useOnPinch<T extends HTMLElement = HTMLElement>(
             element.removeEventListener("touchstart", handleStart);
             element.removeEventListener("touchmove", handleMove);
         };
-    }, [handleMove, handleStart]);
+    }, [handleMove, handleStart, targetRef]);
 
-    return ref;
+    return targetRef;
 }
