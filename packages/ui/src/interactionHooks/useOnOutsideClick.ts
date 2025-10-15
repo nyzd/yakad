@@ -1,20 +1,22 @@
 import { RefObject, useCallback, useEffect, useRef } from "react";
 
 export function useOnOutsideClick<T extends HTMLElement = HTMLElement>(
-    callback: (e: MouseEvent) => void
+    callback: (e: MouseEvent) => void,
+    ref?: RefObject<T | null> | undefined
 ): RefObject<T | null> {
-    const ref = useRef<T>(null);
+    const defaultRef = useRef<T | null>(null);
+    const targetRef = ref ?? defaultRef;
 
     const handleClick = useCallback(
         (e: MouseEvent) => {
             e.preventDefault();
-            const element = ref.current;
+            const element = targetRef.current;
             if (!element) return;
             if (!element.contains(e.target as Node)) {
                 callback(e);
             }
         },
-        [callback]
+        [callback, targetRef]
     );
 
     useEffect(() => {
@@ -24,5 +26,5 @@ export function useOnOutsideClick<T extends HTMLElement = HTMLElement>(
         };
     }, [handleClick]);
 
-    return ref;
+    return targetRef;
 }

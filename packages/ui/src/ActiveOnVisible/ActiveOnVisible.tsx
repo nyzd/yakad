@@ -1,50 +1,47 @@
 "use client";
 
-import {
-    Activity,
-    forwardRef,
-    useImperativeHandle,
-    useRef,
-    useState,
-} from "react";
-import { StackProps, WithInteractions } from "..";
+import { forwardRef, useImperativeHandle, useRef, useState } from "react";
+import { Stack, StackProps, useOnVisibilityChange } from "..";
 
-export interface ActiveOnVisibleProps extends StackProps {}
+export interface ActiveOnVisibleProps extends StackProps {
+    onVisibilityChange?: (visible: boolean) => void;
+}
 
 export const ActiveOnVisible = forwardRef<HTMLDivElement, ActiveOnVisibleProps>(
-    function ActiveOnVisible({ style, children, ...restProps }, forwardedRef) {
+    function ActiveOnVisible(
+        { onVisibilityChange, style, children, ...restProps },
+        forwardedRef
+    ) {
         const localRef = useRef<HTMLDivElement | null>(null);
+        const [boxHeight, setBoxHeight] = useState<number>(0);
+        // const isVisible = boxHeight === 0;
+
         // Let the parent access our DOM node
         useImperativeHandle(
             forwardedRef,
             () => localRef.current as HTMLDivElement
         );
 
-        const [boxHeight, setBoxHeight] = useState<number>(0);
-        const isVisible = boxHeight === 0;
-
-        const handleOnVisible = () => {
-            setBoxHeight(0);
-        };
-        const handleOnHidden = () => {
-            if (localRef.current) {
-                const boxRect = localRef.current.getBoundingClientRect();
-                setBoxHeight(boxRect.height);
+        useOnVisibilityChange((visible) => {
+            onVisibilityChange?.(visible);
+            if (visible) {
+                setBoxHeight(0);
+            } else {
+                const boxRect = localRef.current?.getBoundingClientRect();
+                setBoxHeight(boxRect!.height);
             }
-        };
+        }, localRef);
 
         return (
-            <WithInteractions
+            <Stack
                 ref={localRef}
                 {...restProps}
                 style={{ height: boxHeight || "auto", ...style }}
-                onVisible={handleOnVisible}
-                onHidden={handleOnHidden}
             >
-                <Activity mode={isVisible ? "visible" : "hidden"}>
-                    {children}
-                </Activity>
-            </WithInteractions>
+                {/* <Activity mode={isVisible ? "visible" : "hidden"}> */}
+                {children}
+                {/* </Activity> */}
+            </Stack>
         );
     }
 );

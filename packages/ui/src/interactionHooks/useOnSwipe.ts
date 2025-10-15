@@ -1,9 +1,11 @@
 import { RefObject, useCallback, useEffect, useRef, useState } from "react";
 
 export function useOnSwipe<T extends HTMLElement = HTMLElement>(
-    callback: (e: TouchEvent, direction: "left" | "right" | "up" | "down") => void
+    callback: (e: TouchEvent, direction: "left" | "right" | "up" | "down") => void,
+    ref?: RefObject<T | null> | undefined
 ): RefObject<T | null> {
-    const ref = useRef<T>(null);
+    const defaultRef = useRef<T | null>(null);
+    const targetRef = ref ?? defaultRef;
     const [swipeCoordinates, setSwipeCoordinates] = useState({
         startX: 0,
         startY: 0,
@@ -46,7 +48,7 @@ export function useOnSwipe<T extends HTMLElement = HTMLElement>(
     }, [callback, swipeCoordinates.endX, swipeCoordinates.startX, swipeCoordinates.endY, swipeCoordinates.startY]);
 
     useEffect(() => {
-        const element = ref.current;
+        const element = targetRef.current;
         if (!element) return;
 
         element.addEventListener("touchstart", touchStart, { passive: true });
@@ -58,8 +60,8 @@ export function useOnSwipe<T extends HTMLElement = HTMLElement>(
             element.removeEventListener("touchmove", touchMove);
             element.removeEventListener("touchend", touchEnd);
         };
-    }, [touchStart, touchMove, touchEnd]);
+    }, [touchStart, touchMove, touchEnd, targetRef]);
 
-    return ref;
+    return targetRef;
 }
 

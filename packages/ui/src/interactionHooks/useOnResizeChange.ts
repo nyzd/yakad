@@ -1,9 +1,11 @@
 import { RefObject, useCallback, useEffect, useRef } from "react";
 
-export function useOnResizeObserver<T extends HTMLElement = HTMLElement>(
-    callback: (e: ResizeObserverEntry) => void
+export function useOnResizeChange<T extends HTMLElement = HTMLElement>(
+    callback: (e: ResizeObserverEntry) => void,
+    ref?: RefObject<T | null> | undefined
 ): RefObject<T | null> {
-    const ref = useRef<T>(null);
+    const defaultRef = useRef<T | null>(null);
+    const targetRef = ref ?? defaultRef;
 
     const handleResize = useCallback(
         (e: ResizeObserverEntry) => {
@@ -13,7 +15,7 @@ export function useOnResizeObserver<T extends HTMLElement = HTMLElement>(
     );
 
     useEffect(() => {
-        const element = ref.current;
+        const element = targetRef.current;
         if (!element) return;
 
         const resizeObserver = new ResizeObserver((entries) => {
@@ -27,7 +29,7 @@ export function useOnResizeObserver<T extends HTMLElement = HTMLElement>(
         return () => {
             resizeObserver?.disconnect();
         };
-    }, [handleResize]);
+    }, [handleResize, targetRef]);
 
-    return ref;
+    return targetRef;
 }

@@ -34,7 +34,6 @@ export * from "./CodeBox/CodeBox";
 // Utilities
 export * from "./Display/Display"; // Stack Based
 export * from "./WithOverlay/WithOverlay";
-export * from "./WithInteractions/WithInteractions"; // Stack Based
 export * from "./RenderByScroll/RenderByScroll"; // Stack Based
 export * from "./ActiveOnVisible/ActiveOnVisible"; // Stack Based
 // Overlays
@@ -48,7 +47,7 @@ export * from "./interactionHooks/useOnDoubleTap";
 export * from "./interactionHooks/useOnSwipe";
 export * from "./interactionHooks/useOnPinch";
 export * from "./interactionHooks/useOnRotate";
-export * from "./interactionHooks/useOnResizeObserver";
-export * from "./interactionHooks/useOnVisibilityObserver";
+export * from "./interactionHooks/useOnResizeChange";
+export * from "./interactionHooks/useOnVisibilityChange";
 export * from "./interactionHooks/useOnHoverChange";
 export * from "./interactionHooks/useOnScroll";

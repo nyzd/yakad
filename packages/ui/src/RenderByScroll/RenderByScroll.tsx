@@ -1,7 +1,7 @@
 "use client";
 
 import React, { forwardRef, useEffect, useRef, useState } from "react";
-import { Stack, StackProps, WithInteractions } from "..";
+import { ActiveOnVisible, Stack, StackProps, useOnVisibilityChange } from "..";
 
 export interface RenderByScrollProps extends StackProps {
     scrollMarginTop?: number;
@@ -11,8 +11,6 @@ export interface RenderByScrollProps extends StackProps {
     newChildRendered?: (index: number) => void;
     children?: React.ReactNode;
 }
-
-const data = Array.from({ length: 78 });
 
 export const RenderByScroll = forwardRef<HTMLDivElement, RenderByScrollProps>(
     function RenderByScroll(
@@ -65,7 +63,7 @@ export const RenderByScroll = forwardRef<HTMLDivElement, RenderByScrollProps>(
                 overRenderedOnHighSide < 1 ||
                 overRenderedOnHighSide - 1 <= overRenderedOnLowSide;
             const isHighSideNewRenderRemains =
-                rendered.highest < data.length - 1;
+                rendered.highest < childrenArray.length - 1;
             const isLowSideNewRenderRemains = rendered.lowest > 0;
             if (!stopNewRenders) {
                 if (
@@ -108,6 +106,10 @@ export const RenderByScroll = forwardRef<HTMLDivElement, RenderByScrollProps>(
             // eslint-disable-next-line
         }, [jumpToIndex]);
 
+        const onvisibRef = useOnVisibilityChange<HTMLDivElement>((visible) => {
+            setIsVisibleLowSideLimitSensor(visible);
+        });
+
         return (
             <Stack
                 ref={ref}
@@ -115,20 +117,18 @@ export const RenderByScroll = forwardRef<HTMLDivElement, RenderByScrollProps>(
                 style={{ minHeight: "100vh", ...style }}
             >
                 {rendered.lowest > 0 && (
-                    <WithInteractions
+                    <div
+                        ref={onvisibRef}
                         style={{
                             marginBottom: `${scrollMarginTop}rem`,
                         }}
-                        onVisibilityChange={(v) =>
-                            setIsVisibleLowSideLimitSensor(v)
-                        }
                     />
                 )}
                 {childrenArray.map(
                     (child, i) =>
                         i >= rendered.lowest &&
                         i <= rendered.highest && (
-                            <WithInteractions
+                            <ActiveOnVisible
                                 key={i}
                                 ref={(el) => {
                                     childRefs.current[i] = el;
@@ -136,10 +136,12 @@ export const RenderByScroll = forwardRef<HTMLDivElement, RenderByScrollProps>(
                                 style={{
                                     scrollMarginTop: `${scrollMarginTop}rem`,
                                 }}
-                                onVisible={() => handleOnVisible(i)}
+                                onVisibilityChange={(visible) => {
+                                    visible && handleOnVisible(i);
+                                }}
                             >
                                 {child}
-                            </WithInteractions>
+                            </ActiveOnVisible>
                         )
                 )}
             </Stack>
