@@ -20,20 +20,20 @@ type TextVariant =
 
 export interface TextProps<T> extends React.HTMLAttributes<T> {
     variant?: TextVariant;
-    color?: "onSurfaceColor" | "onSurfaceVariantColor";
+    palette?: "onSurfaceColor" | "onSurfaceVariantColor";
     children?: React.ReactNode;
 } 
 
 export const H1 = forwardRef<HTMLHeadingElement, TextProps<HTMLHeadingElement>>(function H1(
-    { variant = "heading1", color, className, children, ...restProps },
+    { variant = "heading1", palette, className, children, ...restProps },
     ref
 ) {
     const joinedClassNames = classNames(
         styles.text,
         styles[variant as string],
         {
-            [styles.onSurfaceColor]: color === "onSurfaceColor",
-            [styles.onSurfaceVariantColor]: color === "onSurfaceVariantColor",
+            [styles.onSurfaceColor]: palette === "onSurfaceColor",
+            [styles.onSurfaceVariantColor]: palette === "onSurfaceVariantColor",
         },
         className
     );
@@ -45,15 +45,15 @@ export const H1 = forwardRef<HTMLHeadingElement, TextProps<HTMLHeadingElement>>(
 });
 
 export const H2 = forwardRef<HTMLHeadingElement, TextProps<HTMLHeadingElement>>(function H2(
-    { variant = "heading2", color, className, children, ...restProps },
+    { variant = "heading2", palette, className, children, ...restProps },
     ref
 ) {
     const joinedClassNames = classNames(
         styles.text,
         styles[variant as string],
         {
-            [styles.onSurfaceColor]: color === "onSurfaceColor",
-            [styles.onSurfaceVariantColor]: color === "onSurfaceVariantColor",
+            [styles.onSurfaceColor]: palette === "onSurfaceColor",
+            [styles.onSurfaceVariantColor]: palette === "onSurfaceVariantColor",
         },
         className
     );
@@ -65,15 +65,15 @@ export const H2 = forwardRef<HTMLHeadingElement, TextProps<HTMLHeadingElement>>(
 });
 
 export const H3 = forwardRef<HTMLHeadingElement, TextProps<HTMLHeadingElement>>(function H3(
-    { variant = "heading3", color, className, children, ...restProps },
+    { variant = "heading3", palette, className, children, ...restProps },
     ref
 ) {
     const joinedClassNames = classNames(
         styles.text,
         styles[variant as string],
         {
-            [styles.onSurfaceColor]: color === "onSurfaceColor",
-            [styles.onSurfaceVariantColor]: color === "onSurfaceVariantColor",
+            [styles.onSurfaceColor]: palette === "onSurfaceColor",
+            [styles.onSurfaceVariantColor]: palette === "onSurfaceVariantColor",
         },
         className
     );
@@ -85,15 +85,15 @@ export const H3 = forwardRef<HTMLHeadingElement, TextProps<HTMLHeadingElement>>(
 });
 
 export const H4 = forwardRef<HTMLHeadingElement, TextProps<HTMLHeadingElement>>(function H4(
-    { variant = "heading4", color, className, children, ...restProps },
+    { variant = "heading4", palette, className, children, ...restProps },
     ref
 ) {
     const joinedClassNames = classNames(
         styles.text,
         styles[variant as string],
         {
-            [styles.onSurfaceColor]: color === "onSurfaceColor",
-            [styles.onSurfaceVariantColor]: color === "onSurfaceVariantColor",
+            [styles.onSurfaceColor]: palette === "onSurfaceColor",
+            [styles.onSurfaceVariantColor]: palette === "onSurfaceVariantColor",
         },
         className
     );
@@ -105,15 +105,15 @@ export const H4 = forwardRef<HTMLHeadingElement, TextProps<HTMLHeadingElement>>(
 });
 
 export const H5 = forwardRef<HTMLHeadingElement, TextProps<HTMLHeadingElement>>(function H5(
-    { variant = "heading5", color, className, children, ...restProps },
+    { variant = "heading5", palette, className, children, ...restProps },
     ref
 ) {
     const joinedClassNames = classNames(
         styles.text,
         styles[variant as string],
         {
-            [styles.onSurfaceColor]: color === "onSurfaceColor",
-            [styles.onSurfaceVariantColor]: color === "onSurfaceVariantColor",
+            [styles.onSurfaceColor]: palette === "onSurfaceColor",
+            [styles.onSurfaceVariantColor]: palette === "onSurfaceVariantColor",
         },
         className
     );
@@ -125,15 +125,15 @@ export const H5 = forwardRef<HTMLHeadingElement, TextProps<HTMLHeadingElement>>(
 });
 
 export const H6 = forwardRef<HTMLHeadingElement, TextProps<HTMLHeadingElement>>(function H6(
-    { variant = "heading6", color, className, children, ...restProps },
+    { variant = "heading6", palette, className, children, ...restProps },
     ref
 ) {
     const joinedClassNames = classNames(
         styles.text,
         styles[variant as string],
         {
-            [styles.onSurfaceColor]: color === "onSurfaceColor",
-            [styles.onSurfaceVariantColor]: color === "onSurfaceVariantColor",
+            [styles.onSurfaceColor]: palette === "onSurfaceColor",
+            [styles.onSurfaceVariantColor]: palette === "onSurfaceVariantColor",
         },
         className
     );
@@ -145,15 +145,15 @@ export const H6 = forwardRef<HTMLHeadingElement, TextProps<HTMLHeadingElement>>(
 });
 
 export const P = forwardRef<HTMLParagraphElement, TextProps<HTMLParagraphElement>>(function P(
-    { variant = "body5", color, className, children, ...restProps },
+    { variant = "body5", palette, className, children, ...restProps },
     ref
 ) {
     const joinedClassNames = classNames(
         styles.text,
         styles[variant as string],
         {
-            [styles.onSurfaceColor]: color === "onSurfaceColor",
-            [styles.onSurfaceVariantColor]: color === "onSurfaceVariantColor",
+            [styles.onSurfaceColor]: palette === "onSurfaceColor",
+            [styles.onSurfaceVariantColor]: palette === "onSurfaceVariantColor",
         },
         className
     );
@@ -165,15 +165,15 @@ export const P = forwardRef<HTMLParagraphElement, TextProps<HTMLParagraphElement
 });
 
 export const Span = forwardRef<HTMLSpanElement, TextProps<HTMLSpanElement>>(function Span(
-    { variant = "span", color, className, children, ...restProps },
+    { variant = "span", palette, className, children, ...restProps },
     ref
 ) {
     const joinedClassNames = classNames(
         styles.text,
         styles[variant as string],
         {
-            [styles.onSurfaceColor]: color === "onSurfaceColor",
-            [styles.onSurfaceVariantColor]: color === "onSurfaceVariantColor",
+            [styles.onSurfaceColor]: palette === "onSurfaceColor",
+            [styles.onSurfaceVariantColor]: palette === "onSurfaceVariantColor",
         },
         className
     );
@@ -185,14 +185,14 @@ export const Span = forwardRef<HTMLSpanElement, TextProps<HTMLSpanElement>>(func
 });
 
 export const Text = forwardRef<HTMLDivElement, TextProps<HTMLDivElement>>(function Text(
-    { variant = "body5", color, className, children, ...restProps },
+    { variant = "body5", palette, className, children, ...restProps },
     ref
 ) {
     const joinedClassNames = classNames(
         styles[variant as string],
         {
-            [styles.onSurfaceColor]: color === "onSurfaceColor",
-            [styles.onSurfaceVariantColor]: color === "onSurfaceVariantColor",
+            [styles.onSurfaceColor]: palette === "onSurfaceColor",
+            [styles.onSurfaceVariantColor]: palette === "onSurfaceVariantColor",
         },
         className
     );
