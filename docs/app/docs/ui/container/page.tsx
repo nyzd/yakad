@@ -27,69 +27,9 @@ export default function Page() {
                         "The container centers your content horizontally. It's the most basic layout element."
                     }
                 </p>
-                <Card>
-                    <Row>
-                        <span>
-                            <code>
-                                {'import { Container } from "@yakad/ui"'}
-                            </code>
-                            <br />
-                            <br />
-                            <code>{"<Container>Container</Container>"}</code>
-                        </span>
-                        <Spacer />
-                        <Button icon={<Symbol icon="content_copy" />}></Button>
-                    </Row>
-                </Card>
-                <h2>Properties</h2>
-                <p>Properties that are accepted as attributes:</p>
-                <Table>
-                    <Thead>
-                        <Tr>
-                            <Th>Property</Th>
-                            <Th>Value</Th>
-                            <Th>Default</Th>
-                            <Th>Required</Th>
-                        </Tr>
-                    </Thead>
-                    <Tbody>
-                        <Tr>
-                            <Td>align</Td>
-                            <Td>start | space | center | end</Td>
-                            <Td>undefined</Td>
-                            <Td>
-                                <Symbol type="sharp" icon="close"></Symbol>
-                            </Td>
-                        </Tr>
-                        <Tr>
-                            <Td>size</Td>
-                            <Td>"xs" | "sm" | "md" | "lg" | "xl"</Td>
-                            <Td>undefined</Td>
-                            <Td>
-                                <Symbol type="sharp" icon="close"></Symbol>
-                            </Td>
-                        </Tr>
-                    </Tbody>
-                </Table>
-                <p>
-                    Also, the container accepts the default attributes of a div
-                    elemnt.
-                </p>
-                <h3>align</h3>
-                <p>
-                    With this feature, you can easily move everything you've
-                    placed in the container. It folds in the middle and can be
-                    simply tucked away to the left or right.
-                </p>
-                <Container align="start" style={{ padding: "1rem" }}>
-                    <Card>Start</Card>
-                </Container>
-                <Container align="center" style={{ padding: "1rem" }}>
-                    <Card align="center">center</Card>
-                </Container>
-                <Container align="end" style={{ padding: "1rem" }}>
-                    <Card align="end">end</Card>
-                </Container>
+                <Howtouze />
+                <Properties />
+                <Align />
             </Container>
             <Container size="md">
                 <h3>maxWidth</h3>
@@ -170,3 +110,78 @@ export default function Page() {
         </Container>
     );
 }
+
+const Howtouze = () => (
+    <>
+        <Card>
+            <Row>
+                <span>
+                    <code>{'import { Container } from "@yakad/ui"'}</code>
+                    <br />
+                    <br />
+                    <code>{"<Container>Container</Container>"}</code>
+                </span>
+                <Spacer />
+                <Button icon={<Symbol icon="content_copy" />}></Button>
+            </Row>
+        </Card>
+    </>
+);
+const Properties = () => (
+    <>
+        <h2>Properties</h2>
+        <p>Properties that are accepted as attributes:</p>
+        <Table>
+            <Thead>
+                <Tr>
+                    <Th>Property</Th>
+                    <Th>Value</Th>
+                    <Th>Default</Th>
+                    <Th>Required</Th>
+                </Tr>
+            </Thead>
+            <Tbody>
+                <Tr>
+                    <Td>align</Td>
+                    <Td>start | space | center | end</Td>
+                    <Td>undefined</Td>
+                    <Td>
+                        <Symbol type="sharp" icon="close"></Symbol>
+                    </Td>
+                </Tr>
+                <Tr>
+                    <Td>size</Td>
+                    <Td>"xs" | "sm" | "md" | "lg" | "xl"</Td>
+                    <Td>undefined</Td>
+                    <Td>
+                        <Symbol type="sharp" icon="close"></Symbol>
+                    </Td>
+                </Tr>
+            </Tbody>
+        </Table>
+        <p>
+            Also, the container accepts the default attributes of a div elemnt.
+        </p>
+    </>
+);
+
+const Align = () => (
+    <>
+        {" "}
+        <h3>align</h3>
+        <p>
+            With this feature, you can easily move everything you've placed in
+            the container. It folds in the middle and can be simply tucked away
+            to the left or right.
+        </p>
+        <Container align="start" style={{ padding: "1rem" }}>
+            <Card>Start</Card>
+        </Container>
+        <Container align="center" style={{ padding: "1rem" }}>
+            <Card align="center">center</Card>
+        </Container>
+        <Container align="end" style={{ padding: "1rem" }}>
+            <Card align="end">end</Card>
+        </Container>
+    </>
+);
