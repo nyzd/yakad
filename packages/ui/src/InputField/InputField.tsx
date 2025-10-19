@@ -15,7 +15,6 @@ export function InputField({
     boxSize = "normal",
     placeholder,
     className,
-    ref,
     ...restProps
 }: InputFieldProps) {
     const joinedClassNames = classNames(
@@ -34,7 +33,6 @@ export function InputField({
             )}
         >
             <input
-                ref={ref}
                 {...restProps}
                 className={joinedClassNames}
                 placeholder=" "

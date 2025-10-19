@@ -8,19 +8,18 @@ export interface RowProps extends React.HTMLAttributes<HTMLDivElement> {
     overflow?: "shrink" | "wrap" | "scroll";
     size?: "xs" | "sm" | "md" | "lg" | "xl";
     children?: React.ReactNode;
+    ref?: React.Ref<HTMLDivElement>;
 }
 
 export function Row({
-        
-        align,
-        fullWidthOnParentDemand = true,
-        overflow = "shrink",
-        size = "xl",
-        className,
-        children,
-        ref,
-        ...restProps
-    }: RowProps & { ref?: React.Ref<HTMLDivElement> }) {
+    align,
+    fullWidthOnParentDemand = true,
+    overflow = "shrink",
+    size = "xl",
+    className,
+    children,
+    ...restProps
+}: RowProps) {
     const joinedClassNames = classNames(
         boxingStyles.flexRowBox,
         { [boxingStyles[align as string]]: align },
@@ -32,7 +31,7 @@ export function Row({
     );
 
     return (
-        <div ref={ref} {...restProps} className={joinedClassNames}>
+        <div {...restProps} className={joinedClassNames}>
             {children}
         </div>
     );

@@ -9,40 +9,39 @@ export interface SelectProps
     boxsize?: "small" | "normal";
     placeholder?: string;
     children?: React.ReactNode;
+    ref?: React.Ref<HTMLSelectElement>;
 }
 
 export function Select({
-        
-            variant = "outlined",
-            boxsize = "normal",
-            placeholder,
-            className,
-            children,
-        ref,
-        ...restProps
-    }: SelectProps & { ref?: React.Ref<HTMLSelectElement> }) {
-        const joinedClassNames = classNames(
-            styles.select,
-            inputStyles.input,
-            inputStyles[variant],
-            inputStyles[boxsize],
-            { [inputStyles.havePlaceHolder]: placeholder },
-            className
-        );
+    variant = "outlined",
+    boxsize = "normal",
+    placeholder,
+    className,
+    children,
+    ...restProps
+}: SelectProps) {
+    const joinedClassNames = classNames(
+        styles.select,
+        inputStyles.input,
+        inputStyles[variant],
+        inputStyles[boxsize],
+        { [inputStyles.havePlaceHolder]: placeholder },
+        className
+    );
 
-        return (
-            <div
-                className={classNames(
-                    { [boxingStyles.fullWidthOnParentDemand]: true },
-                    inputStyles.div
-                )}
-            >
-                <select ref={ref} {...restProps} className={joinedClassNames}>
-                    {children}
-                </select>
-                {placeholder ? (
-                    <label className={inputStyles.label}>{placeholder}</label>
-                ) : null}
-            </div>
-        );
-    }
+    return (
+        <div
+            className={classNames(
+                { [boxingStyles.fullWidthOnParentDemand]: true },
+                inputStyles.div
+            )}
+        >
+            <select {...restProps} className={joinedClassNames}>
+                {children}
+            </select>
+            {placeholder ? (
+                <label className={inputStyles.label}>{placeholder}</label>
+            ) : null}
+        </div>
+    );
+}

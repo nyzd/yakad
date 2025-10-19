@@ -45,7 +45,6 @@ export function CodeField({
     onInput,
     className,
     style,
-    ref,
     ...restProps
 }: CodeFieldsProps) {
     const joinedClassNames = classNames(
@@ -58,7 +57,6 @@ export function CodeField({
 
     return (
         <input
-            ref={ref}
             {...restProps}
             className={joinedClassNames}
             style={joinedStyles}

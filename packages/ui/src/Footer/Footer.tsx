@@ -15,16 +15,15 @@ export interface FooterProps extends React.HTMLAttributes<HTMLDivElement> {
 }
 
 export function Footer({
-        align,
-        overflow = "shrink",
-        position = "initial",
-        size,
-        blur,
-        className,
-        children,
-        ref,
-        ...restProps
-    }: FooterProps & { ref?: React.Ref<HTMLDivElement> }) {
+    align,
+    overflow = "shrink",
+    position = "initial",
+    size,
+    blur,
+    className,
+    children,
+    ...restProps
+}: FooterProps & { ref?: React.Ref<HTMLDivElement> }) {
     const [show, setShow] = useState(true);
     const [lastScrollY, setLastScrollY] = useState(0);
 
@@ -62,7 +61,7 @@ export function Footer({
     );
 
     return (
-        <footer ref={ref} {...restProps} className={joinedClassNames}>
+        <footer {...restProps} className={joinedClassNames}>
             {children}
         </footer>
     );

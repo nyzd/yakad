@@ -7,33 +7,32 @@ export interface NavigationProps extends React.HTMLAttributes<HTMLElement> {
     anchor?: "left" | "right" | "top" | "bottom" | "auto";
     open: boolean;
     children?: React.ReactNode;
+    ref?: React.Ref<HTMLDivElement>;
 }
 
 export function Navigation({
-        
-            align,
-            anchor = "auto",
-            open = false,
-            className,
-            children,
-        ref,
-        ...restProps
-    }: NavigationProps & { ref?: React.Ref<HTMLDivElement> }) {
-        const joinedClassNames = classNames(
-            boxingStyles.flexColumnBox,
-            { [boxingStyles[align as string]]: align },
-            { [boxingStyles.demandChildsToBeFullWidth]: true },
-            styles.navigation,
-            styles[anchor],
-            {
-                [styles.open]: open,
-            },
-            className
-        );
+    align,
+    anchor = "auto",
+    open = false,
+    className,
+    children,
+    ...restProps
+}: NavigationProps) {
+    const joinedClassNames = classNames(
+        boxingStyles.flexColumnBox,
+        { [boxingStyles[align as string]]: align },
+        { [boxingStyles.demandChildsToBeFullWidth]: true },
+        styles.navigation,
+        styles[anchor],
+        {
+            [styles.open]: open,
+        },
+        className
+    );
 
-        return (
-            <nav ref={ref} {...restProps} className={joinedClassNames}>
-                {children}
-            </nav>
-        );
-    }
+    return (
+        <nav {...restProps} className={joinedClassNames}>
+            {children}
+        </nav>
+    );
+}

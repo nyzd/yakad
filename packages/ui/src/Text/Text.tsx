@@ -22,14 +22,13 @@ export interface TextProps<T> extends React.HTMLAttributes<T> {
     palette?: "onSurfaceColor" | "onSurfaceVariantColor";
     children?: React.ReactNode;
     ref?: React.Ref<T>;
-} 
+}
 
 export function H1({
     variant = "heading1",
     palette,
     className,
     children,
-    ref,
     ...restProps
 }: TextProps<HTMLHeadingElement>) {
     const joinedClassNames = classNames(
@@ -42,7 +41,7 @@ export function H1({
         className
     );
     return (
-        <h1 ref={ref} {...restProps} className={joinedClassNames}>
+        <h1 {...restProps} className={joinedClassNames}>
             {children}
         </h1>
     );
@@ -53,7 +52,6 @@ export function H2({
     palette,
     className,
     children,
-    ref,
     ...restProps
 }: TextProps<HTMLHeadingElement>) {
     const joinedClassNames = classNames(
@@ -66,7 +64,7 @@ export function H2({
         className
     );
     return (
-        <h2 ref={ref} {...restProps} className={joinedClassNames}>
+        <h2 {...restProps} className={joinedClassNames}>
             {children}
         </h2>
     );
@@ -77,7 +75,6 @@ export function H3({
     palette,
     className,
     children,
-    ref,
     ...restProps
 }: TextProps<HTMLHeadingElement>) {
     const joinedClassNames = classNames(
@@ -90,7 +87,7 @@ export function H3({
         className
     );
     return (
-        <h3 ref={ref} {...restProps} className={joinedClassNames}>
+        <h3 {...restProps} className={joinedClassNames}>
             {children}
         </h3>
     );
@@ -101,7 +98,6 @@ export function H4({
     palette,
     className,
     children,
-    ref,
     ...restProps
 }: TextProps<HTMLHeadingElement>) {
     const joinedClassNames = classNames(
@@ -114,7 +110,7 @@ export function H4({
         className
     );
     return (
-        <h4 ref={ref} {...restProps} className={joinedClassNames}>
+        <h4 {...restProps} className={joinedClassNames}>
             {children}
         </h4>
     );
@@ -125,7 +121,6 @@ export function H5({
     palette,
     className,
     children,
-    ref,
     ...restProps
 }: TextProps<HTMLHeadingElement>) {
     const joinedClassNames = classNames(
@@ -138,7 +133,7 @@ export function H5({
         className
     );
     return (
-        <h5 ref={ref} {...restProps} className={joinedClassNames}>
+        <h5 {...restProps} className={joinedClassNames}>
             {children}
         </h5>
     );
@@ -149,7 +144,6 @@ export function H6({
     palette,
     className,
     children,
-    ref,
     ...restProps
 }: TextProps<HTMLHeadingElement>) {
     const joinedClassNames = classNames(
@@ -162,7 +156,7 @@ export function H6({
         className
     );
     return (
-        <h6 ref={ref} {...restProps} className={joinedClassNames}>
+        <h6 {...restProps} className={joinedClassNames}>
             {children}
         </h6>
     );
@@ -173,7 +167,6 @@ export function P({
     palette,
     className,
     children,
-    ref,
     ...restProps
 }: TextProps<HTMLParagraphElement>) {
     const joinedClassNames = classNames(
@@ -186,7 +179,7 @@ export function P({
         className
     );
     return (
-        <p ref={ref} {...restProps} className={joinedClassNames}>
+        <p {...restProps} className={joinedClassNames}>
             {children}
         </p>
     );
@@ -197,7 +190,6 @@ export function Span({
     palette,
     className,
     children,
-    ref,
     ...restProps
 }: TextProps<HTMLSpanElement>) {
     const joinedClassNames = classNames(
@@ -210,7 +202,7 @@ export function Span({
         className
     );
     return (
-        <span ref={ref} {...restProps} className={joinedClassNames}>
+        <span {...restProps} className={joinedClassNames}>
             {children}
         </span>
     );
@@ -221,7 +213,6 @@ export function Text({
     palette,
     className,
     children,
-    ref,
     ...restProps
 }: TextProps<HTMLDivElement>) {
     const joinedClassNames = classNames(
@@ -233,7 +224,7 @@ export function Text({
         className
     );
     return (
-        <div ref={ref} {...restProps} className={joinedClassNames}>
+        <div {...restProps} className={joinedClassNames}>
             {children}
         </div>
     );

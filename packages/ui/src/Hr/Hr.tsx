@@ -5,13 +5,17 @@ export interface HrProps extends React.HTMLAttributes<HTMLHRElement> {
     variant?: "dotted" | "dashed" | "shortLine";
     height?: number;
     marginx?: number;
+    ref?: React.Ref<HTMLHRElement>;
 }
 
 export function Hr({
-         variant, height, marginx, className, style,
-        ref,
-        ...restProps
-    }: HrProps & { ref?: React.Ref<HTMLHRElement> }) {
+    variant,
+    height,
+    marginx,
+    className,
+    style,
+    ...restProps
+}: HrProps) {
     const joinedClassNames = classNames(
         styles.hr,
         variant && styles[variant],
@@ -26,11 +30,6 @@ export function Hr({
     };
 
     return (
-        <hr
-            ref={ref}
-            {...restProps}
-            className={joinedClassNames}
-            style={joinedStyles}
-        />
+        <hr {...restProps} className={joinedClassNames} style={joinedStyles} />
     );
 }

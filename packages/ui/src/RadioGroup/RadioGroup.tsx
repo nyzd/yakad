@@ -10,6 +10,7 @@ export interface RadioGroupProps
     name: string;
     defaultValue?: string;
     children?: RadioButtonElement | RadioButtonElement[];
+    ref?: React.Ref<HTMLDivElement>;
 }
 
 export function RadioGroup({
@@ -17,30 +18,29 @@ export function RadioGroup({
     defaultValue,
     className,
     children,
-    ref,
     ...restProps
-}: RadioGroupProps & { ref?: React.Ref<HTMLDivElement> }) {
-        const [selectedValue, setSelectedValue] = useState<
-            string | number | null
-        >(defaultValue || null);
+}: RadioGroupProps) {
+    const [selectedValue, setSelectedValue] = useState<string | number | null>(
+        defaultValue || null
+    );
 
-        const arrayChildren = Children.toArray(children);
+    const arrayChildren = Children.toArray(children);
 
-        const renderChildrens = () =>
-            (arrayChildren as RadioButtonElement[]).map((child, index) => (
-                <RadioButton
-                    key={index}
-                    {...child.props}
-                    dataFromRadioGroup={{
-                        name: name,
-                        onSelect: () => setSelectedValue(child.props.value),
-                        checked: selectedValue === child.props.value,
-                    }}
-                />
-            ));
+    const renderChildrens = () =>
+        (arrayChildren as RadioButtonElement[]).map((child, index) => (
+            <RadioButton
+                key={index}
+                {...child.props}
+                dataFromRadioGroup={{
+                    name: name,
+                    onSelect: () => setSelectedValue(child.props.value),
+                    checked: selectedValue === child.props.value,
+                }}
+            />
+        ));
 
     return (
-        <div ref={ref} {...restProps} className={className}>
+        <div {...restProps} className={className}>
             {renderChildrens()}
         </div>
     );

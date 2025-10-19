@@ -36,7 +36,6 @@ export function Button({
     loadingVariant,
     className,
     children,
-    ref,
     ...restProps
 }: ButtonProps) {
     const childrenFirst = iconPosition === "end";
@@ -55,7 +54,7 @@ export function Button({
     );
 
     return (
-        <button ref={ref} className={joinedClassNames} {...restProps}>
+        <button className={joinedClassNames} {...restProps}>
             {childrenFirst && children}
             {loadingVariant && (
                 <div

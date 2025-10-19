@@ -4,28 +4,30 @@ import styles from "./SvgIcon.module.css";
 export interface SvgIconProps extends React.HTMLAttributes<HTMLElement> {
     size?: number;
     children?: React.ReactNode;
+    ref?: React.Ref<HTMLDivElement>;
 }
 
 export function SvgIcon({
-         size, className, style, children,
-        ref,
-        ...restProps
-    }: SvgIconProps & { ref?: React.Ref<HTMLDivElement> }) {
-        const joinedClassNames = classNames(styles.svg, className!);
+    size,
+    className,
+    style,
+    children,
+    ...restProps
+}: SvgIconProps) {
+    const joinedClassNames = classNames(styles.svg, className!);
 
-        const sizeStyle = size && { width: `${size}rem`, height: `${size}rem` };
+    const sizeStyle = size && { width: `${size}rem`, height: `${size}rem` };
 
-        return (
-            <div
-                ref={ref}
-                {...restProps}
-                className={joinedClassNames}
-                style={{
-                    ...style,
-                    ...sizeStyle,
-                }}
-            >
-                {children}
-            </div>
-        );
-    }
+    return (
+        <div
+            {...restProps}
+            className={joinedClassNames}
+            style={{
+                ...style,
+                ...sizeStyle,
+            }}
+        >
+            {children}
+        </div>
+    );
+}

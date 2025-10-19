@@ -14,7 +14,6 @@ export function Container({
     align,
     className,
     children,
-    ref,
     ...restProps
 }: ContainerProps) {
     const joinedClassNames = classNames(
@@ -27,7 +26,7 @@ export function Container({
     );
 
     return (
-        <div ref={ref} {...restProps} className={joinedClassNames}>
+        <div {...restProps} className={joinedClassNames}>
             {children}
         </div>
     );

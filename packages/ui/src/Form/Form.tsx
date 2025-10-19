@@ -9,13 +9,12 @@ export interface FormProps extends React.HTMLAttributes<HTMLFormElement> {
 }
 
 export function Form({
-        align,
-        fullWidthOnParentDemand = true,
-        className,
-        children,
-        ref,
-        ...restProps
-    }: FormProps & { ref?: React.Ref<HTMLFormElement> }) {
+    align,
+    fullWidthOnParentDemand = true,
+    className,
+    children,
+    ...restProps
+}: FormProps & { ref?: React.Ref<HTMLFormElement> }) {
     const joinedClassNames = classNames(
         boxingStyles.flexColumnBox,
         { [boxingStyles[align as string]]: align },
@@ -26,7 +25,7 @@ export function Form({
     );
 
     return (
-        <form ref={ref} {...restProps} className={joinedClassNames}>
+        <form {...restProps} className={joinedClassNames}>
             {children}
         </form>
     );

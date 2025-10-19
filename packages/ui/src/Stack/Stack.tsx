@@ -14,7 +14,6 @@ export function Stack({
     fullWidthOnParentDemand = true,
     className,
     children,
-    ref,
     ...restProps
 }: StackProps) {
     const joinedClassNames = classNames(
@@ -27,7 +26,7 @@ export function Stack({
     );
 
     return (
-        <div ref={ref} {...restProps} className={joinedClassNames}>
+        <div {...restProps} className={joinedClassNames}>
             {children}
         </div>
     );

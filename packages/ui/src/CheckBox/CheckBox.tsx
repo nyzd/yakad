@@ -10,7 +10,12 @@ export interface CheckBoxProps
     ref?: React.Ref<HTMLInputElement>;
 }
 
-export function CheckBox({ label, className, style, ref, ...restProps }: CheckBoxProps) {
+export function CheckBox({
+    label,
+    className,
+    style,
+    ...restProps
+}: CheckBoxProps) {
     const joinedClassNames = classNames(
         { [boxingStyles.fullWidthOnParentDemand]: label },
         styles.label,
@@ -22,17 +27,9 @@ export function CheckBox({ label, className, style, ref, ...restProps }: CheckBo
     return (
         <label className={joinedClassNames} style={style}>
             {label}
-            <input
-                ref={ref}
-                {...restProps}
-                className={styles.input}
-                type="checkbox"
-            />
+            <input {...restProps} className={styles.input} type="checkbox" />
             <div className={styles.symbolContainer}>
-                <Symbol
-                    className={styles.symbolChecked}
-                    icon={"check_box"}
-                />
+                <Symbol className={styles.symbolChecked} icon={"check_box"} />
                 <Symbol
                     className={styles.symbolUnChecked}
                     icon={"check_box_outline_blank"}

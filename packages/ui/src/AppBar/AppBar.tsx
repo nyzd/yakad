@@ -23,7 +23,6 @@ export function AppBar({
     blur,
     className,
     children,
-    ref,
     ...restProps
 }: AppBarProps) {
     const [show, setShow] = useState(true);
@@ -65,7 +64,7 @@ export function AppBar({
     );
 
     return (
-        <header ref={ref} {...restProps} className={joinedClassNames}>
+        <header {...restProps} className={joinedClassNames}>
             {children}
         </header>
     );

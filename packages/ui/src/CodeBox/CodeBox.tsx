@@ -8,15 +8,15 @@ import styles from "./CodeBox.module.css";
 export interface CodeBoxProps extends React.HTMLAttributes<HTMLDivElement> {
     copyButton?: boolean;
     children?: React.ReactNode;
+    ref?: React.Ref<HTMLDivElement>;
 }
 
 export function CodeBox({
     copyButton,
     className,
     children,
-    ref,
     ...restProps
-}: CodeBoxProps & { ref?: React.Ref<HTMLDivElement> }) {
+}: CodeBoxProps) {
     const joinedClassNames = classNames(
         { [boxingStyles.fullWidthOnParentDemand]: true },
         styles.ZZZZZZZZZZ,
@@ -24,7 +24,7 @@ export function CodeBox({
     );
 
     return (
-        <Card ref={ref} {...restProps} className={joinedClassNames}>
+        <Card {...restProps} className={joinedClassNames}>
             <pre>{children}</pre>
             {copyButton && <Button icon={<Symbol icon="copy_all" />} />}
         </Card>

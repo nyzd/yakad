@@ -24,7 +24,6 @@ export function Theme({
     zoom = 100,
     className,
     children,
-    ref,
     ...restProps
 }: ThemeProps) {
     const zoomPercentage = zoom ? (zoom / 100) * 62.5 : 62.5;
@@ -48,7 +47,7 @@ export function Theme({
     );
 
     return (
-        <div ref={ref} {...restProps} className={joinedClassNames}>
+        <div {...restProps} className={joinedClassNames}>
             {children}
         </div>
     );

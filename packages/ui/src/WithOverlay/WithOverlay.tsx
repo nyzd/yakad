@@ -42,24 +42,21 @@ export function WithOverlay({
     ref,
     ...restProps
 }: WithOverlayProps) {
-        // Get Triggers ref and send to Overlay
-        const localRef = useRef<HTMLDivElement | null>(null);
-        const [showOverlay, setShowOverlay] = useState(false);
+    // Get Triggers ref and send to Overlay
+    const localRef = useRef<HTMLDivElement | null>(null);
+    const [showOverlay, setShowOverlay] = useState(false);
 
-        useOnRightClick(() => {
-            setShowOverlay(true);
-        }, localRef);
+    useOnRightClick(() => {
+        setShowOverlay(true);
+    }, localRef);
 
-        const onClickHandler: React.MouseEventHandler<HTMLDivElement> = (e) => {
-            trigger === "onClick" && setShowOverlay((prev) => !prev);
-            onClick?.(e);
-        };
+    const onClickHandler: React.MouseEventHandler<HTMLDivElement> = (e) => {
+        trigger === "onClick" && setShowOverlay((prev) => !prev);
+        onClick?.(e);
+    };
 
     // Let the parent access our DOM node
-    useImperativeHandle(
-        ref,
-        () => localRef.current as HTMLDivElement
-    );
+    useImperativeHandle(ref, () => localRef.current as HTMLDivElement);
 
     // Disable Body Scroll on showOverlay
     useEffect(() => {

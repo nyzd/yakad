@@ -18,7 +18,6 @@ export function Display({
     maxWidth,
     className,
     children,
-    ref,
     ...restProps
 }: DisplayProps & { ref?: React.Ref<HTMLDivElement> }) {
     const joinedClassNames = classNames(
@@ -32,7 +31,7 @@ export function Display({
     );
 
     return (
-        <div ref={ref} {...restProps} className={joinedClassNames}>
+        <div {...restProps} className={joinedClassNames}>
             {children}
         </div>
     );

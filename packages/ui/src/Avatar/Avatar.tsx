@@ -8,12 +8,11 @@ export interface AvatarProps extends React.HTMLAttributes<HTMLDivElement> {
     ref?: React.Ref<HTMLDivElement>;
 }
 
-export function Avatar({ src, className, ref, ...restProps }: AvatarProps) {
+export function Avatar({ src, className, ...restProps }: AvatarProps) {
     const joinedClassNames = classNames(styles.profileContainer, className);
 
     return (
         <div
-            ref={ref}
             {...restProps}
             className={joinedClassNames}
             style={src ? { backgroundImage: `url(${src})` } : {}}

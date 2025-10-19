@@ -1,11 +1,6 @@
 "use client";
 
-import {
-    useRef,
-    useState,
-    useEffect,
-    useImperativeHandle,
-} from "react";
+import { useRef, useState, useEffect, useImperativeHandle } from "react";
 import classNames from "classnames";
 import { Card, CardProps, OverlayProps, useOnOutsideClick } from "..";
 import styles from "./Dropdown.module.css";
@@ -32,10 +27,7 @@ export function Dropdown({
     const placementTargetRef = triggerref || fallbackTriggerRef;
 
     // Let the parent access our DOM node
-    useImperativeHandle(
-        ref,
-        () => dropdownRef.current as HTMLDivElement
-    );
+    useImperativeHandle(ref, () => dropdownRef.current as HTMLDivElement);
 
     const [arrowPosition, setArrowPosition] = useState<{
         top: number;
@@ -59,13 +51,11 @@ export function Dropdown({
         if (placementTargetRef?.current && dropdownRef.current) {
             const placementTarget =
                 placementTargetRef.current.getBoundingClientRect();
-            const dropdownRect =
-                dropdownRef.current.getBoundingClientRect();
+            const dropdownRect = dropdownRef.current.getBoundingClientRect();
             const padding = 10;
 
             let dropdownY = placementTarget.bottom + padding;
-            let dropdownXPos =
-                placementTarget.left + placementTarget.width / 2;
+            let dropdownXPos = placementTarget.left + placementTarget.width / 2;
             let arrowY = dropdownY;
             const arrowX = dropdownXPos;
 

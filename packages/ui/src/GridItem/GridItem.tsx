@@ -14,26 +14,32 @@ export interface GridItemProps extends React.HTMLAttributes<HTMLDivElement> {
 }
 
 export function GridItem({
-         align, xs, sm, md, lg, xl, className, children,
-        ref,
-        ...restProps
-    }: GridItemProps & { ref?: React.Ref<HTMLDivElement> }) {
-        const joinedClassNames = classNames(
-            boxingStyles.flexColumnBox,
-            { [boxingStyles[align as string]]: align },
-            { [boxingStyles.demandChildsToBeFullWidth]: true },
-            styles.gridItem,
-            { [styles[`xs${xs}`]]: xs },
-            { [styles[`sm${sm}`]]: sm },
-            { [styles[`md${md}`]]: md },
-            { [styles[`lg${lg}`]]: lg },
-            { [styles[`xl${xl}`]]: xl },
-            className
-        );
+    align,
+    xs,
+    sm,
+    md,
+    lg,
+    xl,
+    className,
+    children,
+    ...restProps
+}: GridItemProps & { ref?: React.Ref<HTMLDivElement> }) {
+    const joinedClassNames = classNames(
+        boxingStyles.flexColumnBox,
+        { [boxingStyles[align as string]]: align },
+        { [boxingStyles.demandChildsToBeFullWidth]: true },
+        styles.gridItem,
+        { [styles[`xs${xs}`]]: xs },
+        { [styles[`sm${sm}`]]: sm },
+        { [styles[`md${md}`]]: md },
+        { [styles[`lg${lg}`]]: lg },
+        { [styles[`xl${xl}`]]: xl },
+        className
+    );
 
-        return (
-            <div ref={ref} {...restProps} className={joinedClassNames}>
-                {children}
-            </div>
-        );
-    }
+    return (
+        <div {...restProps} className={joinedClassNames}>
+            {children}
+        </div>
+    );
+}

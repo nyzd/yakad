@@ -15,7 +15,6 @@ export function Card({
     hoverEffect,
     className,
     children,
-    ref,
     ...restProps
 }: CardProps) {
     const joinedClassNames = classNames(
@@ -31,7 +30,7 @@ export function Card({
     );
 
     return (
-        <Stack ref={ref} {...restProps} className={joinedClassNames}>
+        <Stack {...restProps} className={joinedClassNames}>
             {children}
         </Stack>
     );

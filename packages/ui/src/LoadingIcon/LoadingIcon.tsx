@@ -4,23 +4,25 @@ import styles from "./LoadingIcon.module.css";
 export interface LoadingIconProps extends React.HTMLAttributes<HTMLDivElement> {
     size?: "extraSmall" | "small" | "medium" | "large" | "extraLarge";
     variant?: "scaleOut" | "dots" | "spinner";
+    ref?: React.Ref<HTMLDivElement>;
 }
 
 export function LoadingIcon({
-         size = "medium", variant = "dots", className,
-        ref,
-        ...restProps
-    }: LoadingIconProps & { ref?: React.Ref<HTMLDivElement> }) {
-        const joinedClassNames = classNames(
-            styles.loadingIcon,
-            styles[size],
-            styles[variant],
-            className
-        );
+    size = "medium",
+    variant = "dots",
+    className,
+    ...restProps
+}: LoadingIconProps) {
+    const joinedClassNames = classNames(
+        styles.loadingIcon,
+        styles[size],
+        styles[variant],
+        className
+    );
 
-        return (
-            <div ref={ref} {...restProps} className={joinedClassNames}>
-                <div></div>
-            </div>
-        );
-    }
+    return (
+        <div {...restProps} className={joinedClassNames}>
+            <div></div>
+        </div>
+    );
+}

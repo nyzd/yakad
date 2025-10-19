@@ -6,13 +6,16 @@ export interface ListProps extends React.HTMLAttributes<HTMLUListElement> {
     direction?: "row" | "column";
     collapsed?: boolean;
     children?: React.ReactNode;
+    ref?: React.Ref<HTMLUListElement>;
 }
 
 export function List({
-         direction = "row", collapsed, className, children,
-        ref,
-        ...restProps
-    }: ListProps & { ref?: React.Ref<HTMLUListElement> }) {
+    direction = "row",
+    collapsed,
+    className,
+    children,
+    ...restProps
+}: ListProps) {
     const joinedClassNames = classNames(
         { [boxingStyles.fullWidthOnParentDemand]: true },
         styles.list,
@@ -22,7 +25,7 @@ export function List({
     );
 
     return (
-        <ul ref={ref} {...restProps} className={joinedClassNames}>
+        <ul {...restProps} className={joinedClassNames}>
             {children}
         </ul>
     );
