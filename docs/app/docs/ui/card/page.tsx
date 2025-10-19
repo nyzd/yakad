@@ -154,10 +154,7 @@ const Properties = () => (
                 </Tr>
             </Tbody>
         </Table>
-        <p>
-            Also, the **Card** accepts the default attributes of a **div**
-            elemnt.
-        </p>
+        <p>Also, the Card accepts the default attributes of a div elemnt.</p>
     </>
 );
 
