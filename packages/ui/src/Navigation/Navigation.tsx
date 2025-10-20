@@ -1,4 +1,3 @@
-import { forwardRef } from "react";
 import classNames from "classnames";
 import boxingStyles from "../boxing.module.css";
 import styles from "./Navigation.module.css";
@@ -8,36 +7,32 @@ export interface NavigationProps extends React.HTMLAttributes<HTMLElement> {
     anchor?: "left" | "right" | "top" | "bottom" | "auto";
     open: boolean;
     children?: React.ReactNode;
+    ref?: React.Ref<HTMLDivElement>;
 }
 
-export const Navigation = forwardRef<HTMLDivElement, NavigationProps>(
-    function Navigation(
+export function Navigation({
+    align,
+    anchor = "auto",
+    open = false,
+    className,
+    children,
+    ...restProps
+}: NavigationProps) {
+    const joinedClassNames = classNames(
+        boxingStyles.flexColumnBox,
+        { [boxingStyles[align as string]]: align },
+        { [boxingStyles.demandChildsToBeFullWidth]: true },
+        styles.navigation,
+        styles[anchor],
         {
-            align,
-            anchor = "auto",
-            open = false,
-            className,
-            children,
-            ...restProps
+            [styles.open]: open,
         },
-        ref
-    ) {
-        const joinedClassNames = classNames(
-            boxingStyles.flexColumnBox,
-            { [boxingStyles[align as string]]: align },
-            { [boxingStyles.demandChildsToBeFullWidth]: true },
-            styles.navigation,
-            styles[anchor],
-            {
-                [styles.open]: open,
-            },
-            className
-        );
+        className
+    );
 
-        return (
-            <nav ref={ref} {...restProps} className={joinedClassNames}>
-                {children}
-            </nav>
-        );
-    }
-);
+    return (
+        <nav {...restProps} className={joinedClassNames}>
+            {children}
+        </nav>
+    );
+}

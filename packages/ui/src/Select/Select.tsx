@@ -1,4 +1,3 @@
-import { forwardRef } from "react";
 import classNames from "classnames";
 import boxingStyles from "../boxing.module.css";
 import styles from "./Select.module.css";
@@ -10,43 +9,39 @@ export interface SelectProps
     boxsize?: "small" | "normal";
     placeholder?: string;
     children?: React.ReactNode;
+    ref?: React.Ref<HTMLSelectElement>;
 }
 
-export const Select = forwardRef<HTMLSelectElement, SelectProps>(
-    function Select(
-        {
-            variant = "outlined",
-            boxsize = "normal",
-            placeholder,
-            className,
-            children,
-            ...restProps
-        },
-        ref
-    ) {
-        const joinedClassNames = classNames(
-            styles.select,
-            inputStyles.input,
-            inputStyles[variant],
-            inputStyles[boxsize],
-            { [inputStyles.havePlaceHolder]: placeholder },
-            className
-        );
+export function Select({
+    variant = "outlined",
+    boxsize = "normal",
+    placeholder,
+    className,
+    children,
+    ...restProps
+}: SelectProps) {
+    const joinedClassNames = classNames(
+        styles.select,
+        inputStyles.input,
+        inputStyles[variant],
+        inputStyles[boxsize],
+        { [inputStyles.havePlaceHolder]: placeholder },
+        className
+    );
 
-        return (
-            <div
-                className={classNames(
-                    { [boxingStyles.fullWidthOnParentDemand]: true },
-                    inputStyles.div
-                )}
-            >
-                <select ref={ref} {...restProps} className={joinedClassNames}>
-                    {children}
-                </select>
-                {placeholder ? (
-                    <label className={inputStyles.label}>{placeholder}</label>
-                ) : null}
-            </div>
-        );
-    }
-);
+    return (
+        <div
+            className={classNames(
+                { [boxingStyles.fullWidthOnParentDemand]: true },
+                inputStyles.div
+            )}
+        >
+            <select {...restProps} className={joinedClassNames}>
+                {children}
+            </select>
+            {placeholder ? (
+                <label className={inputStyles.label}>{placeholder}</label>
+            ) : null}
+        </div>
+    );
+}

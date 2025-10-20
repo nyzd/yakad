@@ -2,14 +2,11 @@
 
 import {
     useState,
-    cloneElement,
-    useEffect,
     useRef,
     RefObject,
-    forwardRef,
     useImperativeHandle,
+    cloneElement,
 } from "react";
-import { createPortal } from "react-dom";
 import {
     Dropdown,
     DropdownProps,
@@ -32,64 +29,47 @@ export interface WithOverlayProps extends StackProps {
     trigger?: "onClick" | "onRightClick";
     overlay?: AllowedOverlays;
     children?: React.ReactElement;
+    ref?: React.Ref<HTMLDivElement>;
 }
 
-export const WithOverlay = forwardRef<HTMLDivElement, WithOverlayProps>(
-    function WithOverlay(
-        { trigger = "onClick", overlay, children, onClick, ...restProps },
-        forwardedRef
-    ) {
-        // Get Triggers ref and send to Overlay
-        const localRef = useRef<HTMLDivElement | null>(null);
-        const [showOverlay, setShowOverlay] = useState(false);
+export function WithOverlay({
+    trigger = "onClick",
+    overlay,
+    children,
+    onClick,
+    ref,
+    ...restProps
+}: WithOverlayProps) {
+    // Get Triggers ref and send to Overlay
+    const localRef = useRef<HTMLDivElement | null>(null);
+    const [showOverlay, setShowOverlay] = useState(false);
 
-        useOnRightClick(() => {
-            setShowOverlay(true);
-        }, localRef);
+    useOnRightClick(() => {
+        setShowOverlay(true);
+    }, localRef);
 
-        const onClickHandler: React.MouseEventHandler<HTMLDivElement> = (e) => {
-            trigger === "onClick" && setShowOverlay((prev) => !prev);
-            onClick?.(e);
-        };
+    const onClickHandler: React.MouseEventHandler<HTMLDivElement> = (e) => {
+        trigger === "onClick" && setShowOverlay((prev) => !prev);
+        onClick?.(e);
+    };
 
-        // Let the parent access our DOM node
-        useImperativeHandle(
-            forwardedRef,
-            () => localRef.current as HTMLDivElement
-        );
+    // Let the parent access our DOM node
+    useImperativeHandle(ref, () => localRef.current as HTMLDivElement);
 
-        // Disable Body Scroll on showOverlay
-        useEffect(() => {
-            document.body.style.overflow = showOverlay ? "hidden" : "initial";
-            return () => {
-                document.body.style.overflow = "initial";
-            };
-        }, [showOverlay]);
+    const clonedOverlay = cloneElement(overlay!, {
+        triggerref: localRef,
+        onClose: () => {
+            overlay?.props.onClose?.();
+            setShowOverlay(false);
+        },
+    });
 
-        // Teleport Overlay to portalRoot or body
-        const portalRoot =
-            document.getElementsByClassName("portalRoot")[0] || document;
-        const teleport =
-            overlay &&
-            portalRoot &&
-            createPortal(
-                cloneElement(overlay, {
-                    triggerref: localRef,
-                    onClose: () => {
-                        overlay.props.onClose?.();
-                        setShowOverlay(false);
-                    },
-                }),
-                portalRoot
-            );
-
-        return (
-            <>
-                <Stack ref={localRef} {...restProps} onClick={onClickHandler}>
-                    {children}
-                </Stack>
-                {showOverlay && teleport}
-            </>
-        );
-    }
-);
+    return (
+        <>
+            <Stack ref={localRef} {...restProps} onClick={onClickHandler}>
+                {children}
+            </Stack>
+            {showOverlay && clonedOverlay}
+        </>
+    );
+}

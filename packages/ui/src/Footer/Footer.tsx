@@ -1,6 +1,6 @@
 "use client";
 
-import { forwardRef, useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import classNames from "classnames";
 import boxingStyles from "../boxing.module.css";
 import styles from "./Footer.module.css";
@@ -14,19 +14,16 @@ export interface FooterProps extends React.HTMLAttributes<HTMLDivElement> {
     children?: React.ReactNode;
 }
 
-export const Footer = forwardRef<HTMLDivElement, FooterProps>(function Footer(
-    {
-        align,
-        overflow = "shrink",
-        position = "initial",
-        size,
-        blur,
-        className,
-        children,
-        ...restProps
-    },
-    ref
-) {
+export function Footer({
+    align,
+    overflow = "shrink",
+    position = "initial",
+    size,
+    blur,
+    className,
+    children,
+    ...restProps
+}: FooterProps & { ref?: React.Ref<HTMLDivElement> }) {
     const [show, setShow] = useState(true);
     const [lastScrollY, setLastScrollY] = useState(0);
 
@@ -64,8 +61,8 @@ export const Footer = forwardRef<HTMLDivElement, FooterProps>(function Footer(
     );
 
     return (
-        <footer ref={ref} {...restProps} className={joinedClassNames}>
+        <footer {...restProps} className={joinedClassNames}>
             {children}
         </footer>
     );
-});
+}

@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, forwardRef, Children } from "react";
+import { useState, Children } from "react";
 import { RadioButton, RadioButtonProps } from "..";
 
 type RadioButtonElement = React.ReactElement<RadioButtonProps>;
@@ -10,36 +10,38 @@ export interface RadioGroupProps
     name: string;
     defaultValue?: string;
     children?: RadioButtonElement | RadioButtonElement[];
+    ref?: React.Ref<HTMLDivElement>;
 }
 
-export const RadioGroup = forwardRef<HTMLDivElement, RadioGroupProps>(
-    function RadioGroup(
-        { name, defaultValue, className, children, ...restProps },
-        ref
-    ) {
-        const [selectedValue, setSelectedValue] = useState<
-            string | number | null
-        >(defaultValue || null);
+export function RadioGroup({
+    name,
+    defaultValue,
+    className,
+    children,
+    ...restProps
+}: RadioGroupProps) {
+    const [selectedValue, setSelectedValue] = useState<string | number | null>(
+        defaultValue || null
+    );
 
-        const arrayChildren = Children.toArray(children);
+    const arrayChildren = Children.toArray(children);
 
-        const renderChildrens = () =>
-            (arrayChildren as RadioButtonElement[]).map((child, index) => (
-                <RadioButton
-                    key={index}
-                    {...child.props}
-                    dataFromRadioGroup={{
-                        name: name,
-                        onSelect: () => setSelectedValue(child.props.value),
-                        checked: selectedValue === child.props.value,
-                    }}
-                />
-            ));
+    const renderChildrens = () =>
+        (arrayChildren as RadioButtonElement[]).map((child, index) => (
+            <RadioButton
+                key={index}
+                {...child.props}
+                dataFromRadioGroup={{
+                    name: name,
+                    onSelect: () => setSelectedValue(child.props.value),
+                    checked: selectedValue === child.props.value,
+                }}
+            />
+        ));
 
-        return (
-            <div ref={ref} {...restProps} className={className}>
-                {renderChildrens()}
-            </div>
-        );
-    }
-);
+    return (
+        <div {...restProps} className={className}>
+            {renderChildrens()}
+        </div>
+    );
+}

@@ -1,4 +1,3 @@
-import { forwardRef } from "react";
 import classNames from "classnames";
 import boxingStyles from "../boxing.module.css";
 import styles from "./Main.module.css";
@@ -7,12 +6,16 @@ export interface MainProps extends React.HTMLAttributes<HTMLDivElement> {
     align?: "start" | "space" | "center" | "end";
     navOpen?: boolean;
     children?: React.ReactNode;
+    ref?: React.Ref<HTMLDivElement>;
 }
 
-export const Main = forwardRef<HTMLDivElement, MainProps>(function Main(
-    { align, navOpen = false, className, children, ...restProps },
-    ref
-) {
+export function Main({
+    align,
+    navOpen = false,
+    className,
+    children,
+    ...restProps
+}: MainProps) {
     const joinedClassNames = classNames(
         boxingStyles.flexColumnBox,
         { [boxingStyles[align as string]]: align },
@@ -23,8 +26,8 @@ export const Main = forwardRef<HTMLDivElement, MainProps>(function Main(
     );
 
     return (
-        <main ref={ref} {...restProps} className={joinedClassNames}>
+        <main {...restProps} className={joinedClassNames}>
             {children}
         </main>
     );
-});
+}

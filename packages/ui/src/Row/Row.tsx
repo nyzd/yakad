@@ -1,4 +1,3 @@
-import { forwardRef } from "react";
 import classNames from "classnames";
 import boxingStyles from "../boxing.module.css";
 import styles from "./Row.module.css";
@@ -9,20 +8,18 @@ export interface RowProps extends React.HTMLAttributes<HTMLDivElement> {
     overflow?: "shrink" | "wrap" | "scroll";
     size?: "xs" | "sm" | "md" | "lg" | "xl";
     children?: React.ReactNode;
+    ref?: React.Ref<HTMLDivElement>;
 }
 
-export const Row = forwardRef<HTMLDivElement, RowProps>(function Row(
-    {
-        align,
-        fullWidthOnParentDemand = true,
-        overflow = "shrink",
-        size = "xl",
-        className,
-        children,
-        ...restProps
-    },
-    ref
-) {
+export function Row({
+    align,
+    fullWidthOnParentDemand = true,
+    overflow = "shrink",
+    size = "xl",
+    className,
+    children,
+    ...restProps
+}: RowProps) {
     const joinedClassNames = classNames(
         boxingStyles.flexRowBox,
         { [boxingStyles[align as string]]: align },
@@ -34,8 +31,8 @@ export const Row = forwardRef<HTMLDivElement, RowProps>(function Row(
     );
 
     return (
-        <div ref={ref} {...restProps} className={joinedClassNames}>
+        <div {...restProps} className={joinedClassNames}>
             {children}
         </div>
     );
-});
+}
