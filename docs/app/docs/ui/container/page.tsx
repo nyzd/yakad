@@ -30,83 +30,12 @@ export default function Page() {
                 <Howtouze />
                 <Properties />
                 <Align />
+                <Maxwidth />
+                <Exampels />
+                <Links />
             </Container>
-            <Container size="md">
-                <h3>maxWidth</h3>
-                <p>
-                    If you want to increase or decrease the size of your
-                    container so that there is no problem in its responsiveness,
-                    I suggest you this option.
-                    <br />
-                    (The difference in these sizes can be seen only on pages
-                    with dimensions greater than 760 px.)
-                </p>
-            </Container>
-            <Container>
-                <Container
-                    size="xl"
-                    style={{ backgroundColor: "#585858" }}
-                    align="center"
-                >
-                    <h3>Extera Large Container</h3>
-                </Container>
-                <br />
-                <Container
-                    size="lg"
-                    style={{ backgroundColor: "#585858" }}
-                    align="center"
-                >
-                    <h3>Large Container</h3>
-                </Container>
-                <br />
-                <Container
-                    size="md"
-                    style={{ backgroundColor: "#585858" }}
-                    align="center"
-                >
-                    <h3>medium</h3>
-                </Container>
-                <br />
-                <Container
-                    size="sm"
-                    style={{ backgroundColor: "#585858" }}
-                    align="center"
-                >
-                    <h3>Small</h3>
-                </Container>
-                <br />
-                <Container
-                    size="xs"
-                    style={{ backgroundColor: "#585858" }}
-                    align="center"
-                >
-                    <h3>Extera Small</h3>
-                </Container>
-            </Container>
-            <Container size="lg">
-                <Container size="md">
-                    <h2>Examples</h2>
-                    <h3>Example 1</h3>
-                    <Example1 />
-                </Container>
 
-                <Container size="md">
-                    <h2>Links</h2>
-                    <a
-                        target="_blank"
-                        href="https://github.com/NatiqQuran/yakad/tree/main/packages/ui/theme"
-                    >
-                        Source code in github
-                    </a>
-                    <br />
-                    <a
-                        target="_blank"
-                        href="https://github.com/NatiqQuran/yakad/tree/main/packages/ui/theme"
-                    >
-                        Source code in github
-                    </a>
-                </Container>
-            </Container>
+            <Container size="md"></Container>
         </Container>
     );
 }
@@ -183,5 +112,92 @@ const Align = () => (
         <Container align="end" style={{ padding: "1rem" }}>
             <Card align="end">end</Card>
         </Container>
+    </>
+);
+const Maxwidth = () => (
+    <>
+        <Container size="md">
+            <h3>maxWidth</h3>
+            <p>
+                If you want to increase or decrease the size of your container
+                so that there is no problem in its responsiveness, I suggest you
+                this option.
+                <br />
+                (The difference in these sizes can be seen only on pages with
+                dimensions greater than 760 px.)
+            </p>
+        </Container>
+    </>
+);
+
+const Exampels = () => (
+    <>
+        <Container>
+            <Container
+                size="xl"
+                style={{ backgroundColor: "#585858" }}
+                align="center"
+            >
+                <h3>Extera Large Container</h3>
+            </Container>
+            <br />
+            <Container
+                size="lg"
+                style={{ backgroundColor: "#585858" }}
+                align="center"
+            >
+                <h3>Large Container</h3>
+            </Container>
+            <br />
+            <Container
+                size="md"
+                style={{ backgroundColor: "#585858" }}
+                align="center"
+            >
+                <h3>medium</h3>
+            </Container>
+            <br />
+            <Container
+                size="sm"
+                style={{ backgroundColor: "#585858" }}
+                align="center"
+            >
+                <h3>Small</h3>
+            </Container>
+            <br />
+            <Container
+                size="xs"
+                style={{ backgroundColor: "#585858" }}
+                align="center"
+            >
+                <h3>Extera Small</h3>
+            </Container>
+        </Container>
+        <Container size="lg">
+            <Container size="md">
+                <h2>Examples</h2>
+                <h3>Example 1</h3>
+                <Example1 />
+            </Container>
+        </Container>
+    </>
+);
+
+const Links = () => (
+    <>
+        <h2>Links</h2>
+        <a
+            target="_blank"
+            href="https://github.com/NatiqQuran/yakad/tree/main/packages/ui/theme"
+        >
+            Source code in github
+        </a>
+        <br />
+        <a
+            target="_blank"
+            href="https://github.com/NatiqQuran/yakad/tree/main/packages/ui/theme"
+        >
+            Source code in github
+        </a>
     </>
 );
