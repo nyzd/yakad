@@ -1,6 +1,6 @@
 "use client";
 
-import { useImperativeHandle } from "react";
+import { useEffect, useImperativeHandle } from "react";
 import classNames from "classnames";
 import { Symbol } from "@yakad/symbols";
 import {
@@ -16,9 +16,11 @@ import {
     useOnOutsideClick,
 } from "..";
 import styles from "./Popup.module.css";
+import { createPortal } from "react-dom";
 
 export interface PopupProps extends CardProps, OverlayProps {
     heading?: string;
+    teleport?: boolean;
     ref?: React.Ref<HTMLDivElement>;
 }
 
@@ -28,6 +30,7 @@ export function Popup({
     heading,
     className,
     children,
+    teleport = false,
     ref,
     ...restProps
 }: PopupProps) {
@@ -35,9 +38,23 @@ export function Popup({
         onClose?.();
     });
 
+    const doTeleport = () => {
+        const portalRoot =
+            document.getElementsByClassName("portalRoot")[0] || document;
+        const t = portalRoot && createPortal(popup(), portalRoot);
+        return t;
+    };
+
+    useEffect(() => {
+        document.body.style.overflow = "hidden";
+        return () => {
+            document.body.style.overflow = "initial";
+        };
+    }, []);
+
     useImperativeHandle(ref, () => localRef.current as HTMLDivElement);
 
-    return (
+    const popup = () => (
         <Screen align="center" className={styles.popupscreen}>
             <Card
                 ref={localRef}
@@ -62,4 +79,6 @@ export function Popup({
             </Card>
         </Screen>
     );
+
+    return teleport ? doTeleport() : popup();
 }

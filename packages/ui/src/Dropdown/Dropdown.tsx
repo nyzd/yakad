@@ -4,8 +4,10 @@ import { useRef, useState, useEffect, useImperativeHandle } from "react";
 import classNames from "classnames";
 import { Card, CardProps, OverlayProps, useOnOutsideClick } from "..";
 import styles from "./Dropdown.module.css";
+import { createPortal } from "react-dom";
 
 export interface DropdownProps extends CardProps, OverlayProps {
+    teleport?: boolean;
     ref?: React.Ref<HTMLDivElement>;
 }
 
@@ -18,6 +20,7 @@ export function Dropdown({
     className,
     style,
     children,
+    teleport = false,
     ref,
     ...restProps
 }: DropdownProps) {
@@ -46,6 +49,20 @@ export function Dropdown({
 
     const [isPlacedAbove, setIsPlacedAbove] = useState<boolean>(false);
     const [isPlaced, setIsPlaced] = useState<boolean>(false);
+
+    useEffect(() => {
+        document.body.style.overflow = "hidden";
+        return () => {
+            document.body.style.overflow = "initial";
+        };
+    }, []);
+
+    const doTeleport = () => {
+        const portalRoot =
+            document.getElementsByClassName("portalRoot")[0] || document;
+        const t = portalRoot && createPortal(dropdown(), portalRoot);
+        return t;
+    };
 
     useEffect(() => {
         if (placementTargetRef?.current && dropdownRef.current) {
@@ -101,7 +118,7 @@ export function Dropdown({
         onClose?.();
     }, dropdownRef);
 
-    return (
+    const dropdown = () => (
         <>
             {!triggerref && <div ref={fallbackTriggerRef} />}
             <Card
@@ -140,4 +157,6 @@ export function Dropdown({
             />
         </>
     );
+
+    return teleport ? doTeleport() : dropdown();
 }
