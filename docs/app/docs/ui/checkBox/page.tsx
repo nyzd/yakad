@@ -23,45 +23,12 @@ export default function Page() {
             <h1>Checkbox</h1>
             <Hr />
             <p>
-                Checkboxes allow the user to select one or more items from a
-                set.
+                Checkboxes allow users to select multiple items from a list of
+                individual items, or to mark one individual item as selected.
             </p>
-            <Card>
-                <Row>
-                    <span>
-                        <code>{'import { Checkbox } from "@yakad/ui"'}</code>
-                        <br />
-                        <br />
-                        <code>{"<Checkbox />"}</code>
-                    </span>
-                    <Spacer />
-                    <Button icon={<Symbol icon="content_copy" />}></Button>
-                </Row>
-            </Card>
-            <h2>Properties</h2>
-            <p>Properties that are accepted as attributes:</p>
-            <Table>
-                <Thead>
-                    <Tr>
-                        <Th>Property</Th>
-                        <Th>Value</Th>
-                    </Tr>
-                </Thead>
-                <Tbody>
-                    <Tr>
-                        <Td>label</Td>
-                        <Td>string</Td>
-                    </Tr>
-                    <Tr>
-                        <Td>checked</Td>
-                        <Td>True | False</Td>
-                    </Tr>
-                    <Tr>
-                        <Td>disabled</Td>
-                        <Td>True | False</Td>
-                    </Tr>
-                </Tbody>
-            </Table>
+            <Howtouze />
+            <Properties />
+
             <h3>label</h3>
             <p>
                 The characteristic of the label is that it shows the value we
@@ -149,3 +116,46 @@ export default function Page() {
         </Container>
     );
 }
+
+const Howtouze = () => (
+    <>
+        <Card>
+            <Row>
+                <span>
+                    <code>{'import { Checkbox } from "@yakad/ui"'}</code>
+                    <br />
+                    <br />
+                    <code>{"<Checkbox />"}</code>
+                </span>
+                <Spacer />
+                <Button icon={<Symbol icon="content_copy" />}></Button>
+            </Row>
+        </Card>
+    </>
+);
+const Properties = () => (
+    <>
+        <h2>Properties</h2>
+        <p>Properties that are accepted as attributes:</p>
+        <Table>
+            <Thead>
+                <Tr>
+                    <Th>Property</Th>
+                    <Th>Value</Th>
+                    <Th>Default</Th>
+                    <Th>Required</Th>
+                </Tr>
+            </Thead>
+            <Tbody>
+                <Tr>
+                    <Td>Lable</Td>
+                    <Td>String</Td>
+                    <Td>undefined</Td>
+                    <Td>
+                        <Symbol type="sharp" icon="close"></Symbol>
+                    </Td>
+                </Tr>
+            </Tbody>
+        </Table>
+    </>
+);
