@@ -1,7 +1,8 @@
 "use client";
 
 import React, { useEffect, useRef, useState } from "react";
-import { ActiveOnVisible, Stack, StackProps, useOnVisibilityChange } from "..";
+import { ActiveOnVisible, Stack, StackProps } from "..";
+import { useOnVisibilityChange } from "@yakad/use-interactions";
 
 export interface RenderByScrollProps extends StackProps {
     scrollMarginTop?: number;

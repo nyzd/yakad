@@ -41,13 +41,3 @@ export * from "./Dropdown/Dropdown"; // Card Based
 export * from "./Popup/Popup"; // Card Based
 
 export * from "./Avatar/Avatar";
-export * from "./interactionHooks/useOnRightClick";
-export * from "./interactionHooks/useOnOutsideClick";
-export * from "./interactionHooks/useOnDoubleTap";
-export * from "./interactionHooks/useOnSwipe";
-export * from "./interactionHooks/useOnPinch";
-export * from "./interactionHooks/useOnRotate";
-export * from "./interactionHooks/useOnResizeChange";
-export * from "./interactionHooks/useOnVisibilityChange";
-export * from "./interactionHooks/useOnHoverChange";
-export * from "./interactionHooks/useOnScroll";

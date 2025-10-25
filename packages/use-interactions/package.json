@@ -1,20 +1,20 @@
 {
-    "name": "@yakad/ui",
-    "version": "1.3.165",
+    "name": "@yakad/use-interactions",
+    "version": "1.0.0",
     "private": false,
     "author": "Natiq",
-    "description": "UI components for NextJS/React",
+    "description": "Hooks for user interactions",
     "main": "dist/index.js",
     "types": "dist/index.d.ts",
     "keywords": [
         "yakad",
         "react",
-        "react-component"
+        "react-hooks"
     ],
     "repository": {
         "type": "git",
         "url": "git+https://github.com/natiq-foundation/yakad.git",
-        "directory": "packages/ui"
+        "directory": "packages/use-interactions"
     },
     "license": "MIT",
     "bugs": {
@@ -31,12 +31,7 @@
         "test": "echo \"No tests specified\" && exit 0",
         "prepublishOnly": "npm run lint && npm run test && npm run build && npm run typecheck"
     },
-    "dependencies": {
-        "@yakad/lib": "1.0.23",
-        "@yakad/symbols": "1.0.29",
-        "@yakad/use-interactions": "1.0.0",
-        "classnames": "2.5.1"
-    },
+    "dependencies": {},
     "peerDependencies": {
         "react": "^19.2.0",
         "react-dom": "^19.2.0"

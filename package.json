@@ -18,6 +18,7 @@
         "publish:symbols": "npm i && cd packages/symbols && npm publish",
         "publish:ui": "npm i && cd packages/ui && npm publish",
         "publish:x": "npm i && cd packages/x && npm publish",
+        "publish:use-interactions": "npm i && cd packages/use-interactions && npm publish",
         "idev:docs": "cd docs && npm run idev"
     },
     "devDependencies": {

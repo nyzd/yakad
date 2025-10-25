@@ -14,8 +14,8 @@ import {
     PopupProps,
     Stack,
     StackProps,
-    useOnRightClick,
 } from "..";
+import { useOnRightClick } from "@yakad/use-interactions";
 
 export interface OverlayProps {
     triggerref?: RefObject<HTMLElement | null>;
