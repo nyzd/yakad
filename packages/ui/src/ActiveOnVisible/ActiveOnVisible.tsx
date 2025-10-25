@@ -1,7 +1,8 @@
 "use client";
 
 import { useImperativeHandle, useRef, useState } from "react";
-import { Stack, StackProps, useOnVisibilityChange } from "..";
+import { Stack, StackProps } from "..";
+import { useOnVisibilityChange } from "@yakad/use-interactions";
 
 export interface ActiveOnVisibleProps extends StackProps {
     onVisibilityChange?: (visible: boolean) => void;

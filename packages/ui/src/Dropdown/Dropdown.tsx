@@ -2,9 +2,10 @@
 
 import { useRef, useState, useEffect, useImperativeHandle } from "react";
 import classNames from "classnames";
-import { Card, CardProps, OverlayProps, useOnOutsideClick } from "..";
+import { Card, CardProps, OverlayProps } from "..";
 import styles from "./Dropdown.module.css";
 import { createPortal } from "react-dom";
+import { useOnOutsideClick } from "@yakad/use-interactions";
 
 export interface DropdownProps extends CardProps, OverlayProps {
     teleport?: boolean;

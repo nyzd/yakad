@@ -13,10 +13,10 @@ import {
     Spacer,
     Stack,
     Text,
-    useOnOutsideClick,
 } from "..";
 import styles from "./Popup.module.css";
 import { createPortal } from "react-dom";
+import { useOnOutsideClick } from "@yakad/use-interactions";
 
 export interface PopupProps extends CardProps, OverlayProps {
     heading?: string;
