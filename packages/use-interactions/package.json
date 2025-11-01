@@ -23,9 +23,7 @@
     "homepage": "https://yakad.natiq.net",
     "scripts": {
         "clean": "rimraf dist/",
-        "copy-files:css": "copyfiles -u 1 src/*.css src/**/*.css dist/",
-        "copy-files:svg": "copyfiles -u 1 src/*.svg src/**/*.svg dist/",
-        "build": "npm run clean && tsc && npm run copy-files:css && npm run copy-files:svg",
+        "build": "npm run clean && tsc",
         "typecheck": "tsc --noEmit",
         "lint": "eslint src/**/*.{ts,tsx}",
         "test": "echo \"No tests specified\" && exit 0",
