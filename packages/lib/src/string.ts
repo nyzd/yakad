@@ -1,4 +1,4 @@
-const persianArabicDigitsToEnglish = (str: string): string => {
+const arabicDigitsToEnglish = (str: string): string => {
     // Map for Persian/Arabic digits to English digits
     const persianToEnglishMap: { [key: string]: string } = {
         "۰": "0",
@@ -72,7 +72,7 @@ const normalizeForSearch = (str: string): string => {
         لا: "لا", // "Lam Alef" ligature remains the same but can be replaced in special cases
     };
 
-    return persianArabicDigitsToEnglish(
+    return arabicDigitsToEnglish(
         removeArabicDiacritics(
             handleWordVariants(
                 str
@@ -87,7 +87,7 @@ const normalizeForSearch = (str: string): string => {
 };
 
 export {
-    persianArabicDigitsToEnglish,
+    arabicDigitsToEnglish,
     removeArabicDiacritics,
     removeNonArabic,
     handleWordVariants,
