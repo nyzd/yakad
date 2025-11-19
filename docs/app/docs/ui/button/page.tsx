@@ -341,148 +341,162 @@ const Icon = () => (
     </>
 );
 
+const Loading = () => (
+    <>
+        <Card align="center" style={{ maxWidth: "60rem", margin: "auto" }}>
+            <Row style={{ justifyContent: "center" }}>
+                <Button
+                    variant="outlined"
+                    icon={<Symbol icon="search" />}
+                    loadingPosition="auto"
+                    loadingVariant="dots"
+                    disabled
+                >
+                    Loading
+                </Button>
+                <Button
+                    variant="outlined"
+                    icon={<Symbol icon="search" />}
+                    loadingPosition="auto"
+                    loadingVariant="dots"
+                    iconPosition="end"
+                    disabled
+                >
+                    Loading
+                </Button>
+                <Button
+                    variant="outlined"
+                    icon={<Symbol icon="search" />}
+                    loadingPosition="auto"
+                    loadingVariant="dots"
+                    iconPosition="end"
+                    disabled
+                ></Button>
+            </Row>
+            <Row style={{ justifyContent: "center", padding: "20px" }}>
+                <Button
+                    variant="outlined"
+                    icon={<Symbol icon="search" />}
+                    loadingPosition="auto"
+                    loadingVariant="scaleOut"
+                    disabled
+                >
+                    Loading
+                </Button>
+                <Button
+                    variant="outlined"
+                    icon={<Symbol icon="search" />}
+                    loadingPosition="auto"
+                    loadingVariant="scaleOut"
+                    iconPosition="end"
+                    disabled
+                >
+                    Loading
+                </Button>
+                <Button
+                    variant="outlined"
+                    icon={<Symbol icon="search" />}
+                    loadingPosition="auto"
+                    loadingVariant="scaleOut"
+                    disabled
+                ></Button>
+            </Row>
+
+            <Row style={{ justifyContent: "center" }}>
+                <Button
+                    variant="outlined"
+                    icon={<Symbol icon="search" />}
+                    loadingPosition="auto"
+                    loadingVariant="spinner"
+                    disabled
+                >
+                    Loading
+                </Button>{" "}
+                <Button
+                    variant="outlined"
+                    icon={<Symbol icon="search" />}
+                    loadingPosition="auto"
+                    loadingVariant="spinner"
+                    iconPosition="end"
+                    disabled
+                >
+                    Loading
+                </Button>{" "}
+                <Button
+                    variant="outlined"
+                    icon={<Symbol icon="search" />}
+                    loadingPosition="auto"
+                    loadingVariant="spinner"
+                    disabled
+                ></Button>
+            </Row>
+        </Card>
+    </>
+);
+const LoadingVariant = () => (
+    <>
+        <Card style={{ maxWidth: "60rem", margin: "auto" }}>
+            <Row>
+                <Button
+                    variant="outlined"
+                    icon={<Symbol icon="search" />}
+                    loadingVariant="dots"
+                    loadingPosition="auto"
+                    disabled
+                >
+                    Loading
+                </Button>
+                <Button
+                    variant="outlined"
+                    icon={<Symbol icon="search" />}
+                    loadingVariant="scaleOut"
+                    disabled
+                >
+                    Loading
+                </Button>
+                <Button
+                    variant="outlined"
+                    icon={<Symbol icon="search" />}
+                    loadingVariant="spinner"
+                    disabled
+                >
+                    Loading
+                </Button>
+            </Row>
+        </Card>
+    </>
+);
+const Links = () => (
+    <>
+        <a
+            target="_blank"
+            href="https://github.com/NatiqQuran/yakad/tree/main/packages/ui/theme"
+        >
+            Source code in github
+        </a>
+        <br />
+        <a
+            target="_blank"
+            href="https://github.com/NatiqQuran/yakad/tree/main/packages/ui/theme"
+        >
+            Source code in github
+        </a>
+    </>
+);
 function ButtonLoading() {
     return (
         <Container size="md">
             <h3>Loading:</h3>
             <p>With this option, you can put a loading sign on the buttons</p>
-            <Card align="center" style={{ maxWidth: "60rem", margin: "auto" }}>
-                <Row style={{ justifyContent: "center" }}>
-                    <Button
-                        variant="outlined"
-                        icon={<Symbol icon="search" />}
-                        loadingPosition="auto"
-                        loadingVariant="dots"
-                        disabled
-                    >
-                        Loading
-                    </Button>
-                    <Button
-                        variant="outlined"
-                        icon={<Symbol icon="search" />}
-                        loadingPosition="auto"
-                        loadingVariant="dots"
-                        iconPosition="end"
-                        disabled
-                    >
-                        Loading
-                    </Button>
-                    <Button
-                        variant="outlined"
-                        icon={<Symbol icon="search" />}
-                        loadingPosition="auto"
-                        loadingVariant="dots"
-                        iconPosition="end"
-                        disabled
-                    ></Button>
-                </Row>
-                <Row style={{ justifyContent: "center", padding: "20px" }}>
-                    <Button
-                        variant="outlined"
-                        icon={<Symbol icon="search" />}
-                        loadingPosition="auto"
-                        loadingVariant="scaleOut"
-                        disabled
-                    >
-                        Loading
-                    </Button>
-                    <Button
-                        variant="outlined"
-                        icon={<Symbol icon="search" />}
-                        loadingPosition="auto"
-                        loadingVariant="scaleOut"
-                        iconPosition="end"
-                        disabled
-                    >
-                        Loading
-                    </Button>
-                    <Button
-                        variant="outlined"
-                        icon={<Symbol icon="search" />}
-                        loadingPosition="auto"
-                        loadingVariant="scaleOut"
-                        disabled
-                    ></Button>
-                </Row>
-
-                <Row style={{ justifyContent: "center" }}>
-                    <Button
-                        variant="outlined"
-                        icon={<Symbol icon="search" />}
-                        loadingPosition="auto"
-                        loadingVariant="spinner"
-                        disabled
-                    >
-                        Loading
-                    </Button>{" "}
-                    <Button
-                        variant="outlined"
-                        icon={<Symbol icon="search" />}
-                        loadingPosition="auto"
-                        loadingVariant="spinner"
-                        iconPosition="end"
-                        disabled
-                    >
-                        Loading
-                    </Button>{" "}
-                    <Button
-                        variant="outlined"
-                        icon={<Symbol icon="search" />}
-                        loadingPosition="auto"
-                        loadingVariant="spinner"
-                        disabled
-                    ></Button>
-                </Row>
-            </Card>
+            <Loading />
             <h3>Loading Variant:</h3>
             <p>
                 And this is also different loading models that you can use
                 whichever you like.
             </p>
-            <Card style={{ maxWidth: "60rem", margin: "auto" }}>
-                <Row>
-                    <Button
-                        variant="outlined"
-                        icon={<Symbol icon="search" />}
-                        loadingVariant="dots"
-                        loadingPosition="auto"
-                        disabled
-                    >
-                        Loading
-                    </Button>
-                    <Button
-                        variant="outlined"
-                        icon={<Symbol icon="search" />}
-                        loadingVariant="scaleOut"
-                        disabled
-                    >
-                        Loading
-                    </Button>
-                    <Button
-                        variant="outlined"
-                        icon={<Symbol icon="search" />}
-                        loadingVariant="spinner"
-                        disabled
-                    >
-                        Loading
-                    </Button>
-                </Row>
-            </Card>
+            <LoadingVariant />
             <h2>Links</h2>
-
-            <a
-                target="_blank"
-                href="https://github.com/NatiqQuran/yakad/tree/main/packages/ui/theme"
-            >
-                Source code in github
-            </a>
-            <br />
-            <a
-                target="_blank"
-                href="https://github.com/NatiqQuran/yakad/tree/main/packages/ui/theme"
-            >
-                Source code in github
-            </a>
+            <Links />
         </Container>
     );
 }
