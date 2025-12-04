@@ -1,0 +1,39 @@
+{
+    "name": "@yakad/fonts",
+    "version": "1.0.0",
+    "private": false,
+    "author": "Natiq",
+    "description": "Yakad quran fonts",
+    "main": "dist/index.js",
+    "types": "dist/index.d.ts",
+    "keywords": [
+        "yakad",
+        "react",
+        "nextjs",
+        "fonts"
+    ],
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/natiq-foundation/yakad.git",
+        "directory": "packages/ui"
+    },
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/natiq-foundation/yakad/issues"
+    },
+    "homepage": "https://yakad.natiq.net",
+    "scripts": {
+        "clean": "rimraf dist/",
+        "copy-files:css": "copyfiles -u 1 src/*.css src/**/*.css dist/",
+        "copy-files:svg": "copyfiles -u 1 src/*.svg src/**/*.svg dist/",
+        "build": "npm run clean && tsc && npm run copy-files:css && npm run copy-files:svg",
+        "typecheck": "tsc --noEmit",
+        "lint": "eslint src/**/*.{ts,tsx}",
+        "test": "echo \"No tests specified\" && exit 0",
+        "prepublishOnly": "npm run lint && npm run test && npm run build && npm run typecheck"
+    },
+    "dependencies": {
+        "@next/font": "^14.2.15",
+        "classnames": "2.5.1"
+    }
+}
