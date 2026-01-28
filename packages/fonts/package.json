@@ -15,7 +15,7 @@
     "repository": {
         "type": "git",
         "url": "git+https://github.com/natiq-foundation/yakad.git",
-        "directory": "packages/ui"
+        "directory": "packages/fonts"
     },
     "license": "MIT",
     "bugs": {
@@ -28,7 +28,7 @@
         "copy-files:svg": "copyfiles -u 1 src/*.svg src/**/*.svg dist/",
         "build": "npm run clean && tsc && npm run copy-files:css && npm run copy-files:svg",
         "typecheck": "tsc --noEmit",
-        "lint": "eslint src/**/*.{ts,tsx}",
+        "lint": "eslint src/**/*.{ts}",
         "test": "echo \"No tests specified\" && exit 0",
         "prepublishOnly": "npm run lint && npm run test && npm run build && npm run typecheck"
     },
